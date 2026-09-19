@@ -3,7 +3,13 @@
 A skill `otimizar-tokens` enxuga arquivos do plugin (Markdown e configuração) para o Claude gastar menos tokens ao lê-los, sem perder informação. A versão que o Claude lê é [../../skills/otimizar-tokens/SKILL.md](../../skills/otimizar-tokens/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos de docs/ia". Para ver o que ela cortaria sem alterar nada, peça "só analisa". Numa pasta, ela trata até uns 5 arquivos por vez.
+Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos de docs/ia". Para ver o que ela cortaria sem alterar nada, peça "só analisa". Para ver os cortes linha a linha, peça a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
+
+## Em que ordem ela trabalha
+Do que mais economiza para o que menos economiza:
+1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/dev/` não são lidos pelo Claude, então otimizá-los não economiza tokens. Peça "auditoria" para receber só esse relatório, sem alterar nada.
+2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `CSHARP.md`, que só entra com código C#), e uma regra escrita em mais de um arquivo fica em uma fonte só. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
+3. **Palavras:** só nos arquivos que ainda justificam, corta o que sobra no texto.
 
 ## Como ela protege o conteúdo
 1. **Inventário:** antes de mexer, lista tudo o que o arquivo afirma: regras, números, limites, exceções, condições, caminhos e a ordem dos passos.
@@ -13,14 +19,9 @@ Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos 
 5. **Gatilho da skill:** se a descrição de uma skill mudou, ela compara as palavras que a acionam antes e depois e testa algumas frases que devem e que não devem acioná-la. Um corte que tira uma palavra-chave faria a skill deixar de disparar sem ninguém perceber.
 6. **Prova de equivalência (só se você pedir):** ela roda o mesmo pedido de teste antes e depois, por exemplo gerar um card de teste, e compara os resultados. É a prova real de que nada se perdeu, mas gasta tokens.
 
-## Onde vale otimizar (auditoria)
-Peça "auditoria" para receber só um relatório, sem alterar nada. Ela lista os arquivos do plugin com o tamanho e uma classificação por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Assim você otimiza primeiro o que mais pesa.
-
 ## O que ela remove e o que ela mantém
 - **Remove:** introduções e fechos, explicações de conceitos que a IA já conhece, exemplos que só repetem a regra, duplicação entre arquivos, histórico sem efeito hoje e enfeites (emojis, negritos em excesso, separadores).
 - **Condensa:** prosa vira lista ou frase curta, e siglas só aparecem depois de definidas.
-- **Separa o que é raro:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `CSHARP.md`, que só entra com código C#). Costuma economizar mais do que cortar palavras.
-- **Duplicação entre arquivos:** procura a mesma regra escrita em mais de um lugar e deixa uma fonte só.
 - **Mantém sempre:** negações e condições ("nunca", "só se", "exceto"), números e limites, caminhos, namespaces, assinaturas, tipos, identificadores e ids de checklist, exemplos que desfazem ambiguidade e uma frase de "porquê" quando ela evita aplicar a regra errado.
 - **Nunca acrescenta:** a versão nova não diz nada que o original não dissesse.
 - **Não compacta demais:** se a versão curta ficaria ambígua, mantém a longa.
@@ -39,4 +40,4 @@ O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a re
 - **Código e configuração:** inclusive blocos de código dentro de um `.md` (csharp, json, yaml), ficam intactos. Só saem comentários óbvios e espaços supérfluos, sem alterar o comportamento. No cabeçalho das skills, o nome e as palavras de gatilho da descrição são preservados.
 
 ## O que sai
-Para cada arquivo, o tamanho antes e depois em linhas e caracteres, com a porcentagem economizada. Depois, três listas: o que foi removido, o que foi condensado e as dúvidas (o que ela deixou de cortar por risco de perda). Se o arquivo tem alterações ainda não commitadas, ela avisa antes de editar, porque aí fica mais difícil desfazer com `git diff`.
+Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, três listas: o que foi removido, o que foi condensado e as dúvidas (o que ela deixou de cortar por risco de perda). Se o arquivo tem alterações ainda não commitadas, ela avisa antes de editar, porque aí fica mais difícil desfazer com `git diff`.

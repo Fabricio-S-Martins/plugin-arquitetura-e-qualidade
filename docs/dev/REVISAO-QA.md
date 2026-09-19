@@ -36,5 +36,6 @@ Cada achado indica onde está, qual regra foi quebrada, o problema e como corrig
 
 ## O que ela não faz
 - Não edita arquivos nem se oferece para corrigir. Você corrige, ou pede explicitamente ("corrige", "ajusta").
+- Se você quiser ver como ficaria uma correção, peça a prévia: ela mostra a mudança com `+` e `-`, sem aplicar.
 - Não cria itens novos fora do alvo. Cobertura que falta vira sinalização.
 - Não roda build nem testes por conta própria. Só quando você pedir, usando o comando do `CLAUDE.md` do projeto.

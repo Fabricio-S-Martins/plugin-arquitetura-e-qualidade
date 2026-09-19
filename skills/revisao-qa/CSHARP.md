@@ -1,6 +1,6 @@
 # Convenções C#
 
-Verificar em todo `.cs` tocado (arquivo inteiro), contra os irmãos do projeto. Pular um item só se analyzer/`.editorconfig` ativo o cobre.
+Verificar nos `.cs` do escopo (modo completo: arquivo inteiro), contra os irmãos do projeto. Pular um item só se analyzer/`.editorconfig` ativo o cobre.
 
 | Item | Regra | Verificação (Grep) |
 |---|---|---|

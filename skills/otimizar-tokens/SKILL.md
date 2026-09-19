@@ -6,28 +6,29 @@ description: Refatora .md e configs para gastar menos tokens sem perder informa�
 # otimizar-tokens
 
 Reduzir tokens preservando 100% do significado. Dúvida se é perda → perguntar, nunca cortar.
-Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar. Alvo com alterações não commitadas → avisar antes de editar (perde a reversão por `git diff`).
-"Auditoria" / "onde vale otimizar": só relatório. Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos.
+Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `previa-diff`. "Auditoria" / "onde vale otimizar" → só o passo 1. Alvo com alterações não commitadas → avisar antes de editar (perde a reversão por `git diff`).
 
 ## Público do arquivo
 - **IA** (`SKILL.md`, `docs/ia/`, `CLAUDE.md`, frontmatter): telegráfico.
 - **Dev** (`docs/dev/`): linguagem amigável; só remover redundância, repetição e enfeite.
 - Par `docs/ia/X` ↔ `docs/dev/X`: otimizar cada um pelo seu público; os dois dizem o mesmo.
 
-## Fluxo
-1. Ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin.
-2. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos.
-3. Reescrever com as técnicas abaixo.
-4. **Conferência:** cada item do inventário presente, com a mesma condição e o mesmo número. Faltou → restaurar.
-5. `description` alterada: comparar palavras de gatilho antes/depois e testar 2-3 frases que devem e 2-3 que não devem acionar a skill.
-6. Medir antes/depois: `wc -l -c` (bytes, ~3,5 por token em pt-BR). Relatório.
-7. Só se pedido, equivalência: rodar o mesmo pedido de teste antes e depois (ex: gerar card de teste) e comparar.
+## Fluxo (maior ganho primeiro)
+1. **Auditoria:** Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos. Arquivo que a IA não carrega (`docs/dev/`) não economiza tokens. Agir primeiro no que mais pesa.
+2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`); regra repetida entre arquivos → uma fonte, o outro aponta (DRY). Conferir que nenhum uso passa a carregar mais que antes.
+3. **Palavras**, só nos arquivos que ainda justificam: ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin.
+4. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos.
+5. Reescrever com as técnicas abaixo.
+6. **Conferência:** cada item do inventário presente, com a mesma condição e o mesmo número. Faltou → restaurar.
+7. `description` alterada: comparar palavras de gatilho antes/depois e testar 2-3 frases que devem e 2-3 que não devem acionar a skill.
+8. Medir antes/depois: `wc -l -c` (bytes, ~3,5 por token em pt-BR). Relatório.
+9. Só se pedido, equivalência: rodar o mesmo pedido de teste antes e depois (ex: gerar card de teste) e comparar.
 
 ## Remover
 - Introdução, fecho, cortesia, "como usar" que repete o nome do arquivo.
 - Explicação de conceito que a IA já conhece (SOLID, KISS, DTO).
 - Exemplo que só repete a regra; manter o que desfaz ambiguidade.
-- Duplicação: entre arquivos → uma fonte, o outro aponta (DRY); dentro do arquivo → uma vez.
+- Duplicação dentro do arquivo → uma vez.
 - Histórico, datas, "revogado", decisões sem efeito hoje.
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
 - "Porquê" longo; manter uma oração só se evita aplicar a regra errado.
@@ -36,7 +37,6 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa.
 - Sigla só se definida uma vez no arquivo; sem abreviação obscura.
 - Mais importante primeiro; agrupar regras da mesma condição.
-- Bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`).
 
 ## Nunca
 - Perder negação, condição ou qualificador ("nunca", "só se", "exceto", "quando"); fundir regras de condições diferentes; arredondar número ou limite.

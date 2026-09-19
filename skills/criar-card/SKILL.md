@@ -21,9 +21,10 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **DTO/Command/Query:** forma em prosa, não assinatura; tipo entre parênteses só se não óbvio.
 - **Agregado com filhos:** copiar 1 par pai/filho equivalente já existente no repo. Pai nasce sem filhos; filho entra por método do pai, que valida e cria; coleção interna privada exposta como somente leitura.
 - **Consistência:** nenhum membro citado sem definição no passo do tipo. Usar expressão exata do código (`resultado.Sucesso == false`).
-- **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo (prioridade em segurança/criptografia, erro silencioso); operação com resultado → retorno explícito; segurança/criptografia → task de teste dedicada.
+- **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz. Checar cada palavra antes de escrever.
 - **Testes:** descrever cenários, não nomes de método.
+- **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar
