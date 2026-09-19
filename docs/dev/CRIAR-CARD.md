@@ -13,6 +13,9 @@ Um arquivo `cards/TASK-XXX.md`, com o próximo número livre, seguindo o [templa
 - **O que fazer:** as regras e decisões da task que o checklist não deixa óbvias, em uma linha cada. Padrões de projeto aplicados são citados pelo nome.
 - **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
+## Como ela lê o projeto
+Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Ele compara com 1 arquivo irmão real do mesmo tipo e camada, sem varrer o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
+
 ## O que você vai notar nos itens
 - Cada item é uma ação direta: verbo, o quê e onde.
 - Todo arquivo ou pasta diz onde fica.
