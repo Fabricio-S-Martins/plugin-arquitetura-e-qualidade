@@ -1,12 +1,13 @@
 ---
 name: otimizar-tokens
 description: Refatora .md e configs para gastar menos tokens sem perder informação. Usar ao pedir para otimizar, enxugar, limpar, compactar ou reduzir tokens de arquivo, skill ou documento.
+allowed-tools: Read, Glob, Grep, Edit, Write, Bash(wc *), Bash(cp *)
 ---
 
 # otimizar-tokens
 
 Reduzir tokens preservando 100% do significado. Dúvida se é perda → perguntar, nunca cortar.
-Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `previa-diff`. "Auditoria" / "onde vale otimizar" → só o passo 1. Alvo com alterações não commitadas → avisar antes de editar (perde a reversão por `git diff`).
+Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `previa-diff`. "Auditoria" / "onde vale otimizar" → só o passo 1. Editar direto, sem pedir permissão; perguntar só por dúvida real de perda. Alvo com alterações não commitadas → copiar antes para o diretório temporário (scratchpad) e informar no relatório.
 
 ## Público do arquivo
 - **IA** (`SKILL.md`, `docs/ia/`, `CLAUDE.md`, frontmatter): telegráfico.

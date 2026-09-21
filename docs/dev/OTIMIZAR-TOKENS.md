@@ -40,4 +40,7 @@ O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a re
 - **Código e configuração:** inclusive blocos de código dentro de um `.md` (csharp, json, yaml), ficam intactos. Só saem comentários óbvios e espaços supérfluos, sem alterar o comportamento. No cabeçalho das skills, o nome e as palavras de gatilho da descrição são preservados.
 
 ## O que sai
-Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, três listas: o que foi removido, o que foi condensado e as dúvidas (o que ela deixou de cortar por risco de perda). Se o arquivo tem alterações ainda não commitadas, ela avisa antes de editar, porque aí fica mais difícil desfazer com `git diff`.
+Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, três listas: o que foi removido, o que foi condensado e as dúvidas (o que ela deixou de cortar por risco de perda). Ela edita direto, sem pedir permissão, e só pergunta quando tem dúvida real sobre perder informação. Se o arquivo tem alterações ainda não commitadas, ela guarda uma cópia antes de editar e informa no relatório, para você poder desfazer.
+
+## Permissões
+O cabeçalho da skill declara que ela pode ler, editar e criar arquivos e usar `wc` e `cp`, para o Claude Code não pedir aprovação a cada edição enquanto ela roda. Se mesmo assim o VS Code pedir, o modo de permissões da sua sessão ou as regras do seu `settings.json` estão prevalecendo. Nesse caso, libere `Edit` e `Write` para a pasta do plugin lá.
