@@ -5,7 +5,7 @@ description: Cria card de tarefa em .md a partir do template. Usar ao pedir para
 
 # criar-card
 
-Ler `docs/ia/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
+Ler `docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.
@@ -23,6 +23,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Consistência:** nenhum membro citado sem definição no passo do tipo. Usar expressão exata do código (`resultado.Sucesso == false`).
 - **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz. Checar cada palavra antes de escrever.
+- **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.

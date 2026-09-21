@@ -11,7 +11,7 @@ Um arquivo `cards/TASK-XXX.md`, com o próximo número livre, seguindo o [templa
 - **Título:** verbo no infinitivo mais o que a task entrega, cobrindo todas as frentes. Deve servir como mensagem de commit.
 - **Cabeçalho:** módulo, camada, status (começa em "a fazer") e dependências.
 - **O que fazer:** as regras e decisões da task que o checklist não deixa óbvias, em uma linha cada. Padrões de projeto aplicados são citados pelo nome.
-- **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
+- **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo) e um último item que pergunta se você quer o plano de documentação do restante. Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
 ## Como ela lê o projeto
 Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Ele compara com 1 arquivo irmão real do mesmo tipo e camada, sem varrer o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
