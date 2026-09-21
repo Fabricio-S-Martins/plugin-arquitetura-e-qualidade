@@ -1,36 +1,46 @@
 ---
 name: encerrar-sessao
-description: Encerra ou troca de sessão sem perder contexto. Gera prompt de retomada compacto e resumo da conversa em .md legível para humanos. Usar ao pedir encerrar sessão, compactar, prompt de retomada, continuar em outra sessão ou resumo da conversa.
+description: Encerra ou troca de sessão sem perder contexto, inclusive para outro dev continuar. Gera um documento de retomada em .md e um prompt curto que aponta para ele. Usar ao pedir encerrar sessão, compactar, prompt de retomada, continuar em outra sessão, passar para outro dev ou resumo da conversa.
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash(wc *), Bash(git status *), Bash(git log *), Bash(git rev-parse *), Bash(git config user.name), Bash(mkdir *)
 ---
 
 # encerrar-sessao
 
-Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Única leitura extra: `git status --short` + branch. Não editar código, não commitar.
+Executar sem pedir permissão. Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, o `.md` do tema se existir. Não editar código, não commitar.
+
+Leitor: outra sessão da IA ou outro dev, sem ter visto a conversa. O documento é autocontido e fonte única; o prompt só aponta para ele.
 
 ## Fluxo
-1. **Inventário:** percorrer a conversa e separar: objetivo, decisões (com o porquê), fatos com fonte (`arquivo:linha` ou "usuário"), feito, pendente, alternativas descartadas (com motivo), armadilhas, preferências dadas pelo usuário, em aberto. Item só no chat vale como perdido: entra no prompt ou no resumo.
-2. **Prompt de retomada** (para a IA): autocontido, quem retoma não viu a conversa. Bloco de código, máx. ~40 linhas, telegráfico, não depende do resumo .md.
-3. **Resumo .md** (para humano): reescrever, não transcrever. Salvar em `docs/sessoes/AAAA-MM-DD-tema.md` do projeto; pasta ausente → criar. Mesmo dia e tema → atualizar o arquivo.
-4. **Fechar:** no chat, o prompt em bloco de código, o caminho do resumo e 1 linha dizendo que pode dar `/clear` e colar o prompt.
+1. **Inventário:** percorrer a conversa e separar o conteúdo por seção do Documento. Item só no chat vale como perdido: entra no documento.
+2. **Documento:** `docs/sessoes/<tema>.md`; tema = frente de trabalho em pt-br, minúsculas com hífen, nunca a data. Glob em `docs/sessoes/*.md` antes: frente já coberta por um arquivo → reusar o tema; dúvida → reusar o mais próximo e dizer qual no fechamento; nenhum serve → novo tema. Existe → mesclar: reescrever o estado atual, manter decisões e descartes ainda válidos, remover o resolvido. Ausente → criar (`mkdir` se preciso).
+3. **Git:** `.gitignore` do projeto sem `docs/sessoes/` → acrescentar a linha.
+4. **Fechar:** no chat, o prompt em bloco de código, o caminho do documento e 1 linha: para outro dev, enviar o arquivo (fora do git) junto com o prompt; depois pode dar `/clear`.
+
+## Documento
+Títulos fixos, nesta ordem. Frases curtas, uma ideia por item, caminhos e nomes exatos entre crases, datas AAAA-MM-DD, terceira pessoa ("o usuário decidiu"; nunca "você" nem "nós"), termo técnico explicado uma vez. Seção vazia → omitir. Máx. ~80 linhas; acima disso, cortar detalhe de Estado e Depois disso antes de encurtar o porquê das decisões.
+- **Cabeçalho:** `# <tema>` e uma linha: `Atualizado: data · dev · branch · commit · git limpo | sujo (o quê)`.
+- **Objetivo:** 1-2 frases: o que a frente busca e por quê.
+- **Estado:** feito (marcar testado ou não testado) e pendente.
+- **Próximo passo:** um só, concreto, com o arquivo onde começar.
+- **Decisões (não reabrir):** decisão + porquê.
+- **Descartado:** opção + motivo.
+- **Não fazer:** armadilhas.
+- **Regras do usuário:** só as dadas na conversa e que o `CLAUDE.md` do projeto não traz (idioma, formato, limites).
+- **Em aberto:** pergunta + quem responde; nunca assumir.
+- **Depois disso:** demais passos, em ordem.
+- **Ler antes de agir:** caminho + motivo.
 
 ## Prompt
-- **Contexto:** projeto, branch, estado do git (limpo ou o que está sujo).
-- **Estado:** 2-4 linhas do que está feito e provado.
-- **Decisões (não reabrir):** 1 linha cada, com o porquê.
-- **Tarefa:** o próximo passo concreto, em 1-2 frases; com fases e portão de confirmação onde houver risco.
-- **Não fazer:** armadilhas e alternativas descartadas.
-- **Regras do usuário:** só as dadas na conversa (idioma, formato, limites).
-- **Em aberto:** o que ainda não é fato; perguntar ao usuário, nunca assumir.
-- **Ler antes de agir:** os arquivos citados no prompt (caminho + motivo). Fechar o prompt com a linha fixa: "Sem presumir, deve ler."
+```
+Retomar <tema>: ler docs/sessoes/<tema>.md e seguir o "Próximo passo".
+Sem presumir, deve ler.
+```
 
-## Resumo .md
-Ordem por importância, não cronológica. Português simples, frases completas, termo técnico explicado uma vez.
-- **Em uma frase:** o que a sessão fez.
-- **Onde paramos:** feito e não feito, em 3-6 linhas.
-- **O que ficou decidido:** cada decisão com o porquê, em linguagem de quem não viu a conversa.
-- **O que foi descartado:** o que foi considerado e recusado, e por quê.
-- **Próximos passos:** lista numerada, o primeiro é o que abre a próxima sessão.
-- **Dúvidas em aberto:** o que precisa de resposta do usuário.
-- **Arquivos mexidos:** caminho + 1 linha do que mudou.
-
-Seção vazia → omitir.
+## Gate antes de fechar
+Falhou algum item → corrigir antes de apresentar.
+1. Grep no documento: "você", "vocês", "nós" → 0 ocorrências.
+2. `wc -l` do documento ≤ ~80.
+3. Reler "Documento" contra o arquivo: cabeçalho completo, ordem dos títulos, sem seção vazia, um só próximo passo, porquê em toda decisão, motivo em todo descarte.
+4. `.gitignore` contém `docs/sessoes/`.
+5. Prompt: 2 linhas, termina com "Sem presumir, deve ler."
+6. Nenhum código editado, nada commitado.
