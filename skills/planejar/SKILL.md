@@ -11,7 +11,7 @@ Não editar nem criar arquivos até a aprovação. Só fatos: nunca suposição.
 1. **Dados:** receber a demanda (objetivo, escopo, restrições, critérios de aceite) e ler o que o usuário citar (docs, cards, links). Dado faltando → passos 2 e 3.
 2. **Fatos primeiro:** antes de perguntar, verificar no projeto (Glob → Grep → Read; até 3 camadas; 1 arquivo irmão real do mesmo tipo). Fato = ler e citar a fonte. Decisão (regra, escopo, prioridade) é do usuário: perguntar, nunca chutar.
 3. **Perguntas:** em rodadas, numeradas, curtas e priorizadas, formuladas pela consequência observável, não em vocabulário de código. Cada uma diz o que já foi verificado e por que a resposta muda o plano. Repetir até não restar ponto em aberto que mude o plano. Resposta vaga → perguntar de novo; nunca preencher.
-4. **Padrão do projeto:** seguir o existente (irmão real, `CLAUDE.md` e docs do projeto). Sem padrão → `docs/ia/QUALIDADE.md`, dizendo que não há padrão.
+4. **Padrão do projeto:** seguir o existente (irmão real, `CLAUDE.md` e docs do projeto). Sem padrão → `docs/instrucoes/QUALIDADE.md`, dizendo que não há padrão.
 5. **Lentes:** antes de fechar o desenho, questioná-lo sob 4 lentes: adversário (como abusar), concorrência (dois no mesmo segundo), plantão (diagnosticar e desfazer sem programador), dev futuro (onde cobra caro). Cada lente gera pergunta ou verificação no código, nunca risco suposto. O que pegar vira decisão ou alternativa descartada.
 6. **Plano:** apresentar telegráfico no formato abaixo, sem executar nada e sem explicar metodologia (só os componentes). Encerrar com "Aguardando aprovação."
 7. **Aprovação:** só "aprovado" ou equivalente explícito libera os cards. Ajuste pedido → revisar e reapresentar. Silêncio ou dúvida não é aprovação.

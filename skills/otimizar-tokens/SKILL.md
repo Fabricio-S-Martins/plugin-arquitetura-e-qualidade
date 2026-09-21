@@ -10,12 +10,12 @@ Reduzir tokens preservando 100% do significado. Dúvida se é perda → pergunta
 Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `previa-diff`. "Auditoria" / "onde vale otimizar" → só o passo 1. Editar direto, sem pedir permissão; perguntar só por dúvida real de perda. Alvo com alterações não commitadas → copiar antes para o diretório temporário (scratchpad) e informar no relatório.
 
 ## Público do arquivo
-- **IA** (`SKILL.md`, `docs/ia/`, `CLAUDE.md`, frontmatter): telegráfico.
-- **Dev** (`docs/dev/`): linguagem amigável; só remover redundância, repetição e enfeite.
-- Par `docs/ia/X` ↔ `docs/dev/X`: otimizar cada um pelo seu público; os dois dizem o mesmo.
+- **Instrução** (`SKILL.md`, `docs/instrucoes/`, `CLAUDE.md`, frontmatter): telegráfico.
+- **Guia** (`docs/guias/`): linguagem amigável; só remover redundância, repetição e enfeite.
+- Par `docs/instrucoes/X` ↔ `docs/guias/X`: otimizar cada um pelo seu público; os dois dizem o mesmo.
 
 ## Fluxo (maior ganho primeiro)
-1. **Auditoria:** Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos. Arquivo que a IA não carrega (`docs/dev/`) não economiza tokens. Agir primeiro no que mais pesa.
+1. **Auditoria:** Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos. Arquivo que a IA não carrega (`docs/guias/`) não economiza tokens. Agir primeiro no que mais pesa.
 2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`); regra repetida entre arquivos → uma fonte, o outro aponta (DRY). Conferir que nenhum uso passa a carregar mais que antes.
 3. **Palavras**, só nos arquivos que ainda justificam: ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin.
 4. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos.
@@ -33,6 +33,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Histórico, datas, "revogado", decisões sem efeito hoje.
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
 - "Porquê" longo; manter uma oração só se evita aplicar a regra errado.
+- Negação de algo que a IA não faria sem ela ("sem X", "não usar Y", ex.: "sem `---` entre seções" quando bastava não mencionar `---`) → omitir; vale também para texto novo. Manter só se o padrão do modelo é o oposto, se já houve erro ou se limita uma regra vizinha. Dúvida → perguntar.
 
 ## Condensar
 - Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa.
@@ -40,7 +41,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Mais importante primeiro; agrupar regras da mesma condição.
 
 ## Nunca
-- Perder negação, condição ou qualificador ("nunca", "só se", "exceto", "quando"); fundir regras de condições diferentes; arredondar número ou limite.
+- Perder negação, condição ou qualificador ("nunca", "só se", "exceto", "quando"; exceção: negação redundante, ver Remover); fundir regras de condições diferentes; arredondar número ou limite.
 - Comprimir a ponto de ficar ambíguo → manter a forma longa.
 - Alterar caminhos, namespaces, assinaturas, interfaces, DTOs, tipos, identificadores e ids de checklist do template.
 - Trocar nome de arquivo, âncora ou campo referenciado sem atualizar quem referencia.

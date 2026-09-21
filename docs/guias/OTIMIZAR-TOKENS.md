@@ -3,11 +3,11 @@
 A skill `otimizar-tokens` enxuga arquivos do plugin (Markdown e configuração) para o Claude gastar menos tokens ao lê-los, sem perder informação. A versão que o Claude lê é [../../skills/otimizar-tokens/SKILL.md](../../skills/otimizar-tokens/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos de docs/ia". Para ver o que ela cortaria sem alterar nada, peça "só analisa". Para ver os cortes linha a linha, peça a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
+Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos de docs/instrucoes". Para ver o que ela cortaria sem alterar nada, peça "só analisa". Para ver os cortes linha a linha, peça a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
 
 ## Em que ordem ela trabalha
 Do que mais economiza para o que menos economiza:
-1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/dev/` não são lidos pelo Claude, então otimizá-los não economiza tokens. Peça "auditoria" para receber só esse relatório, sem alterar nada.
+1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/guias/` não são lidos pelo Claude, então otimizá-los não economiza tokens. Peça "auditoria" para receber só esse relatório, sem alterar nada.
 2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `CSHARP.md`, que só entra com código C#), e uma regra escrita em mais de um arquivo fica em uma fonte só. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
 3. **Palavras:** só nos arquivos que ainda justificam, corta o que sobra no texto.
 
@@ -20,9 +20,9 @@ Do que mais economiza para o que menos economiza:
 6. **Prova de equivalência (só se você pedir):** ela roda o mesmo pedido de teste antes e depois, por exemplo gerar um card de teste, e compara os resultados. É a prova real de que nada se perdeu, mas gasta tokens.
 
 ## O que ela remove e o que ela mantém
-- **Remove:** introduções e fechos, explicações de conceitos que a IA já conhece, exemplos que só repetem a regra, duplicação entre arquivos, histórico sem efeito hoje e enfeites (emojis, negritos em excesso, separadores).
+- **Remove:** introduções e fechos, explicações de conceitos que a IA já conhece, exemplos que só repetem a regra, duplicação entre arquivos, histórico sem efeito hoje, enfeites (emojis, negritos em excesso, separadores) e **negações redundantes**: uma frase como "sem separadores entre seções" só se justifica se a IA faria isso por conta própria. Se ela não faria, basta não mencionar. Isso vale também para texto novo. Fica a negação quando o comportamento padrão é o oposto, quando já houve erro ou quando ela limita uma regra vizinha; na dúvida, ela pergunta.
 - **Condensa:** prosa vira lista ou frase curta, e siglas só aparecem depois de definidas.
-- **Mantém sempre:** negações e condições ("nunca", "só se", "exceto"), números e limites, caminhos, namespaces, assinaturas, tipos, identificadores e ids de checklist, exemplos que desfazem ambiguidade e uma frase de "porquê" quando ela evita aplicar a regra errado.
+- **Mantém sempre:** negações que mudam o comportamento e condições ("nunca", "só se", "exceto"), números e limites, caminhos, namespaces, assinaturas, tipos, identificadores e ids de checklist, exemplos que desfazem ambiguidade e uma frase de "porquê" quando ela evita aplicar a regra errado.
 - **Nunca acrescenta:** a versão nova não diz nada que o original não dissesse.
 - **Não compacta demais:** se a versão curta ficaria ambígua, mantém a longa.
 
@@ -34,9 +34,9 @@ Depois: "Antes de salvar: usar o próximo ID livre em `cards/`; nunca repetir ID
 O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a regra de não repetir continuam.
 
 ## Depende de quem lê o arquivo
-- **Arquivos da IA** (`SKILL.md`, `docs/ia/`, `CLAUDE.md`): ficam telegráficos.
-- **Arquivos de Dev** (`docs/dev/`): continuam amigáveis. Ela só tira repetição e enfeite.
-- **Pares IA e Dev:** cada um é otimizado pelo seu público, e os dois continuam dizendo a mesma coisa.
+- **Instruções** (`SKILL.md`, `docs/instrucoes/`, `CLAUDE.md`): ficam telegráficas.
+- **Guias** (`docs/guias/`): continuam amigáveis. Ela só tira repetição e enfeite.
+- **Pares instrução e guia:** cada um é otimizado pelo seu público, e os dois continuam dizendo a mesma coisa.
 - **Código e configuração:** inclusive blocos de código dentro de um `.md` (csharp, json, yaml), ficam intactos. Só saem comentários óbvios e espaços supérfluos, sem alterar o comportamento. No cabeçalho das skills, o nome e as palavras de gatilho da descrição são preservados.
 
 ## O que sai

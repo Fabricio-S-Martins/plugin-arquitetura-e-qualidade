@@ -9,7 +9,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 
 ## Alvo
 - **Card `.md`:** conferir contra as Regras e o Gate de `skills/criar-card/SKILL.md`.
-- **Código:** ler `docs/ia/QUALIDADE.md`; se houver `.cs`, ler também `CSHARP.md` desta skill.
+- **Código:** ler `docs/instrucoes/QUALIDADE.md`; se houver `.cs`, ler também `CSHARP.md` desta skill.
 - Sem alvo informado → `git diff` atual; sem diff → perguntar.
 
 ## Modo

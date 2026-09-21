@@ -12,7 +12,7 @@ Diga o alvo: "revise o card TASK-003", "revise o arquivo X" ou "revise o que mud
 
 ## O que ela confere
 - **Card:** as mesmas regras usadas para criar o card (título, localização, validações, consistência, nomes, escopo).
-- **Código:** as regras de [QUALIDADE.md](../ia/QUALIDADE.md) e, em C#, as convenções de estilo (campo privado, `internal`, namespace em bloco, nome de teste, fim de arquivo).
+- **Código:** as regras de [QUALIDADE.md](../instrucoes/QUALIDADE.md) e, em C#, as convenções de estilo (campo privado, `internal`, namespace em bloco, nome de teste, fim de arquivo).
 - **Card × código:** se há um card associado, cada item do checklist precisa ter contrapartida no código e os cenários de teste precisam estar cobertos. Build e testes verdes não bastam para dizer que o card está pronto.
 - **Segurança:** hash, token, criptografia e autorização têm prioridade máxima, porque o erro é silencioso. Sem teste dedicado, é bloqueante.
 - **Testes:** aponta teste que não consegue falhar, como um que só afirma o caso "falso" ou um mock que já devolve o resultado esperado.
