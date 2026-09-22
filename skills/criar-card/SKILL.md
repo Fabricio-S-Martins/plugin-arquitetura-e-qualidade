@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 # criar-card
 
-Ler `docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
+Ler `docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.
@@ -27,9 +27,10 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
+- **Backlog.md:** só adicionar a linha da task nova. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar
 1. Reler estas regras contra o rascunho, linha a linha.
-2. Abrir (Read) 1 arquivo irmão real do mesmo tipo e da mesma camada; ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
+2. Abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
 3. Correção aplicada → varrer o card por todo padrão igual e corrigir junto; reler o card inteiro e cortar redundância.

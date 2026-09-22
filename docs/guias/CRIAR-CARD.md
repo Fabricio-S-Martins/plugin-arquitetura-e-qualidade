@@ -6,7 +6,7 @@ A skill `criar-card` gera um card em Markdown a partir de um pedido seu. Este gu
 Descreva a tarefa em uma ou duas frases. Ex.: "criar card para cadastro de Cliente no módulo Vendas".
 
 ## O que sai
-Um arquivo `cards/TASK-XXX.md`, com o próximo número livre, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md):
+Um arquivo `cards/TASK-XXX.md`, com o próximo número livre, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md). A estrutura é sempre a do template — o `CLAUDE.md` do projeto não acrescenta seção nova ao card, mesmo pedindo algo diferente:
 
 - **Título:** verbo no infinitivo mais o que a task entrega, cobrindo todas as frentes. Deve servir como mensagem de commit.
 - **Cabeçalho:** módulo, camada, status (começa em "a fazer") e dependências.
@@ -27,3 +27,4 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 - **Escopo mínimo:** o card cobre só o que foi pedido. Ideias extras vão como sugestão, fora do card.
 - **Card grande demais:** com mais de uns 8 itens ou mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
 - **Prévia:** para ver como ficaria a alteração de um card existente antes de aplicar, peça a prévia (`+` e `-`).
+- **Backlog.md:** só a linha da task nova é adicionada. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido.
