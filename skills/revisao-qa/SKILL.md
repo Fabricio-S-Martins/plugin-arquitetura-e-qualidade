@@ -1,6 +1,7 @@
 ---
 name: revisao-qa
 description: Revisa card ou código contra as regras de qualidade e as convenções; só reporta, não corrige. Usar ao pedir revisão, QA, review ou "confere se está certo".
+allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git status *)
 ---
 
 # revisao-qa

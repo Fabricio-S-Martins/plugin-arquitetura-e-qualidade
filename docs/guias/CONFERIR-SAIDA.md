@@ -15,7 +15,7 @@ Rodou uma skill (por exemplo, a `encerrar-sessao`) e o arquivo gerado parece for
 - **Resumo:** quantas regras, quantas conformes, desvios e não verificáveis.
 - **Desvios:** a regra (com a linha do SKILL.md), o trecho da saída e a causa.
 - **Não verificável:** a regra e o que faltou para confirmar.
-- **Ajuste sugerido:** só para problemas da skill, a correção em `+` e `-`. Ela não altera a skill; só altera se você pedir.
+- **Ajuste sugerido:** só para problemas da skill, a correção em `+` e `-`. Ela nunca altera a skill; se você quiser aplicar, passa o ajuste para a `previa-diff`.
 
 ## Limite
 Ela compara apenas com a skill. A qualidade do conteúdo do projeto fica de fora.

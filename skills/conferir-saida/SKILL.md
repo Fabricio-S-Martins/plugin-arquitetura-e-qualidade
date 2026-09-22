@@ -6,7 +6,7 @@ allowed-tools: Read, Glob, Grep, Bash(wc *)
 
 # conferir-saida
 
-Só reporta; edita a skill só se o usuário pedir. Compara só com a skill: fatos e qualidade do conteúdo do projeto ficam fora. Não presumir: sem evidência na saída, a regra é "não verificável".
+Só reporta; nunca edita (sem `Edit` em `allowed-tools`). Ajuste sugerido vai para a `previa-diff` se o usuário quiser aplicar. Compara só com a skill: fatos e qualidade do conteúdo do projeto ficam fora. Não presumir: sem evidência na saída, a regra é "não verificável".
 
 ## Entrada
 Saída colada ou caminho do arquivo gerado, mais o nome da skill de origem. Sem nome → inferir por seções, formato ou caminho e dizer qual foi inferida.

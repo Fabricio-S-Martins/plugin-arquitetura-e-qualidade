@@ -1,6 +1,7 @@
 ---
 name: planejar
 description: Planeja uma demanda com perguntas e fatos, apresenta o plano sem executar e, aprovado, gera os cards. Usar ao pedir planejar, plano, planejamento ou quebrar demanda em cards.
+allowed-tools: Read, Glob, Grep, Skill
 ---
 
 # planejar

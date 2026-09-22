@@ -1,6 +1,7 @@
 ---
 name: criar-card
 description: Cria card de tarefa em .md a partir do template. Usar ao pedir para criar/planejar card, task ou TASK-XXX.
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # criar-card

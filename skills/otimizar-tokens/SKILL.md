@@ -33,7 +33,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Histórico, datas, "revogado", decisões sem efeito hoje.
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
 - "Porquê" longo; manter uma oração só se evita aplicar a regra errado.
-- Negação de algo que a IA não faria sem ela — isolada ("sem X") ou dentro de instrução composta ("faça X, não Y") → omitir; vale também para texto novo. Antes de manter por "limita regra vizinha", testar: a regra vizinha, sozinha, já permite o erro? Sem exemplo concreto de como daria errado sem a negação, é redundante. Manter só se o padrão do modelo é o oposto, se já houve erro ou se o teste acima confirma o limite. Dúvida → perguntar.
+- Negação de algo que a IA não faria sem ela — isolada ("sem X") ou dentro de instrução composta ("faça X, não Y") → omitir; vale também para texto novo. Antes de manter por "limita regra vizinha": sem a negação, a regra vizinha sozinha já permite o erro? Não → redundante. Manter só se sim, se o padrão do modelo é o oposto, ou se já houve erro real. Dúvida → perguntar.
 
 ## Condensar
 - Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa. Cortar preposição, artigo e conectivo de ligação ("de um", "para o", "que está") que a forma telegráfica já dispensa.

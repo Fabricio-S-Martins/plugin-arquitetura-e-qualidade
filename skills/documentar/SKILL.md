@@ -1,6 +1,7 @@
 ---
 name: documentar
 description: Documenta o código novo (fluxo, módulo, API, visão geral), mantém a documentação em dia quando o código muda e, se o usuário quiser, gera um plano aprovado para documentar o restante, item a item. Usar ao pedir documentar, documentação, doc de fluxo/módulo, plano de documentação, ou ao alterar código que já tem doc.
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff *), Bash(git check-ignore *)
 ---
 
 # documentar
