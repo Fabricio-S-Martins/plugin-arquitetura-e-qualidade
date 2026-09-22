@@ -16,7 +16,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 
 ## Fluxo (maior ganho primeiro)
 1. **Auditoria:** Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos. Arquivo que a IA não carrega (`docs/guias/`) não economiza tokens. Agir primeiro no que mais pesa.
-2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`); regra repetida entre arquivos → uma fonte, o outro aponta (DRY). Conferir que nenhum uso passa a carregar mais que antes.
+2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`); regra repetida entre arquivos → uma fonte, o outro aponta (DRY); regra que se repetiria por item de uma lista sujeita a crescer (ex: 1 parágrafo por ferramenta a checar) → tabela de dados + 1 regra genérica que a percorre. Conferir que nenhum uso passa a carregar mais que antes.
 3. **Palavras**, só nos arquivos que ainda justificam: ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin.
 4. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos.
 5. Reescrever com as técnicas abaixo.
@@ -33,10 +33,10 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Histórico, datas, "revogado", decisões sem efeito hoje.
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
 - "Porquê" longo; manter uma oração só se evita aplicar a regra errado.
-- Negação de algo que a IA não faria sem ela ("sem X", "não usar Y", ex.: "sem `---` entre seções" quando bastava não mencionar `---`) → omitir; vale também para texto novo. Manter só se o padrão do modelo é o oposto, se já houve erro ou se limita uma regra vizinha. Dúvida → perguntar.
+- Negação de algo que a IA não faria sem ela — isolada ("sem X") ou dentro de instrução composta ("faça X, não Y") → omitir; vale também para texto novo. Antes de manter por "limita regra vizinha", testar: a regra vizinha, sozinha, já permite o erro? Sem exemplo concreto de como daria errado sem a negação, é redundante. Manter só se o padrão do modelo é o oposto, se já houve erro ou se o teste acima confirma o limite. Dúvida → perguntar.
 
 ## Condensar
-- Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa.
+- Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa. Cortar preposição, artigo e conectivo de ligação ("de um", "para o", "que está") que a forma telegráfica já dispensa.
 - Sigla só se definida uma vez no arquivo; sem abreviação obscura.
 - Mais importante primeiro; agrupar regras da mesma condição.
 
