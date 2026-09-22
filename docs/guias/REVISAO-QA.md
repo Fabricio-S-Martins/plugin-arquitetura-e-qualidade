@@ -25,14 +25,16 @@ Diga o alvo: "revise o card TASK-003", "revise o arquivo X" ou "revise o que mud
 - **Precisão acima de cobertura:** achado de baixa confiança é descartado. Código limpo é aprovado, sem inventar problema.
 
 ## O que sai
-Uma conclusão (aprovado, com ressalvas ou reprovado), a linha `Modo` e `Escopo`, e a lista de achados:
+Uma conclusão (aprovado, com ressalvas ou reprovado), a linha `Modo` e `Escopo`, e a lista de achados. Seção sem achado não aparece (exceto Mecânico, que sempre aparece):
 - **Bloqueante:** quebra uma regra obrigatória ou um erro real.
-- **Mecânico:** convenções verificáveis por busca. A seção sempre aparece e diz o que foi verificado sem ocorrência.
+- **Mecânico:** convenções verificáveis por busca. Sempre aparece e diz o que foi verificado sem ocorrência.
 - **Recomendado:** quebra uma preferência ou convenção.
 - **Sugestão:** melhoria opcional.
 - **Preservar:** uma linha com o que está bom e não deve ser quebrado na próxima mudança.
 
 Cada achado indica onde está, qual regra foi quebrada, o problema e como corrigir, em texto e sem código pronto, com o nível de confiança. Um problema encontrado é procurado em todo o escopo, e o mesmo padrão em vários arquivos vira um achado só, com a lista dos locais.
+
+No final, um parecer curto em uma frase: se está tudo certo e, se não, qual o único ponto pendente — sem repetir a prosa técnica de cima.
 
 ## O que ela não faz
 - Não edita arquivos nem se oferece para corrigir. Você corrige, ou pede explicitamente ("corrige", "ajusta").

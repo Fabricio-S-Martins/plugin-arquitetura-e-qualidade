@@ -39,7 +39,7 @@ Precisão > cobertura. Diff limpo → aprovar; não inventar problema.
 Sugerir a construção correta em uma frase: DTO/objeto de dados sem comportamento → `record`; tipo pequeno, imutável e em volume → `readonly struct`; classe/método sem estado → `static`.
 
 ## Relatório
-Primeiro a conclusão: aprovado / com ressalvas / reprovado. Depois `Modo: <rápido|completo>. Escopo: <camadas lidas>. Não lido: <camadas/arquivos>`. Seções, com "—" quando vazia:
+Primeiro a conclusão: aprovado / com ressalvas / reprovado. Depois `Modo: <rápido|completo>. Escopo: <camadas lidas>. Não lido: <camadas/arquivos>`. Seções, omitir a que ficar vazia (exceto Mecânico, sempre listada):
 - **Bloqueante:** violação OBR de QUALIDADE ou erro que quebra o card/código.
 - **Mecânico:** achados dos itens objetivos, sempre listada, mesmo pré-existentes. Fechar com "verificados sem ocorrência: <itens>" e "pulados por analyzer: <regra + onde confirmei>".
 - **Recomendado:** violação PREF, convenção do projeto ou da linguagem.
@@ -49,3 +49,5 @@ Primeiro a conclusão: aprovado / com ressalvas / reprovado. Depois `Modo: <ráp
 Cada achado: `arquivo:linha` (ou seção do card) — regra — problema — correção em prosa, sem bloco de código. Terminar com `(confiança: alta|média)` (exceto mecânicos) e `(pré-existente)` quando fora do diff.
 Mesmo padrão em vários arquivos → 1 achado listando os locais.
 `Exceção: <regra> — <motivo>` registrada não é achado.
+
+Fechar com parecer em 1 frase direta: "Sim — único ponto foi X" ou, sem bloqueante/recomendado, "Sim, sem ressalvas."
