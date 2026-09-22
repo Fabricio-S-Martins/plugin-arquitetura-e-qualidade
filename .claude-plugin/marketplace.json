@@ -1,0 +1,13 @@
+{
+  "name": "arquitetura-e-qualidade",
+  "owner": {
+    "name": "Fabricio-S-Martins"
+  },
+  "plugins": [
+    {
+      "name": "arquitetura-e-qualidade",
+      "source": ".",
+      "description": "Diretrizes de arquitetura e qualidade e skills de card, revisão, planejamento e sessão."
+    }
+  ]
+}
