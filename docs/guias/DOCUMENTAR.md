@@ -15,8 +15,8 @@ Em qualquer situação, cada rodada produz **um** documento. Ao terminar, ela di
 ## O que sai
 Documentação para quem usa o sistema: o **negócio** e o **dev que integra** a API. Linguagem de negócio, sem links nem caminhos para o código e sem termos de camada (Domínio, Aplicação, Infraestrutura). Um arquivo por assunto, sem versão separada para a IA:
 
-- **Visão geral** (`docs/README.md`): links para os módulos e fluxos, decisões e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos.
-- **Módulo** (`docs/modulos/<nome>/<nome>.md`, na pasta do módulo, junto do `<nome>-api.md`): o que o módulo é, as etapas, as regras em linguagem de negócio e links para os fluxos e para a API.
+- **Visão geral** (`docs/README.md`): links para os módulos, decisões e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos. Os fluxos e a API não aparecem direto nela: cada módulo já linka os seus, e repetir o link em dois lugares foi o problema que motivou tirar isso.
+- **Módulo** (`docs/modulos/<nome>/<nome>.md`, na pasta do módulo, junto do `<nome>-api.md`): um link de volta à visão geral no topo, depois o que o módulo é, as etapas, as regras em linguagem de negócio e links para os fluxos e para a API.
 - **Integração** (`docs/modulos/<nome>/<nome>-api.md`): guia para quem consome a API. Aponta para o Swagger do projeto, que já traz o contrato exato de cada rota, e explica só o que ele não diz: a ordem das chamadas (tabela de passos, com o que foge da sequência, como cancelar, em destaque) e as respostas e erros (tabela de status). Se o projeto não tem Swagger, ela pergunta se o contrato deve ir por escrito.
 - **Fluxos** (`docs/fluxos/<nome>.md`): um por fluxo, com objetivo, fluxograma e regras.
 - **Decisões** (`docs/decisoes/<nome>.md`): o que foi decidido, o porquê e o que foi descartado. Só entra o que você informou; se faltar o motivo, ela pergunta.
@@ -30,7 +30,7 @@ Se o projeto já tem um padrão de documentação, ela segue o padrão dele.
 
 ## Código novo: o que acontece
 1. Ela lê o código que mudou, identifica o fluxo e o módulo tocados e procura se já existe documento deles. Se existir, atualiza; se não, cria. Se o projeto ainda não tem no `CLAUDE.md` a regra de manter a documentação em dia, ela oferece a linha e só a adiciona se você aceitar.
-2. Ela escreve **um documento por vez**, nesta ordem: módulo, fluxos, API (se houver rotas) e, por último, a visão geral, que só ganha o link do que já existe. Cada documento é conferido antes de entregar.
+2. Ela escreve **um documento por vez**, nesta ordem: módulo, fluxos, API (se houver rotas) e, por último, a visão geral, que ganha só o link do módulo (os fluxos e a API já estão linkados a partir dele). Cada documento é conferido antes de entregar.
 3. Depois do último, ela pergunta se você quer o plano de documentação do restante do módulo ou fluxo.
    - **Não:** ela para. O que ficou de fora aparece na visão geral como "não documentado".
    - **Sim:** ela monta o plano.
@@ -47,6 +47,7 @@ Funciona como o da skill `planejar`:
 - **Só fatos:** tudo vem do código lido ou de você, mas o documento não cita arquivo. Rotas e mensagens de erro são copiadas exatas do código. O que não foi confirmado não é escrito: ela pergunta a você.
 - **Só o que está no git:** ela não cita arquivos ou pastas que o git ignora (por exemplo uma pasta `runbooks/` listada no `.gitignore`), porque quem clonar o projeto não os encontraria. Ela confere isso antes de entregar.
 - **Um fato, um lugar:** os demais documentos apontam por link.
+- **Cada documento linka de volta ao pai:** o fluxo e a API apontam para o módulo, e o módulo aponta para a visão geral. Só a visão geral não tem para onde voltar. Um documento técnico aponta para o módulo, mas o módulo nunca lista o técnico de volta, porque ele fica fora do padrão.
 - **Nomes em português**, em arquivos, pastas e títulos. Cada arquivo tem um nome único em toda a documentação, porque o Obsidian identifica a nota só pelo nome. Por isso os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), e o único `README.md` é o de `docs/`, a visão geral.
 - **Não altera código e não faz commit.**
 - **Prévia:** para ver a mudança de um documento existente antes de aplicar, peça a prévia (`+` e `-`).

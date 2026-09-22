@@ -27,13 +27,13 @@ Só fatos do código. Não alterar código nem commitar. Criar/atualizar docs di
 
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
-- `docs/README.md`: `Módulos` e `Fluxos` (link + 1 linha) · `Decisões` (links) · `Não documentado`. Só aponta.
-- `docs/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` (linguagem de negócio) · `Fluxos` (links) · `Integração` (link para `<nome>-api.md`). Fluxo nunca inline.
+- `docs/README.md`: `Módulos` (link + 1 linha) · `Decisões` (links) · `Não documentado`. Só aponta; fluxo e API só pelo link do módulo, nunca direto (1 fato, 1 lugar).
+- `docs/modulos/<nome>/<nome>.md`: link de volta a `docs/README.md` no topo · 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` (linguagem de negócio) · `Fluxos` (links) · `Integração` (link para `<nome>-api.md`). Fluxo nunca inline.
 - `docs/modulos/<nome>/<nome>-api.md`: guia de integração; modelo em `API.md`.
 - `docs/fluxos/<nome>.md`: `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
 - `docs/decisoes/<nome>.md`: `Contexto` · `Decisão` · `Motivo` · `Descartado`. Só do que o usuário informou; motivo ausente → perguntar.
 - **Técnico por projeto** (Domínio, Aplicação...): só sob pedido explícito, em `docs/modulos/<nome>/<nome>-<projeto>.md`.
-- **Links:** relativos, só entre docs.
+- **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo/API → módulo; módulo → `docs/README.md`); só o README não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
 - **Estilo:** títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
 
 ## Regras
