@@ -44,3 +44,4 @@ Falhou algum item → corrigir antes de apresentar.
 4. `.gitignore` contém `docs/sessoes/`.
 5. Prompt: 2 linhas, termina com "Sem presumir, deve ler."
 6. Nenhum código editado, nada commitado.
+7. "Pendente"/"Próximo passo" cita arquivo + trecho específico → 1 Grep pontual nesse trecho antes de fechar; achado já resolvido → mover para "Feito", nunca deixar pendência desatualizada.

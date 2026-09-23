@@ -20,5 +20,5 @@ Saída colada ou caminho do arquivo gerado, mais o nome da skill de origem. Sem 
 ## Relatório
 - **Resumo:** N regras, X conformes, Y desvios, Z não verificáveis.
 - **Desvios:** regra (`SKILL.md:linha`) · trecho da saída · causa.
-- **Não verificável:** regra + o que faltou para verificar.
+- **Não verificável:** regra + o que faltou para verificar. Falta é fato do projeto (não da saída) e dá pra checar com 1 leitura pontual (arquivo + trecho já citado na saída) → perguntar ao usuário se quer essa checagem antes de fechar, em vez de checar sem avisar ou deixar só "não verificável".
 - **Ajuste sugerido:** só para causa "skill": correção da `SKILL.md` em `+` e `-` (formato da `previa-diff`). Causa "execução" → só apontar.
