@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 # criar-card
 
-Ler `docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
+Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `**[ ] a:**`, letra reiniciando em `a` a cada bloco.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.

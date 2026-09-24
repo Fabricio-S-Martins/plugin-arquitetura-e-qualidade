@@ -40,7 +40,7 @@ Presente:
 ## 5. CLAUDE.md do projeto
 Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alterados aqui).
 - `CLAUDE.md` ausente → avisar e sugerir criar; parar.
-- Presente → Read + `wc -c`; avaliar por `docs/instrucoes/QUALIDADE.md` e pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
+- Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
