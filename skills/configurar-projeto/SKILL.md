@@ -1,7 +1,7 @@
 ---
 name: configurar-projeto
-description: Prepara um projeto para documentação e cofre Obsidian - cria docs/, ajusta .gitignore, sincroniza o Obsidian. Usar ao iniciar um projeto novo, ou ao pedir para configurar/preparar o projeto ou o Obsidian.
-allowed-tools: Read, Write, Edit, Glob, Bash(winget *), Bash(mkdir *), Bash(dotnet tool *), Bash(claude plugin *)
+description: Prepara um projeto para documentação e cofre Obsidian - cria docs/, ajusta .gitignore, sincroniza o Obsidian, audita o CLAUDE.md. Usar ao iniciar um projeto novo, ou ao pedir para configurar/preparar o projeto ou o Obsidian.
+allowed-tools: Read, Write, Edit, Glob, Bash(winget *), Bash(mkdir *), Bash(dotnet tool *), Bash(claude plugin *), Bash(wc *)
 ---
 
 # configurar-projeto
@@ -36,6 +36,13 @@ Presente:
 2. **Links** (`app.json`): `"useMarkdownLinks": true` e `"newLinkFormat": "relative"` (desliga Wikilinks; já é o formato usado nos docs).
 3. **Cores** (`graph.json`): Glob 1 nível em `docs/`, pastas só (sem as do `userIgnoreFilters`, que não aparecem no grafo). Cada pasta sem entrada em `colorGroups` (`query: "path:<pasta>"`) → somar uma, cor = próxima da paleta ainda não usada no arquivo, ciclando se a lista acabar. **Nunca** alterar `query` ou `color` de entrada já existente.
 4. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` e `graph.json` ao salvar qualquer configuração antes disso.
+
+## 5. CLAUDE.md do projeto
+Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alterados aqui).
+- `CLAUDE.md` ausente → avisar e sugerir criar; parar.
+- Presente → Read + `wc -c`; avaliar por `docs/instrucoes/QUALIDADE.md` e pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
+- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
+- Projeto novo/sem conteúdo → pular.
 
 ## Regras
 - JSON do cofre: editar só as chaves acima; preservar o resto do arquivo.
