@@ -1,5 +1,7 @@
 # Plugin arquitetura-e-qualidade
 
+Objetivo do plugin: gastar poucos tokens e simplificar processos, sem perder qualidade nem contexto. Ao decidir entre opções, preferir a que gasta menos tokens e exige menos passos, se o resultado for equivalente.
+
 Regras de trabalho neste repo:
 
 1. Só informação necessária. Cortar palavras sem perder regras, limites ou exceções (economia de tokens; conteúdo usado com frequência).
@@ -12,3 +14,6 @@ Regras de trabalho neste repo:
 8. Mudança que o usuário quer ver antes de aplicar (prévia, "mostra como ficaria") → skill `previa-diff`; nunca editar para mostrar.
 9. Referência de qualidade ao gerar cards/projetos/código: `docs/instrucoes/QUALIDADE.md`.
 10. Skill que lê/edita arquivo declara `allowed-tools` com só o que usa; regra que ela nunca deve fazer (editar, commitar) fica reforçada aí, não só na prosa.
+11. Nomes de skills, arquivos e pastas em português.
+12. Commit só quando pedido; mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
+13. Mudança em skill → subir `version` em `.claude-plugin/plugin.json`: correção `0.y.Z`; skill nova, comportamento novo ou nome alterado `0.Y.0`.

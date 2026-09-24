@@ -1,5 +1,5 @@
 {
   "name": "arquitetura-e-qualidade",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Diretrizes de arquitetura e qualidade (SOLID, DRY, KISS, YAGNI, Demeter, object calisthenics, padronização) para guiar a criação de cards, projetos e código."
 }
