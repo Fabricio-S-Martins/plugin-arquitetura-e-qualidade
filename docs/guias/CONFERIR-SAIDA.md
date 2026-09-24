@@ -3,7 +3,7 @@
 A skill `conferir-saida` verifica se o resultado de um teste de outra skill cumpre o que essa skill pede. A versão que o Claude lê é [../../skills/conferir-saida/SKILL.md](../../skills/conferir-saida/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-Rodou uma skill (por exemplo, a `encerrar-sessao`) e o arquivo gerado parece fora do combinado? Cole o texto, ou passe o caminho do arquivo, e diga qual skill o gerou: "confere essa saída da encerrar-sessao". Se você não disser, ela deduz pelo formato e avisa qual escolheu.
+Rodou uma skill (por exemplo, a `gerir-contexto`) e o arquivo gerado parece fora do combinado? Cole o texto, ou passe o caminho do arquivo, e diga qual skill o gerou: "confere essa saída da encerrar-sessao". Se você não disser, ela deduz pelo formato e avisa qual escolheu.
 
 ## O que acontece
 1. **Ela lê a skill de origem** (e os arquivos que ela cita, como um template), não o projeto.

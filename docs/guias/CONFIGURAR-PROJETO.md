@@ -6,7 +6,7 @@ A skill `configurar-projeto` prepara um projeto para ter documentação no Obsid
 No início de um projeto, ou quando quiser abrir a documentação dele no Obsidian pela primeira vez. Peça algo como "configura este projeto" ou "prepara o Obsidian aqui". Ela roda sem pedir permissão.
 
 ## Ferramentas necessárias
-A skill mantém uma lista de ferramentas que o projeto precisa ter instaladas. Hoje só tem uma: o Obsidian. Quando surgir outra (por exemplo Python, se um projeto passar a precisar), ela entra como uma linha nova na lista, sem mudar o resto da skill.
+A skill mantém uma lista de ferramentas que o projeto precisa ter instaladas. Hoje são três: o Obsidian e, só em projeto C#, o `csharp-ls` e o plugin `csharp-lsp` (juntos, deixam o Claude navegar pelo código com precisão: definições, referências e erros de tipo, em vez de só buscar texto). Quando surgir outra (por exemplo Python, se um projeto passar a precisar), ela entra como uma linha nova na lista, sem mudar o resto da skill.
 
 ## O que ela faz, em ordem
 Os passos dependem um do outro, por isso a ordem é fixa:

@@ -1,6 +1,6 @@
 # arquitetura-e-qualidade
 
-Plugin do Claude Code com regras de qualidade (SOLID, DRY, KISS, YAGNI, Demeter, object calisthenics, padronização) e skills para criar cards, planejar, revisar QA, documentar, encerrar sessão e otimizar tokens — gastando poucos tokens e sem perder contexto entre sessões.
+Plugin do Claude Code com regras de qualidade (SOLID, DRY, KISS, YAGNI, Demeter, object calisthenics, padronização) e skills para criar cards, planejar, revisar QA, documentar, gerir contexto e otimizar tokens — gastando poucos tokens e sem perder contexto entre sessões.
 
 ## Instalar em outro projeto
 
@@ -30,7 +30,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera cards após aprovação. |
 | `revisao-qa` | Revisa card ou código contra as regras de qualidade; só reporta, não corrige. |
 | `documentar` | Documenta código novo e mantém a documentação em dia quando o código muda. |
-| `encerrar-sessao` | Fecha uma sessão sem perder contexto; gera documento de retomada e prompt curto. |
+| `gerir-contexto` | Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada. |
 | `conferir-saida` | Confere se a saída de um teste de skill cumpre o que a skill pede. |
 | `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |
 | `previa-diff` | Mostra prévia de uma alteração (`+`/`-`) sem editar o arquivo. |

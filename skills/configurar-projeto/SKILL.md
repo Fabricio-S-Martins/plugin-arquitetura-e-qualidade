@@ -1,7 +1,7 @@
 ---
 name: configurar-projeto
 description: Prepara um projeto para documentação e cofre Obsidian - cria docs/, ajusta .gitignore, sincroniza o Obsidian. Usar ao iniciar um projeto novo, ou ao pedir para configurar/preparar o projeto ou o Obsidian.
-allowed-tools: Read, Write, Edit, Glob, Bash(winget *), Bash(mkdir *)
+allowed-tools: Read, Write, Edit, Glob, Bash(winget *), Bash(mkdir *), Bash(dotnet tool *), Bash(claude plugin *)
 ---
 
 # configurar-projeto
@@ -12,6 +12,8 @@ Sem alterar código. Ordem fixa; cada passo depende do anterior.
 | Ferramenta | Conferir (Windows) | Instalar (Windows) | Sem Windows |
 |---|---|---|---|
 | Obsidian | `winget list --id Obsidian.Obsidian` | `winget install --id Obsidian.Obsidian --exact --accept-source-agreements --accept-package-agreements` | https://obsidian.md/download |
+| csharp-ls (só projeto C#) | `dotnet tool list -g` | `dotnet tool install -g csharp-ls` | requer .NET SDK: https://dotnet.microsoft.com/download |
+| plugin csharp-lsp (só projeto C#) | `claude plugin list` | `claude plugin marketplace add anthropics/claude-plugins-official` (se faltar) e `claude plugin install csharp-lsp@claude-plugins-official` | mesmo comando |
 
 ## 1. Ferramentas da lista
 Para cada linha: ausente → avisar e perguntar se instala agora (única confirmação da skill; o resto roda direto). Sim + comando Windows → rodar comando da coluna Instalar. Sem comando ou outro SO → link da coluna "Sem Windows" e parar até confirmar instalado.
