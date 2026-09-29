@@ -45,15 +45,13 @@ Auditoria sem editar; a única edição é a linha de commit abaixo, e só se o 
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
-## 6. Skills do plugin (`.claude/settings.json`)
-Garantir: `"Skill:arquitetura-e-qualidade:*"` em `permissions.allow` e `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPlugins`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
+## 6. Plugin no projeto (`.claude/settings.json`)
+Garantir `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPlugins`. Arquivo ou chave ausente → criar (`mkdir` se preciso) só com:
 ```json
-{
-  "permissions": { "allow": ["Skill:arquitetura-e-qualidade:*"] },
-  "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true }
-}
+{ "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true } }
 ```
-Existente → somar o que faltar; preservar o resto, nunca remover entrada.
+Existente → somar se faltar; preservar o resto, nunca remover entrada.
+Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## Regras
 - JSON do cofre e do settings: editar só as chaves citadas; preservar o resto do arquivo.
