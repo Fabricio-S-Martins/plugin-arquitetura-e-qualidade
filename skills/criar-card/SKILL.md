@@ -27,7 +27,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
-- **Backlog.md:** só adicionar a linha da task nova. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
+- **Backlog:** `backlog.md` só linka o índice de cada pasta (`<pasta>/<pasta>.md`); a linha da task nova vai nesse índice, nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar

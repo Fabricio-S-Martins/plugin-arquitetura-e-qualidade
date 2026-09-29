@@ -27,4 +27,4 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 - **Escopo mínimo:** o card cobre só o que foi pedido. Ideias extras vão como sugestão, fora do card.
 - **Card grande demais:** com mais de uns 8 itens ou mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
 - **Prévia:** para ver como ficaria a alteração de um card existente antes de aplicar, peça a prévia (`+` e `-`).
-- **Backlog.md:** só a linha da task nova é adicionada. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido.
+- **Backlog:** o `backlog.md` só linka o índice de cada pasta (`<pasta>/<pasta>.md`); a linha da task nova é adicionada nesse índice, não no `backlog.md`. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido.
