@@ -44,12 +44,15 @@ Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alt
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
-## 6. Permissão das skills (`.claude/settings.json`)
-Garantir `"Skill:arquitetura-e-qualidade:*"` em `permissions.allow`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
+## 6. Skills do plugin (`.claude/settings.json`)
+Garantir: `"Skill(arquitetura-e-qualidade:*)"` em `permissions.allow` e `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPlugins`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
 ```json
-{ "permissions": { "allow": ["Skill:arquitetura-e-qualidade:*"] } }
+{
+  "permissions": { "allow": ["Skill(arquitetura-e-qualidade:*)"] },
+  "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true }
+}
 ```
-Existente → somar a entrada ao array `allow` se faltar; preservar o resto, nunca remover entrada.
+Existente → somar o que faltar; preservar o resto, nunca remover entrada.
 
 ## Regras
 - JSON do cofre e do settings: editar só as chaves citadas; preservar o resto do arquivo.
