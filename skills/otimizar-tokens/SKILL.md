@@ -28,7 +28,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 ## Remover
 - Introdução, fecho, cortesia, "como usar" que repete o nome do arquivo.
 - Explicação de conceito que a IA já conhece (SOLID, KISS, DTO).
-- Exemplo que só repete a regra; manter o que desfaz ambiguidade.
+- Exemplo que só repete a regra; manter o que desfaz ambiguidade. Vale também para lista entre parênteses ("(a, b, c)") que só enumera casos que a regra já cobre.
 - Duplicação dentro do arquivo → uma vez.
 - Histórico, datas, "revogado", decisões sem efeito hoje.
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
