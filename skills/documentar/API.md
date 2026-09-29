@@ -1,6 +1,6 @@
 # Modelo de api.md
 
-Lido só ao escrever `docs/modulos/<nome>/<nome>-api.md`. Regras e estilo: `SKILL.md`.
+Lido só ao escrever `docs/modulos/<nome>/api/<nome>-api.md`. Regras e estilo: `SKILL.md`.
 
 Guia de integração, não contrato por rota:
 1. Nota inicial: contrato completo (campos, tipos, status) no Swagger/OpenAPI do projeto (Grep `AddSwaggerGen`/`AddOpenApi`), dizendo em que ambiente fica. Sem Swagger/OpenAPI → perguntar se o contrato deve ir por escrito.
