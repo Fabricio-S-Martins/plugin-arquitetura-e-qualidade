@@ -45,10 +45,10 @@ Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alt
 - Projeto novo/sem conteúdo → pular.
 
 ## 6. Skills do plugin (`.claude/settings.json`)
-Garantir: `"Skill(arquitetura-e-qualidade:*)"` em `permissions.allow` e `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPlugins`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
+Garantir: `"Skill:arquitetura-e-qualidade:*"` em `permissions.allow` e `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPlugins`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
 ```json
 {
-  "permissions": { "allow": ["Skill(arquitetura-e-qualidade:*)"] },
+  "permissions": { "allow": ["Skill:arquitetura-e-qualidade:*"] },
   "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true }
 }
 ```
