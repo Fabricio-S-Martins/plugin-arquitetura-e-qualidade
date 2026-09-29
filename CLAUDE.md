@@ -15,5 +15,5 @@ Regras de trabalho neste repo:
 9. Referência de qualidade ao gerar cards/projetos/código: `docs/instrucoes/QUALIDADE.md`.
 10. Skill que lê/edita arquivo declara `allowed-tools` com só o que usa; regra que ela nunca deve fazer (editar, commitar) fica reforçada aí, não só na prosa.
 11. Nomes de skills, arquivos e pastas em português.
-12. Commit só quando pedido; mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
+12. Commit só quando pedido e só no repo da conversa, nunca em outro; `git add` só dos arquivos da tarefa. Mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
 13. Mudança em skill → subir `version` em `.claude-plugin/plugin.json`: correção `0.y.Z`; skill nova, comportamento novo ou nome alterado `0.Y.0`.

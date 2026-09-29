@@ -38,9 +38,10 @@ Presente:
 4. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` e `graph.json` ao salvar qualquer configuração antes disso.
 
 ## 5. CLAUDE.md do projeto
-Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alterados aqui).
+Auditoria sem editar; a única edição é a linha de commit abaixo, e só se o Dev aceitar.
 - `CLAUDE.md` ausente → avisar e sugerir criar; parar.
 - Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
+- Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos da tarefa.` (acrescentar só se aceitar).
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 

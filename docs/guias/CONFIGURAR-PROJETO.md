@@ -19,6 +19,8 @@ Os passos dependem um do outro, por isso a ordem é fixa:
    - **Desliga os Wikilinks**, para os links do cofre ficarem no mesmo formato markdown que a skill `documentar` já usa.
    - No final, avisa para você **fechar e reabrir o Obsidian**. Sem isso, o app pode sobrescrever a mudança sem querer, ao salvar qualquer outra configuração.
 
+5. **Audita o `CLAUDE.md`** do projeto (peso e regras repetidas) sem editar. Se ele não tiver a regra de commit, ela oferece a linha "commit só quando pedido e só no repo da conversa, nunca em outro" e só a adiciona se você aceitar.
+
 ## Rodar de novo
 É seguro repetir a qualquer momento. Se a pasta e as entradas do `.gitignore` já existirem, esses passos não fazem nada. A sincronização do cofre só acrescenta o que estiver faltando.
 
