@@ -1,6 +1,6 @@
 ---
 name: configurar-projeto
-description: Prepara um projeto para documentação e cofre Obsidian - cria docs/, ajusta .gitignore, sincroniza o Obsidian, audita o CLAUDE.md. Usar ao iniciar um projeto novo, ou ao pedir para configurar/preparar o projeto ou o Obsidian.
+description: Prepara um projeto para documentação e cofre Obsidian - cria docs/, ajusta .gitignore, sincroniza o Obsidian, audita o CLAUDE.md, libera as skills do plugin. Usar ao iniciar um projeto novo, ou ao pedir para configurar/preparar o projeto ou o Obsidian.
 allowed-tools: Read, Write, Edit, Glob, Bash(winget *), Bash(mkdir *), Bash(dotnet tool *), Bash(claude plugin *), Bash(wc *)
 ---
 
@@ -44,6 +44,13 @@ Só auditoria, sem editar (`CLAUDE.md` e arquivos que ele carrega nunca são alt
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
+## 6. Permissão das skills (`.claude/settings.json`)
+Garantir `"Skill:arquitetura-e-qualidade:*"` em `permissions.allow`. Arquivo ou chaves ausentes → criar (`mkdir` se preciso) só com o necessário:
+```json
+{ "permissions": { "allow": ["Skill:arquitetura-e-qualidade:*"] } }
+```
+Existente → somar a entrada ao array `allow` se faltar; preservar o resto, nunca remover entrada.
+
 ## Regras
-- JSON do cofre: editar só as chaves acima; preservar o resto do arquivo.
+- JSON do cofre e do settings: editar só as chaves citadas; preservar o resto do arquivo.
 - Rodar de novo no mesmo projeto é seguro: passos já feitos ficam sem efeito; o passo 4 só soma o que faltar.

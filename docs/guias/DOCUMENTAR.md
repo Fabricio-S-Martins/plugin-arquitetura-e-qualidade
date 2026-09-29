@@ -15,11 +15,10 @@ Em qualquer situação, cada rodada produz **um** documento. Ao terminar, ela di
 ## O que sai
 Documentação para quem usa o sistema: o **negócio** e o **dev que integra** a API. Linguagem de negócio, sem links nem caminhos para o código e sem termos de camada (Domínio, Aplicação, Infraestrutura). Um arquivo por assunto, sem versão separada para a IA:
 
-- **Visão geral** (`docs/README.md`): links para os módulos, decisões e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos. Os fluxos e a API não aparecem direto nela: cada módulo já linka os seus, e repetir o link em dois lugares foi o problema que motivou tirar isso.
+- **Visão geral** (`docs/README.md`): links para os módulos e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos. Os fluxos e a API não aparecem direto nela: cada módulo já linka os seus, e repetir o link em dois lugares foi o problema que motivou tirar isso.
 - **Módulo** (`docs/modulos/<nome>/<nome>.md`, na pasta do módulo, junto do `<nome>-api.md`): um link de volta à visão geral no topo, depois o que o módulo é, as etapas, as regras em linguagem de negócio e links para os fluxos e para a API.
 - **Integração** (`docs/modulos/<nome>/<nome>-api.md`): guia para quem consome a API. Aponta para o Swagger do projeto, que já traz o contrato exato de cada rota, e explica só o que ele não diz: a ordem das chamadas (tabela de passos, com o que foge da sequência, como cancelar, em destaque) e as respostas e erros (tabela de status). Se o projeto não tem Swagger, ela pergunta se o contrato deve ir por escrito.
 - **Fluxos** (`docs/fluxos/<nome>.md`): um por fluxo, com objetivo, fluxograma e regras.
-- **Decisões** (`docs/decisoes/<nome>.md`): o que foi decidido, o porquê e o que foi descartado. Só entra o que você informou; se faltar o motivo, ela pergunta.
 - **Técnico por projeto** (Domínio, Aplicação...): não faz parte do padrão. Só se você pedir, em `docs/modulos/<nome>/<nome>-<projeto>.md`.
 
 O fluxograma é escrito em Mermaid, uma sintaxe de texto que vira diagrama no GitHub, no Obsidian e no VS Code, sempre na vertical (de cima para baixo), que fica legível em qualquer largura de tela. Como é texto, o git versiona e o Claude consegue atualizar.
