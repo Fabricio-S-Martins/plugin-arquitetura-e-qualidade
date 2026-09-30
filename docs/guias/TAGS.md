@@ -20,7 +20,7 @@ Não há arquivo com a lista. As tags de assunto só usam nomes que já existem:
 ## Status dos cards
 Só cards e decisões têm `status:`, em campo separado das tags, porque tag descreve o assunto (quase não muda) e status muda várias vezes. Valores: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`.
 
-Quem atualiza é o Claude, por uma regra que a skill `configurar-projeto` oferece para o `CLAUDE.md` do projeto: ao iniciar, concluir ou bloquear um card, ele troca o `status:`. Os índices não mostram status, para não ficarem desatualizados.
+Quem atualiza é o Claude, por uma regra que a skill `configurar-projeto` oferece para o `CLAUDE.md` do projeto: ao iniciar, concluir ou bloquear um card, ele troca o `status:`. Os índices não mostram status, para não ficarem desatualizados. O índice de cada módulo (no backlog e na documentação) leva `tipo/modulo` e `modulo/<m>`; o `backlog.md` e o README levam só a tag de tipo.
 
 ## Projeto que já tem docs e cards
 A `configurar-projeto` lista as notas sem a tag `tipo/`, propõe tags e status em prévia (`+` e `-`) e só aplica depois da sua aprovação.

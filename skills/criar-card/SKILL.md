@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 
 # criar-card
 
-Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/NN-<nome>.md` (NN = próximo número livre na pasta do módulo; `<nome>` em pt-br, minúsculas, hífen) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `- [ ] **a:**`, letra reiniciando em `a` a cada bloco.
+Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md` (NN = próximo número livre em `tarefas/` do módulo; `<nome>` em pt-br, minúsculas, hífen) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `- [ ] **a:**`, letra reiniciando em `a` a cada bloco.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.
@@ -25,11 +25,11 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz. Checar cada palavra antes de escrever.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
-- **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`. Card: `tipo/task` + `modulo/`/`fluxo/` dos docs do bloco Documentação. Índice do módulo e `backlog.md`, se criados aqui: só `tipo/modulo` e `tipo/backlog`.
-- **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Deps sem `decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
+- **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`. Card: `tipo/task` + `modulo/`/`fluxo/` dos docs do bloco Documentação. Índice do módulo, se criado aqui: `tipo/modulo` + `modulo/<m>`; `backlog.md`: `tipo/backlog`.
+- **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Deps sem `<modulo>/decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
-- **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice, nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
+- **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice (link `tarefas/<card>.md`), nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar

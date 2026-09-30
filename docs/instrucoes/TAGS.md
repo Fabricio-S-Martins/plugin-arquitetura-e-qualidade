@@ -19,8 +19,8 @@ Fixas no plugin; não pedem aprovação. A skill que cria a nota grava a tag.
 
 | Grupo | Tipo | Tag | Nota |
 |---|---|---|---|
-| Backlog | Task | `tipo/task` | card em `docs/backlog/modulos/<modulo>/` |
-| | Decisão | `tipo/decisao` | `docs/backlog/decisoes/` |
+| Backlog | Task | `tipo/task` | card em `docs/backlog/modulos/<modulo>/tarefas/` |
+| | Decisão | `tipo/decisao` | `docs/backlog/modulos/<modulo>/decisoes/` |
 | | Backlog | `tipo/backlog` | `docs/backlog/backlog.md` |
 | | Módulo | `tipo/modulo` | índice `<modulo>/<modulo>.md` |
 | Documentação | API | `tipo/api` | `docs/modulos/<nome>/api/` |
@@ -29,7 +29,7 @@ Fixas no plugin; não pedem aprovação. A skill que cria a nota grava a tag.
 | | README | `tipo/readme` | `docs/README.md` |
 
 Sem tag de grupo: módulo do backlog e da documentação compartilham `tipo/modulo`; o grafo os separa pelo caminho (`backlog/`), cada um com a cor do seu grupo.
-Índices e README levam só `tipo/` (sem `modulo/`/`fluxo/`, sem `status`).
+Índice do módulo (backlog e documentação) leva `tipo/modulo` + `modulo/<m>`; `backlog.md` e README levam só `tipo/`. Nenhum dos três leva `status`.
 
 ## Vocabulário
 Sem arquivo de lista: tag de assunto = nome que existe (Glob 1 nível). `modulo/x` → pasta em `docs/modulos/` ou `docs/backlog/modulos/`; `fluxo/y` → arquivo em `docs/fluxos/`.
@@ -38,8 +38,8 @@ Sem arquivo de lista: tag de assunto = nome que existe (Glob 1 nível). `modulo/
 
 ## Status (card)
 Valores fechados: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`. Outro valor → não gravar.
-Card com Deps em `decisoes/<nome>` `aberta` ou `adiada` → `bloqueado`.
+Card com Deps em `<modulo>/decisoes/<nome>` `aberta` ou `adiada` → `bloqueado`.
 Índice da pasta e `backlog.md` não levam status.
 
 ## Status (decisão)
-Em `docs/backlog/decisoes/<nome>.md` (skill `registrar-decisao`). Valores fechados: `aberta`, `decidida` (intervalo até virar card), `adiada`. Vira card ou é descartada → apagada (skill `registrar-decisao`). Decisão nunca cita card.
+Em `docs/backlog/modulos/<modulo>/decisoes/<nome>.md` (skill `registrar-decisao`). Valores fechados: `aberta`, `decidida` (intervalo até virar card), `adiada`. Vira card ou é descartada → apagada (skill `registrar-decisao`). Decisão nunca cita card.

@@ -17,3 +17,4 @@ Regras de trabalho neste repo:
 11. Nomes de skills, arquivos e pastas em português.
 12. Commit só quando pedido e só no repo da conversa, nunca em outro; `git add` só dos arquivos da tarefa. Mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
 13. Mudança em skill → subir `version` em `.claude-plugin/plugin.json`: correção `0.y.Z`; skill nova, comportamento novo ou nome alterado `0.Y.0`.
+14. Mudança que altera o formato de arquivo do projeto (frontmatter, pasta, nome, tag) → no mesmo commit, `docs/migracoes/X.Y.Z.md` com o prompt só daquela versão: regras novas + passos com prévia (`previa-diff`), sem alterar código nem commitar.

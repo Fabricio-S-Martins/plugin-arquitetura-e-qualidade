@@ -6,7 +6,7 @@ A skill `criar-card` gera um card em Markdown a partir de um pedido seu. Este gu
 Descreva a tarefa em uma ou duas frases. Ex.: "criar card para cadastro de Cliente no módulo Vendas".
 
 ## O que sai
-Um arquivo `docs/backlog/modulos/<modulo>/NN-<nome>.md`, com o próximo número livre na pasta do módulo, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md). A estrutura é sempre a do template — o `CLAUDE.md` do projeto não acrescenta seção nova ao card, mesmo pedindo algo diferente:
+Um arquivo `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md`, com o próximo número livre na pasta `tarefas/` do módulo, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md). A estrutura é sempre a do template — o `CLAUDE.md` do projeto não acrescenta seção nova ao card, mesmo pedindo algo diferente:
 
 - **Título:** verbo no infinitivo mais o que a task entrega, cobrindo todas as frentes. Deve servir como mensagem de commit.
 - **Frontmatter:** `tags` (`tipo/task` mais módulo e fluxo dos documentos que o card toca) e `status`, que começa em `pendente`. Veja [TAGS.md](TAGS.md).
@@ -28,5 +28,5 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 - **Escopo mínimo:** o card cobre só o que foi pedido. Ideias extras vão como sugestão, fora do card.
 - **Card grande demais:** com mais de uns 8 itens ou mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
 - **Prévia:** para ver como ficaria a alteração de um card existente antes de aplicar, peça a prévia (`+` e `-`).
-- **Backlog:** o `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova é adicionada nesse índice, não no `backlog.md`. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido. O índice não mostra status.
-- **Depende de uma decisão:** se o card depende de uma decisão ainda `aberta` ou `adiada` (`decisoes/<nome>` em Deps), ele sai com `status: bloqueado`. Quando o card nasce de uma decisão, a escolha e o motivo entram numa linha `**Decisão:**` em "O que fazer" e a decisão é apagada (com o seu ok). Veja [REGISTRAR-DECISAO.md](REGISTRAR-DECISAO.md).
+- **Backlog:** o `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova (link `tarefas/<card>.md`) é adicionada nesse índice, não no `backlog.md`. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido. O índice do módulo leva `tipo/modulo` e `modulo/<m>`, sem status.
+- **Depende de uma decisão:** se o card depende de uma decisão ainda `aberta` ou `adiada` (`<modulo>/decisoes/<nome>` em Deps), ele sai com `status: bloqueado`. Quando o card nasce de uma decisão, a escolha e o motivo entram numa linha `**Decisão:**` em "O que fazer" e a decisão é apagada (com o seu ok). Veja [REGISTRAR-DECISAO.md](REGISTRAR-DECISAO.md).

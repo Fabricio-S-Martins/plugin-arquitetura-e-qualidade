@@ -43,7 +43,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Um fato, um lugar:** o resto aponta por link.
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
 - **Nomes:** 100% pt-br (arquivos, pastas, títulos). Nome de arquivo único em todo `docs/` (Obsidian identifica nota só pelo nome): docs de módulo prefixados com o módulo.
-- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tabela de tipos; README só `tipo/`; técnico por projeto `tipo/modulo`). Doc sem `status`; nunca citar task.
+- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tabela de tipos; módulo `tipo/modulo` + `modulo/<m>`; README só `tipo/`; técnico por projeto `tipo/modulo`). Doc sem `status`; nunca citar task.
 - **Doc existente que o usuário quer ver antes de aplicar** → `previa-diff`.
 - **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto ou "vai desatualizar" (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
 
