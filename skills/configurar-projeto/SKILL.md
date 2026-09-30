@@ -27,7 +27,7 @@ Garantir as entradas (acrescentar as que faltarem, sem duplicar; nunca remover l
 - `docs/sessoes/`
 
 ## Cores do grafo (por tipo de nota)
-12 queries literais, espaço = E. Tipos usam a cor do seu grupo; o card (task) não tem cor de tipo: a cor vem do status.
+11 queries literais, espaço = E. Tipos usam a cor do seu grupo; o card (task) não tem cor de tipo: a cor vem do status (`bloqueado` fica sem cor, de propósito).
 | Grupo | Tipo | Query |
 |---|---|---|
 | backlog | backlog | `tag:#tipo/backlog` |
@@ -36,7 +36,6 @@ Garantir as entradas (acrescentar as que faltarem, sem duplicar; nunca remover l
 | card | pendente | `tag:#status/pendente` |
 | card | em andamento | `tag:#status/em-andamento` |
 | card | concluído | `tag:#status/concluido` |
-| card | bloqueado | `tag:#status/bloqueado` |
 | card | cancelado | `tag:#status/cancelado` |
 | documentacao | readme | `tag:#tipo/readme` |
 | documentacao | módulo | `tag:#tipo/modulo -path:backlog` |
@@ -49,9 +48,9 @@ Ausente → avisar que falta abrir `docs/` como cofre no Obsidian e parar.
 Presente:
 1. **Ignorados** (`app.json`): Grep no `.gitignore` pelas linhas dentro de `docs/`; tirar o prefixo `docs/` de cada uma (`docs/sessoes/` → `sessoes/`). Somar ao array `userIgnoreFilters` as que ainda não estiverem lá; **nunca remover** as que já existem (podem ter sido postas à mão, ex. `runbooks/`, `Migrations/`).
 2. **Links** (`app.json`): `"useMarkdownLinks": true` e `"newLinkFormat": "relative"` (desliga Wikilinks; já é o formato usado nos docs).
-3. **Cores** (`graph.json`): montar as 12 queries da tabela, escritas exatamente assim. Todas já existem em `colorGroups` → pular. Entrada existente `tag:#tipo/modulo` sem filtro, ou `tag:#tipo/task` (não vale mais) → avisar (não altera; Dev corrige). Faltando alguma:
+3. **Cores** (`graph.json`): montar as 11 queries da tabela, escritas exatamente assim. Todas já existem em `colorGroups` → pular. Entrada existente `tag:#tipo/modulo` sem filtro, ou `tag:#tipo/task` (não vale mais) → avisar (não altera; Dev corrige). Faltando alguma:
    1. Por grupo (backlog, documentacao) com tipo faltando, perguntar ao Dev a cor-base (nome ou hex; ex. "o backlog deve ter qual cor?").
-   2. Gerar variações da cor-base (mesmo matiz, luminosidade distribuída de escura a clara), 1 por tipo do grupo, na ordem da tabela. Status faltando: propor 1 cor por status (ex. pendente amarelo, em andamento azul, concluído verde, bloqueado vermelho, cancelado cinza) e perguntar se o Dev quer trocar. Mostrar tabela query → hex e aplicar após o ok do Dev (ajuste pedido → refazer).
+   2. Gerar variações da cor-base (mesmo matiz, luminosidade distribuída de escura a clara), 1 por tipo do grupo, na ordem da tabela. Status faltando: propor 1 cor por status (ex. pendente amarelo, em andamento azul, concluído verde, cancelado cinza) e perguntar se o Dev quer trocar. Mostrar tabela query → hex e aplicar após o ok do Dev (ajuste pedido → refazer).
    3. Somar `{ "query": "<query>", "color": { "a": 1, "rgb": <decimal> } }` só das queries faltantes, no **topo** da lista. **Nunca** alterar `query` ou `color` de entrada existente nem remover grupo. Grupos antigos (ex. `path:...`) ficam abaixo dos novos; listá-los no aviso final para o Dev decidir se apaga.
 4. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` e `graph.json` ao salvar qualquer configuração antes disso.
 
