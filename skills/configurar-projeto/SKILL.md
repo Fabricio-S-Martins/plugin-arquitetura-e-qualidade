@@ -26,33 +26,12 @@ Garantir as entradas (acrescentar as que faltarem, sem duplicar; nunca remover l
 - `docs/.obsidian/`
 - `docs/sessoes/`
 
-## Cores do grafo (por tipo de nota)
-11 queries literais, espaço = E. Tipos usam a cor do seu grupo; o card (task) não tem cor de tipo: a cor vem do status (`bloqueado` fica sem cor, de propósito).
-| Grupo | Tipo | Query |
-|---|---|---|
-| backlog | backlog | `tag:#tipo/backlog` |
-| backlog | módulo | `tag:#tipo/modulo path:backlog` |
-| backlog | decisão | `tag:#tipo/decisao` |
-| card | pendente | `tag:#status/pendente` |
-| card | em andamento | `tag:#status/em-andamento` |
-| card | concluído | `tag:#status/concluido` |
-| card | cancelado | `tag:#status/cancelado` |
-| documentacao | readme | `tag:#tipo/readme` |
-| documentacao | módulo | `tag:#tipo/modulo -path:backlog` |
-| documentacao | api | `tag:#tipo/api` |
-| documentacao | fluxo | `tag:#tipo/fluxo` |
-Os 2 módulos são o único caso com filtro de caminho; nunca gravar `tag:#tipo/modulo` sem filtro (2 entradas iguais = a 2ª nunca vale). Status de decisão não tem cor (decisão usa `tag:#tipo/decisao`). Cores escolhidas na hora (passo 4.3).
-
 ## 4. Cofre (`docs/.obsidian/`)
 Ausente → avisar que falta abrir `docs/` como cofre no Obsidian e parar.
 Presente:
 1. **Ignorados** (`app.json`): Grep no `.gitignore` pelas linhas dentro de `docs/`; tirar o prefixo `docs/` de cada uma (`docs/sessoes/` → `sessoes/`). Somar ao array `userIgnoreFilters` as que ainda não estiverem lá; **nunca remover** as que já existem (podem ter sido postas à mão, ex. `runbooks/`, `Migrations/`).
 2. **Links** (`app.json`): `"useMarkdownLinks": true` e `"newLinkFormat": "relative"` (desliga Wikilinks; já é o formato usado nos docs).
-3. **Cores** (`graph.json`): montar as 11 queries da tabela, escritas exatamente assim. Todas já existem em `colorGroups` → pular. Entrada existente `tag:#tipo/modulo` sem filtro, ou `tag:#tipo/task` (não vale mais) → avisar (não altera; Dev corrige). Faltando alguma:
-   1. Por grupo (backlog, documentacao) com tipo faltando, perguntar ao Dev a cor-base (nome ou hex; ex. "o backlog deve ter qual cor?").
-   2. Gerar variações da cor-base (mesmo matiz, luminosidade distribuída de escura a clara), 1 por tipo do grupo, na ordem da tabela. Status faltando: propor 1 cor por status (ex. pendente amarelo, em andamento azul, concluído verde, cancelado cinza) e perguntar se o Dev quer trocar. Mostrar tabela query → hex e aplicar após o ok do Dev (ajuste pedido → refazer).
-   3. Somar `{ "query": "<query>", "color": { "a": 1, "rgb": <decimal> } }` só das queries faltantes, no **topo** da lista. **Nunca** alterar `query` ou `color` de entrada existente nem remover grupo. Grupos antigos (ex. `path:...`) ficam abaixo dos novos; listá-los no aviso final para o Dev decidir se apaga.
-4. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` e `graph.json` ao salvar qualquer configuração antes disso.
+3. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` ao salvar qualquer configuração antes disso.
 
 ## 5. CLAUDE.md do projeto
 Auditoria sem editar; as únicas edições são as linhas de commit e de status abaixo, e só se o Dev aceitar.
@@ -72,9 +51,9 @@ Existente → somar se faltar; preservar o resto, nunca remover entrada.
 Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## 7. Tags (migração)
-Só se `docs/` tiver notas sem `tags:`, sem tag `tipo/` ou com campo `status:` fora das tags. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
-1. Achar (Grep `-L "^tags:.*tipo/"` e Grep `"^status:"`, só em `docs/`; ignorar `docs/sessoes/`).
-2. Propor, por arquivo: `tipo/` pelo caminho e nome (tabela do TAGS.md); `modulo/`/`fluxo/` só em card, doc e decisão (pelo nome do arquivo e pasta; só o título se preciso); em card, tag `status/` (campo `status:` existente vira a tag e sai do frontmatter; sem campo: caixas `[x]` todas marcadas → `concluido`; senão `pendente`); em decisão, `status/` pelo campo existente, senão a cargo do Dev (listar). Índice do módulo (backlog e documentação): `tipo/modulo` + `modulo/<m>` (pelo nome da pasta); `backlog.md` e README: só `tipo/`. Tag sem pasta ou arquivo correspondente → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
+Só se `docs/` tiver notas sem tag de tipo (`backlog/...` ou `documentacao/...`), com tag antiga `tipo/` ou `grupo/`, ou com campo `status:` fora das tags. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
+1. Achar (Grep `-L "^tags:.*(backlog|documentacao)/"`, Grep `"tipo/|grupo/"` e Grep `"^status:"`, só em `docs/`; ignorar `docs/sessoes/`).
+2. Propor, por arquivo: tag de tipo pelo caminho e nome (tabela do TAGS.md; tag antiga `tipo/x`/`grupo/x` é substituída); `modulo/`/`fluxo/` só em tarefa, doc e decisão (pelo nome do arquivo e pasta; só o título se preciso); em tarefa, tag `status/` (campo `status:` existente vira a tag e sai do frontmatter; sem campo: caixas `[x]` todas marcadas → `concluido`; senão `pendente`); em decisão, `status/` pelo campo existente, senão a cargo do Dev (listar). Nota do módulo: tipo + `modulo/<m>` (pelo nome da pasta); notas gerais: só o tipo. Tag sem pasta ou arquivo correspondente → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
 3. Mostrar via `previa-diff` (só o bloco de frontmatter). Aplicar só após aprovação, sem tocar no resto do arquivo.
 Sem notas pendentes → pular.
 

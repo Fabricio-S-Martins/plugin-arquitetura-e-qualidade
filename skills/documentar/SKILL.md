@@ -17,23 +17,23 @@ Não alterar código nem commitar. Criar/atualizar docs direto; só o plano exig
 
 ## Código novo
 1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
-2. **Existente antes de criar:** Glob em `docs/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Projeto sem a regra "mudou comportamento → atualizar a doc" no `CLAUDE.md` → oferecer a linha (só adicionar se o usuário aceitar).
-3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/README.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
-4. **Após o último:** "Quer o plano de documentação do restante de <módulo/fluxo>?" Não → parar; o que ficou de fora entra em `Não documentado` no `docs/README.md` (só nomes, via Glob de 1 nível, sem ler). Sim → `PLANO.md`.
+2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Projeto sem a regra "mudou comportamento → atualizar a doc" no `CLAUDE.md` → oferecer a linha (só adicionar se o usuário aceitar).
+3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
+4. **Após o último:** "Quer o plano de documentação do restante de <módulo/fluxo>?" Não → parar; o que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Sim → `PLANO.md`.
 
 ## Alterado
 1. **Mudança:** ler só o que mudou (`git diff` do alvo). Extrair nomes observáveis: módulo, rota, etapa, mensagem de erro, configuração.
-2. **Achar o doc:** Grep desses nomes em `docs/` (docs não citam código; o vínculo é por nome). Nada achado → perguntar; nunca concluir que não há doc.
+2. **Achar o doc:** Grep desses nomes em `docs/documentacao/` (docs não citam código; o vínculo é por nome). Nada achado → perguntar; nunca concluir que não há doc.
 3. **Atualizar** o que ficou falso ou incompleto, 1 doc por rodada, listando os demais afetados → **Gate**. Refatoração sem mudança observável → não mexer.
 
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
-- `docs/README.md`: `Módulos` (link + 1 linha) · `Não documentado`. Só aponta; fluxo e API só pelo link do módulo, nunca direto (1 fato, 1 lugar).
-- `docs/modulos/<nome>/<nome>.md`: link de volta a `docs/README.md` no topo · 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
-- `docs/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
-- `docs/fluxos/<nome>.md`: `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
-- **Técnico por projeto:** só sob pedido explícito, em `docs/modulos/<nome>/<nome>-<projeto>.md`.
-- **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo → módulo; API → `../<nome>.md`; módulo → `docs/README.md`); só o README não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
+- `docs/documentacao/documentacao.md`: `Módulos` (link + 1 linha) · `Não documentado`. Só aponta; fluxo e API só pelo link do módulo, nunca direto (1 fato, 1 lugar).
+- `docs/documentacao/modulos/<nome>/<nome>.md`: link de volta a `../../documentacao.md` no topo · 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
+- `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
+- `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
+- **Técnico por projeto:** só sob pedido explícito, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
+- **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo e API → `../<nome>.md`; módulo → `../../documentacao.md`); só o geral não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
 - **Estilo:** títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
 
 ## Regras
@@ -43,7 +43,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Um fato, um lugar:** o resto aponta por link.
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
 - **Nomes:** 100% pt-br (arquivos, pastas, títulos). Nome de arquivo único em todo `docs/` (Obsidian identifica nota só pelo nome): docs de módulo prefixados com o módulo.
-- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tabela de tipos; módulo `tipo/modulo` + `modulo/<m>`; README só `tipo/`; técnico por projeto `tipo/modulo`). Doc sem `status`; nunca citar task.
+- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tabela de tipos). Doc sem `status`; nunca citar task.
 - **Doc existente que o usuário quer ver antes de aplicar** → `previa-diff`.
 - **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto ou "vai desatualizar" (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
 

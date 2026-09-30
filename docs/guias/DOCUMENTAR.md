@@ -15,17 +15,17 @@ Em qualquer situação, cada rodada produz **um** documento. Ao terminar, ela di
 ## O que sai
 Documentação para quem usa o sistema: o **negócio** e o **dev que integra** a API. Linguagem de negócio, sem links nem caminhos para o código e sem termos de camada (Domínio, Aplicação, Infraestrutura). Um arquivo por assunto, sem versão separada para a IA:
 
-- **Visão geral** (`docs/README.md`): links para os módulos e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos. Os fluxos e a API não aparecem direto nela: cada módulo já linka os seus, e repetir o link em dois lugares foi o problema que motivou tirar isso.
-- **Módulo** (`docs/modulos/<nome>/<nome>.md`, na pasta do módulo, com a API na subpasta `api/`): um link de volta à visão geral no topo, depois o que o módulo é, as etapas, as regras em linguagem de negócio e links para os fluxos e para a API.
-- **Integração** (`docs/modulos/<nome>/api/<nome>-api.md`): guia para quem consome a API. Aponta para o Swagger do projeto, que já traz o contrato exato de cada rota, e explica só o que ele não diz: a ordem das chamadas (tabela de passos, com o que foge da sequência, como cancelar, em destaque) e as respostas e erros (tabela de status). Se o projeto não tem Swagger, ela pergunta se o contrato deve ir por escrito.
-- **Fluxos** (`docs/fluxos/<nome>.md`): um por fluxo, com objetivo, fluxograma e regras.
-- **Técnico por projeto** (Domínio, Aplicação...): não faz parte do padrão. Só se você pedir, em `docs/modulos/<nome>/<nome>-<projeto>.md`.
+- **Visão geral** (`docs/documentacao/documentacao.md`): links para os módulos e o que ainda não está documentado. Ela só aponta, sem repetir o conteúdo dos outros documentos. Os fluxos e a API não aparecem direto nela: cada módulo já linka os seus, e repetir o link em dois lugares foi o problema que motivou tirar isso.
+- **Módulo** (`docs/documentacao/modulos/<nome>/<nome>.md`, na pasta do módulo, com a API em `api/` e os fluxos em `fluxos/`): um link de volta à visão geral no topo, depois o que o módulo é, as etapas, as regras em linguagem de negócio e links para os fluxos e para a API.
+- **Integração** (`docs/documentacao/modulos/<nome>/api/<nome>-api.md`): guia para quem consome a API. Aponta para o Swagger do projeto, que já traz o contrato exato de cada rota, e explica só o que ele não diz: a ordem das chamadas (tabela de passos, com o que foge da sequência, como cancelar, em destaque) e as respostas e erros (tabela de status). Se o projeto não tem Swagger, ela pergunta se o contrato deve ir por escrito.
+- **Fluxos** (`docs/documentacao/modulos/<nome>/fluxos/<fluxo>.md`): um por fluxo, com objetivo, fluxograma e regras. Fluxo que toca mais de um módulo fica na pasta do módulo principal (o primeiro citado), e os outros módulos o linkam.
+- **Técnico por projeto** (Domínio, Aplicação...): não faz parte do padrão. Só se você pedir, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
 
 O fluxograma é escrito em Mermaid, uma sintaxe de texto que vira diagrama no GitHub, no Obsidian e no VS Code, sempre na vertical (de cima para baixo), que fica legível em qualquer largura de tela. Como é texto, o git versiona e o Claude consegue atualizar.
 
 **Estilo dos documentos:** títulos com iniciais maiúsculas, sequências e respostas em tabela (status e passos em negrito, detalhes em itálico) e exceções à regra geral em um destaque de atenção. Os fluxos mantêm o diagrama.
 
-**Tags:** todo documento leva uma linha `tags:` no topo: uma tag de tipo (`tipo/readme`, `tipo/modulo`, `tipo/api` ou `tipo/fluxo`, que define a cor no grafo do Obsidian) mais as tags de assunto (módulo e fluxo), que só usam nomes de pastas e arquivos que existem; tag sem correspondente é proposta a você antes. Doc não tem status e nunca cita tarefas. Veja [TAGS.md](TAGS.md).
+**Tags:** todo documento leva uma linha `tags:` no topo: uma tag de tipo (`documentacao/geral`, `documentacao/modulo`, `documentacao/api` ou `documentacao/fluxo`, que define a cor no grafo do Obsidian) mais as tags de assunto (módulo e fluxo), que só usam nomes de pastas e arquivos que existem; tag sem correspondente é proposta a você antes. Doc não tem status e nunca cita tarefas. Veja [TAGS.md](TAGS.md).
 
 Se o projeto já tem um padrão de documentação, ela segue o padrão dele.
 
@@ -49,6 +49,6 @@ Funciona como o da skill `planejar`:
 - **Só o que está no git:** ela não cita arquivos ou pastas que o git ignora (por exemplo uma pasta `runbooks/` listada no `.gitignore`), porque quem clonar o projeto não os encontraria. Ela confere isso antes de entregar.
 - **Um fato, um lugar:** os demais documentos apontam por link.
 - **Cada documento linka de volta ao pai:** o fluxo e a API apontam para o módulo, e o módulo aponta para a visão geral. Só a visão geral não tem para onde voltar. Um documento técnico aponta para o módulo, mas o módulo nunca lista o técnico de volta, porque ele fica fora do padrão.
-- **Nomes em português**, em arquivos, pastas e títulos. Cada arquivo tem um nome único em toda a documentação, porque o Obsidian identifica a nota só pelo nome. Por isso os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), e o único `README.md` é o de `docs/`, a visão geral.
+- **Nomes em português**, em arquivos, pastas e títulos. Cada arquivo tem um nome único em toda a documentação, porque o Obsidian identifica a nota só pelo nome. Por isso os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), e a visão geral se chama `documentacao.md`.
 - **Não altera código e não faz commit.**
 - **Prévia:** para ver a mudança de um documento existente antes de aplicar, peça a prévia (`+` e `-`).
