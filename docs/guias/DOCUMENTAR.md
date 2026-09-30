@@ -49,6 +49,6 @@ Funciona como o da skill `planejar`:
 - **Só o que está no git:** ela não cita arquivos ou pastas que o git ignora (por exemplo uma pasta `runbooks/` listada no `.gitignore`), porque quem clonar o projeto não os encontraria. Ela confere isso antes de entregar.
 - **Um fato, um lugar:** os demais documentos apontam por link.
 - **Cada documento linka de volta ao pai:** o fluxo e a API apontam para o módulo, e o módulo aponta para a visão geral. Só a visão geral não tem para onde voltar. Um documento técnico aponta para o módulo, mas o módulo nunca lista o técnico de volta, porque ele fica fora do padrão.
-- **Nomes em português**, em arquivos, pastas e títulos. Cada arquivo tem um nome único em toda a documentação, porque o Obsidian identifica a nota só pelo nome. Por isso os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), e a visão geral se chama `documentacao.md`.
+- **Nomes em português**, em arquivos, pastas e títulos. Os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), porque o grafo e a busca do Obsidian mostram só o nome do arquivo e vários `api.md` seriam indistinguíveis. A exceção é a nota do módulo (`pedidos.md`), que repete o nome no backlog e na documentação. A visão geral se chama `documentacao.md`.
 - **Não altera código e não faz commit.**
 - **Prévia:** para ver a mudança de um documento existente antes de aplicar, peça a prévia (`+` e `-`).
