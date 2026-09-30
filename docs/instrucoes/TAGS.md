@@ -12,15 +12,15 @@ status: pendente
 ```
 - `status` só em card e decisão. Doc: só `tags`.
 - Prefixos: `tipo/` (obrigatória, ver abaixo), `modulo/` (nome da pasta em `docs/modulos`), `fluxo/` (nome do arquivo em `docs/fluxos`). Minúsculas, pt-br, sem acento, hífen.
-- Toda nota leva exatamente 1 tag `tipo/`. Notas de assunto (card, doc, decisão) levam também ≥1 `modulo/` ou `fluxo/`.
+- Toda nota leva exatamente 1 tag `tipo/`. Notas de assunto (card, doc, decisão) levam também ≥1 `modulo/` ou `fluxo/`; decisão, obrigatoriamente ≥1 `modulo/`.
 
 ## Tipo (cor no grafo do Obsidian)
-Fixas no plugin; não entram em `docs/tags.md` nem pedem aprovação. A skill que cria a nota grava a tag.
+Fixas no plugin; não pedem aprovação. A skill que cria a nota grava a tag.
 
 | Grupo | Tipo | Tag | Nota |
 |---|---|---|---|
 | Backlog | Task | `tipo/task` | card em `docs/backlog/modulos/<modulo>/` |
-| | Decisão | `tipo/decisao` | `docs/backlog/decisoes/`, inclusive `decisoes.md` |
+| | Decisão | `tipo/decisao` | `docs/backlog/decisoes/` |
 | | Backlog | `tipo/backlog` | `docs/backlog/backlog.md` |
 | | Módulo | `tipo/modulo` | índice `<modulo>/<modulo>.md` |
 | Documentação | API | `tipo/api` | `docs/modulos/<nome>/api/` |
@@ -32,9 +32,8 @@ Sem tag de grupo: módulo do backlog e da documentação compartilham `tipo/modu
 Índices e README levam só `tipo/` (sem `modulo/`/`fluxo/`, sem `status`).
 
 ## Vocabulário
-`docs/tags.md` do projeto: tabela `| Tag | O que cobre |`, 1 linha por tag `modulo/` e `fluxo/`. Usar só tags dela.
-- Tag nova → propor ao Dev (nome + 1 linha); aprovada → somar em `docs/tags.md` e usar. Nunca inventar sem aprovar.
-- `docs/tags.md` ausente → criar ao aprovar a 1ª tag.
+Sem arquivo de lista: tag de assunto = nome que existe (Glob 1 nível). `modulo/x` → pasta em `docs/modulos/` ou `docs/backlog/modulos/`; `fluxo/y` → arquivo em `docs/fluxos/`.
+- Sem correspondente (ex. fluxo ainda não documentado) → propor ao Dev (nome + 1 linha); usar só se aprovar. Nunca inventar.
 - Card herda `modulo/` e `fluxo/` dos docs do bloco Documentação.
 
 ## Status (card)
@@ -43,4 +42,4 @@ Card com Deps em `decisoes/<nome>` `aberta` ou `adiada` → `bloqueado`.
 Índice da pasta e `backlog.md` não levam status.
 
 ## Status (decisão)
-Em `docs/backlog/decisoes/<nome>.md` (skill `registrar-decisao`). Valores fechados: `aberta`, `decidida`, `adiada`, `descartada`. Decisão nunca cita card.
+Em `docs/backlog/decisoes/<nome>.md` (skill `registrar-decisao`). Valores fechados: `aberta`, `decidida` (intervalo até virar card), `adiada`. Vira card ou é descartada → apagada (skill `registrar-decisao`). Decisão nunca cita card.

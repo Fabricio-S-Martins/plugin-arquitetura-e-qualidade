@@ -16,7 +16,7 @@ Não editar nem criar arquivos até a aprovação. Só fatos: nunca suposição.
 5. **Lentes:** antes de fechar o desenho, questioná-lo sob 4 lentes: adversário (como abusar), concorrência (dois no mesmo segundo), plantão (diagnosticar e desfazer sem programador), dev futuro (onde cobra caro). Cada lente gera pergunta ou verificação no código, nunca risco suposto. O que pegar vira decisão ou alternativa descartada.
 6. **Plano:** apresentar telegráfico no formato abaixo, sem executar nada e sem explicar metodologia (só os componentes). Encerrar com "Aguardando aprovação."
 7. **Aprovação:** só "aprovado" ou equivalente explícito libera os cards. Ajuste pedido → revisar e reapresentar. Silêncio ou dúvida não é aprovação.
-8. **Cards:** aprovado → `criar-card` para cada card do plano, na ordem de dependência.
+8. **Cards:** aprovado → `criar-card` para cada card do plano, na ordem de dependência. Decisão que o plano realiza → `registrar-decisao` (Apagar) depois do card.
 
 ## Plano
 - **Objetivo:** 1 linha.

@@ -1,7 +1,7 @@
 ---
 name: criar-card
 description: Cria card de tarefa em .md a partir do template. Usar ao pedir para criar/planejar card ou task.
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 ---
 
 # criar-card
@@ -26,6 +26,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz. Checar cada palavra antes de escrever.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
 - **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`. Card: `tipo/task` + `modulo/`/`fluxo/` dos docs do bloco Documentação. Índice do módulo e `backlog.md`, se criados aqui: só `tipo/modulo` e `tipo/backlog`.
+- **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Deps sem `decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
 - **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice, nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.

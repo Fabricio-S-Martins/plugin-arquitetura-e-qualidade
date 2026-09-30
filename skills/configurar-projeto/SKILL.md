@@ -63,8 +63,8 @@ Permissão das skills: nunca no settings do projeto (só vale após confiar no w
 
 ## 7. Tags (migração)
 Só se `docs/` tiver notas sem `tags:` ou sem tag `tipo/`. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
-1. Achar (Grep `-L "^tags:.*tipo/"`, só em `docs/`; ignorar `docs/sessoes/`, `docs/tags.md`).
-2. Propor, por arquivo: `tipo/` pelo caminho e nome (tabela do TAGS.md); `modulo/`/`fluxo/` só em card, doc e decisão (pelo nome do arquivo e pasta; só o título se preciso); em card, `status` (caixas `[x]` todas marcadas → `concluido`; senão `pendente`); em decisão, status a cargo do Dev (listar). Índices e README: só `tipo/`. Tag fora de `docs/tags.md` → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
+1. Achar (Grep `-L "^tags:.*tipo/"`, só em `docs/`; ignorar `docs/sessoes/`).
+2. Propor, por arquivo: `tipo/` pelo caminho e nome (tabela do TAGS.md); `modulo/`/`fluxo/` só em card, doc e decisão (pelo nome do arquivo e pasta; só o título se preciso); em card, `status` (caixas `[x]` todas marcadas → `concluido`; senão `pendente`); em decisão, status a cargo do Dev (listar). Índices e README: só `tipo/`. Tag sem pasta ou arquivo correspondente → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
 3. Mostrar via `previa-diff` (só o bloco de frontmatter). Aplicar só após aprovação, sem tocar no resto do arquivo.
 Sem notas pendentes → pular.
 
