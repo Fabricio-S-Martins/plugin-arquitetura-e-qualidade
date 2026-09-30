@@ -27,9 +27,9 @@ Do que mais economiza para o que menos economiza:
 - **Não compacta demais:** se a versão curta ficaria ambígua, mantém a longa.
 
 ## Exemplo
-Antes: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta `cards/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
+Antes: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/backlog/modulos/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
 
-Depois: "Antes de salvar: usar o próximo ID livre em `cards/`; nunca repetir ID."
+Depois: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/backlog/modulos/`; nunca repetir ID."
 
 O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a regra de não repetir continuam.
 

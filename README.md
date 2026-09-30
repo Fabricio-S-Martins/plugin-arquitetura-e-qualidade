@@ -27,6 +27,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | Skill | O que faz |
 |---|---|
 | `criar-card` | Cria card de tarefa em `.md` a partir do template. |
+| `registrar-decisao` | Registra decisão em aberto, adiada ou tomada em `docs/backlog/decisoes/`; o card que depende dela fica bloqueado. |
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera cards após aprovação. |
 | `revisao-qa` | Revisa card ou código contra as regras de qualidade; só reporta, não corrige. |
 | `documentar` | Documenta código novo e mantém a documentação em dia quando o código muda. |

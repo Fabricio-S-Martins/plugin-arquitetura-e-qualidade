@@ -3,7 +3,7 @@
 A skill `revisao-qa` revisa um card ou um código e devolve um relatório. Este guia explica o que esperar. A versão que o Claude lê é [../../skills/revisao-qa/SKILL.md](../../skills/revisao-qa/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-Diga o alvo: "revise o card TASK-003", "revise o arquivo X" ou "revise o que mudei". Sem alvo, o Claude revisa o `git diff` atual. Por padrão a revisão é **rápida**; peça "revisão completa" para o modo profundo.
+Diga o alvo: "revise o card 03-aplicacao-criar-usuario", "revise o arquivo X" ou "revise o que mudei". Sem alvo, o Claude revisa o `git diff` atual. Por padrão a revisão é **rápida**; peça "revisão completa" para o modo profundo.
 
 ## Os dois modos
 - **Rápido (padrão):** olha só o que mudou. Confere as convenções verificáveis por busca, as regras obrigatórias, segurança e se o código cumpre o card. É o mais barato em tokens.

@@ -50,8 +50,8 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Frontmatter: manter `name` e as palavras de gatilho da `description`; encurtar só o que sobra.
 
 ## Exemplo
-Entrada: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta `cards/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
-Saída: "Antes de salvar: usar o próximo ID livre em `cards/`; nunca repetir ID."
+Entrada: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/backlog/modulos/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
+Saída: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/backlog/modulos/`; nunca repetir ID."
 
 ## Relatório
 Por arquivo: `antes → depois (−%)` em linhas e bytes. Depois:

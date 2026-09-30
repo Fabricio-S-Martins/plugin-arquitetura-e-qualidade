@@ -6,10 +6,11 @@ A skill `criar-card` gera um card em Markdown a partir de um pedido seu. Este gu
 Descreva a tarefa em uma ou duas frases. Ex.: "criar card para cadastro de Cliente no módulo Vendas".
 
 ## O que sai
-Um arquivo `cards/TASK-XXX.md`, com o próximo número livre, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md). A estrutura é sempre a do template — o `CLAUDE.md` do projeto não acrescenta seção nova ao card, mesmo pedindo algo diferente:
+Um arquivo `docs/backlog/modulos/<modulo>/NN-<nome>.md`, com o próximo número livre na pasta do módulo, seguindo o [template](../../skills/criar-card/TEMPLATE-CARD.md). A estrutura é sempre a do template — o `CLAUDE.md` do projeto não acrescenta seção nova ao card, mesmo pedindo algo diferente:
 
 - **Título:** verbo no infinitivo mais o que a task entrega, cobrindo todas as frentes. Deve servir como mensagem de commit.
-- **Cabeçalho:** módulo, camada, status (começa em "a fazer") e dependências.
+- **Frontmatter:** `tags` (`tipo/task` mais módulo e fluxo dos documentos que o card toca) e `status`, que começa em `pendente`. Veja [TAGS.md](TAGS.md).
+- **Cabeçalho:** módulo, camada e dependências.
 - **O que fazer:** as regras e decisões da task que o checklist não deixa óbvias, em uma linha cada. Padrões de projeto aplicados são citados pelo nome.
 - **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo) e um último item que pergunta se você quer o plano de documentação do restante. Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
@@ -27,4 +28,5 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 - **Escopo mínimo:** o card cobre só o que foi pedido. Ideias extras vão como sugestão, fora do card.
 - **Card grande demais:** com mais de uns 8 itens ou mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
 - **Prévia:** para ver como ficaria a alteração de um card existente antes de aplicar, peça a prévia (`+` e `-`).
-- **Backlog:** o `backlog.md` só linka o índice de cada pasta (`<pasta>/<pasta>.md`); a linha da task nova é adicionada nesse índice, não no `backlog.md`. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido.
+- **Backlog:** o `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova é adicionada nesse índice, não no `backlog.md`. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido. O índice não mostra status.
+- **Depende de uma decisão:** se o card depende de uma decisão ainda `aberta` ou `adiada` (`decisoes/<nome>` em Deps), ele sai com `status: bloqueado`. Veja [REGISTRAR-DECISAO.md](REGISTRAR-DECISAO.md).

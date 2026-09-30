@@ -25,7 +25,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 ## Fluxo
 1. Diff: abrir (Read) os arquivos tocados, o diff sozinho engana.
 2. **Mecânico:** itens objetivos (`CSHARP.md`) verificados com Grep restrito às camadas do escopo, nunca de cabeça. Grep em modo contagem/lista de arquivos; Read só nos arquivos que casaram. Item recorrente → recomendar virar `.editorconfig`/analyzer.
-3. **Card × código:** com card associado (informado ou achado em `cards/`), conferir que cada item do checklist tem contrapartida no código (Grep pelo nome citado) e que os cenários de teste do card estão cobertos. Item sem contrapartida = Bloqueante. Build/testes verdes não provam checklist cumprido.
+3. **Card × código:** com card associado (informado ou achado em `docs/backlog/`), conferir que cada item do checklist tem contrapartida no código (Grep pelo nome citado) e que os cenários de teste do card estão cobertos. Item sem contrapartida = Bloqueante. Build/testes verdes não provam checklist cumprido.
 4. **Segurança:** hash, token, criptografia e autorização têm prioridade máxima (erro silencioso: compila, roda, lógica errada). Sem teste dedicado = Bloqueante.
 5. **Testes:** apontar teste que não pode falhar (afirma só o caso "falso"/vazio, sem preparação relevante, mock que já devolve o esperado): Recomendado.
 6. **Julgamento:** para cada candidato perguntar: real ou purismo? analyzer já pega? confiança alta? Baixa confiança ou sem regra + local + sugestão → cortar. O filtro não vale para os mecânicos.

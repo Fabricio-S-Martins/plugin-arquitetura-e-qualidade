@@ -1,6 +1,10 @@
-# [TASK-XXX] <Acao + Entidade + Modulo>
+---
+tags: [tipo/task, modulo/<nome>, fluxo/<nome>]
+status: pendente
+---
+# [NN] <Acao + Entidade + Modulo>
 
-**Modulo:** <Nome> | **Camada:** <Camada> | **Status:** a fazer | **Deps:** <TASK-X>
+**Modulo:** <Nome> | **Camada:** <Camada> | **Deps:** <NN-nome>
 
 ## O que fazer
 - **<Tema 1>:** <Regra ou decisao da task em 1 linha>

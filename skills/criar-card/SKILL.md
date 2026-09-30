@@ -1,12 +1,12 @@
 ---
 name: criar-card
-description: Cria card de tarefa em .md a partir do template. Usar ao pedir para criar/planejar card, task ou TASK-XXX.
+description: Cria card de tarefa em .md a partir do template. Usar ao pedir para criar/planejar card ou task.
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # criar-card
 
-Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `cards/TASK-XXX.md` (próximo ID livre, ou pasta do projeto) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `- [ ] **a:**`, letra reiniciando em `a` a cada bloco.
+Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/NN-<nome>.md` (NN = próximo número livre na pasta do módulo; `<nome>` em pt-br, minúsculas, hífen) a partir de `TEMPLATE-CARD.md`, sem alterar a estrutura. Estrutura vem só do `TEMPLATE-CARD.md`; nada do projeto adiciona seção nova ao card. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations), nomes da arquitetura do projeto; `Documentação` penúltimo e `QA & Testes` sempre por último. Numerar em sequência, sem pular. Itens: `- [ ] **a:**`, letra reiniciando em `a` a cada bloco.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.
@@ -25,12 +25,13 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz. Checar cada palavra antes de escrever.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo) + item final perguntando ao Dev se quer o plano do restante. Task sem código novo (só config/texto) → omitir o bloco.
+- **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`. Card: `tipo/task` + `modulo/`/`fluxo/` dos docs do bloco Documentação. Índice do módulo e `backlog.md`, se criados aqui: só `tipo/modulo` e `tipo/backlog`.
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
-- **Backlog:** `backlog.md` só linka o índice de cada pasta (`<pasta>/<pasta>.md`); a linha da task nova vai nesse índice, nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
+- **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice, nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar
-1. Reler estas regras contra o rascunho, linha a linha.
+1. Reler estas regras contra o rascunho, linha a linha, inclusive o nome do arquivo (100% pt-br).
 2. Abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
 3. Correção aplicada → varrer o card por todo padrão igual e corrigir junto; reler o card inteiro e cortar redundância.
