@@ -1,6 +1,5 @@
 ---
-tags: [tipo/task, modulo/<nome>, fluxo/<nome>]
-status: pendente
+tags: [tipo/task, modulo/<nome>, fluxo/<nome>, status/pendente]
 ---
 # [NN] <Acao + Entidade + Modulo>
 

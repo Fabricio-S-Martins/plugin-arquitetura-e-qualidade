@@ -1,6 +1,5 @@
 ---
-tags: [tipo/decisao, modulo/<nome>]
-status: aberta
+tags: [tipo/decisao, modulo/<nome>, status/aberta]
 ---
 # <Decisão em forma de pergunta ou tema>
 
