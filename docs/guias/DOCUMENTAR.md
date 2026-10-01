@@ -32,9 +32,7 @@ Se o projeto já tem um padrão de documentação, ela segue o padrão dele.
 ## Código novo: o que acontece
 1. Ela lê o código que mudou, identifica o fluxo e o módulo tocados e procura se já existe documento deles. Se existir, atualiza; se não, cria. Se o projeto ainda não tem no `CLAUDE.md` a regra de manter a documentação em dia, ela oferece a linha e só a adiciona se você aceitar.
 2. Ela escreve **um documento por vez**, nesta ordem: módulo, fluxos, API (se houver rotas) e, por último, a visão geral, que ganha só o link do módulo (os fluxos e a API já estão linkados a partir dele). Cada documento é conferido antes de entregar.
-3. Depois do último, ela pergunta se você quer o plano de documentação do restante do módulo ou fluxo.
-   - **Não:** ela para. O que ficou de fora aparece na visão geral como "não documentado".
-   - **Sim:** ela monta o plano.
+3. Depois do último, ela para. O que ficou de fora aparece na visão geral como "não documentado". Se quiser o plano do restante, peça (veja "O plano").
 
 ## O plano
 Funciona como o da skill `planejar`:

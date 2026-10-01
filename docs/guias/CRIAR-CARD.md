@@ -12,14 +12,15 @@ Um arquivo `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md`, com o próximo 
 - **Frontmatter:** `tags` (`backlog/tarefa` mais módulo e fluxo dos documentos que o card toca) e a tag de status, que começa em `status/pendente`. Veja [TAGS.md](TAGS.md).
 - **Cabeçalho:** módulo, camada e dependências.
 - **O que fazer:** as regras e decisões da task que o checklist não deixa óbvias, em uma linha cada. Padrões de projeto aplicados são citados pelo nome.
-- **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo) e um último item que pergunta se você quer o plano de documentação do restante. Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
+- **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo). Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
 ## Como ela lê o projeto
 Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Ele compara com 1 arquivo irmão real do mesmo tipo e camada, sem varrer o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
 
 ## O que você vai notar nos itens
 - Cada item é uma ação direta: verbo, o quê e onde.
-- Todo arquivo ou pasta diz onde fica.
+- Todo arquivo ou pasta diz onde fica. Projeto novo é um passo só ("Na pasta X/, criar o projeto Y"), porque a pasta do projeto já vem com ele; pastas que não vêm de graça (agrupadora do módulo, internas ao projeto) têm passo próprio.
+- Objeto de dados sem comportamento (request, response, VO simples) já sai com a construção imutável da linguagem indicada no passo, em vez de esperar a revisão.
 - Validações trazem critério concreto. Se faltar, o Claude pergunta em vez de inventar.
 - Nomes de arquivos, classes, pastas e projetos são 100% em português (exceto tipos impostos por biblioteca).
 - Passos mecânicos de convenção fixa (registrar na solution, referenciar entre projetos) ficam de fora.

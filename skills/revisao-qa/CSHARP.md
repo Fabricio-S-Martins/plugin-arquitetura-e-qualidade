@@ -9,4 +9,5 @@ Verificar nos `.cs` do escopo (modo completo: arquivo inteiro), contra os irmão
 | Namespace | em bloco (`namespace X { ... }`), nunca file-scoped; exceção: código gerado (Migrations) | `^namespace\s+[\w.]+;` |
 | Teste xUnit | `Metodo_ComCenario_DeveResultado`; o segmento do meio começa com `Com` | `\[(Fact\|Theory)\]` com `-A 2`, conferir o nome |
 | Fim de arquivo | termina direto na última `}`, sem linha em branco | ler o fim do arquivo |
+| Construção | objeto de dados sem comportamento (request, response, VO simples) → `record`; tipo pequeno, imutável e em volume → `readonly struct`; classe/método sem estado → `static` | julgamento; no card, o passo que cria o tipo já cita a construção |
 | Nomes | 100% pt-br (arquivo, classe, pasta, projeto); exceção: tipo imposto por biblioteca/framework | julgamento; checar cada palavra |

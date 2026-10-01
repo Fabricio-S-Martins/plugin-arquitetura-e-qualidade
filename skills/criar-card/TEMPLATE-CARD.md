@@ -22,8 +22,6 @@ tags: [backlog/tarefa, modulo/<nome>, fluxo/<nome>, status/pendente]
 ### N. Documentação
 - [ ] **a:** Criar/atualizar `docs/documentacao/modulos/<modulo>/fluxos/<fluxo>.md` com o fluxo tocado (passos e diagrama Mermaid)
 - [ ] **b:** Criar/atualizar `docs/documentacao/modulos/<modulo>/<modulo>.md` com o que o módulo é, as etapas e as regras de negócio
-- [ ] **c:** Perguntar ao Dev se quer o plano de documentação do restante do módulo/fluxo
-
 ### N+1. QA & Testes
 - [ ] **a:** <Ação direta>
 - [ ] **b:** <Ação direta>

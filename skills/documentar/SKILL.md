@@ -1,6 +1,6 @@
 ---
 name: documentar
-description: Documenta o código novo (fluxo, módulo, API, visão geral), mantém a documentação em dia quando o código muda e, se o usuário quiser, gera um plano aprovado para documentar o restante, item a item. Usar ao pedir documentar, documentação, doc de fluxo/módulo, plano de documentação, ou ao alterar código que já tem doc.
+description: Documenta o código novo (fluxo, módulo, API, visão geral), mantém a documentação em dia quando o código muda e, sob pedido, gera um plano aprovado para documentar o restante, item a item. Usar ao pedir documentar, doc de fluxo/módulo, plano de documentação, ou ao alterar código que já tem doc.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff *), Bash(git check-ignore *)
 ---
 
@@ -13,13 +13,13 @@ Não alterar código nem commitar. Criar/atualizar docs direto; só o plano exig
 - **Código novo** (padrão): alvo = arquivos criados na sessão (`git status --short`) ou citados.
 - **Alterado:** código que já tem doc mudou de comportamento, rota, mensagem, regra ou configuração observável → atualizar o doc afetado.
 - **Sistema existente:** só sob pedido, por escopo nomeado. Escopo não claro → perguntar. Nunca varrer o projeto.
-- **Plano / Item:** pedido de plano, "sim" à pergunta final do código novo ou "faz o item N" → ler `PLANO.md` (esta pasta).
+- **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
 1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
 2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Projeto sem a regra "mudou comportamento → atualizar a doc" no `CLAUDE.md` → oferecer a linha (só adicionar se o usuário aceitar).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
-4. **Após o último:** "Quer o plano de documentação do restante de <módulo/fluxo>?" Não → parar; o que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Sim → `PLANO.md`.
+4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
 
 ## Alterado
 1. **Mudança:** ler só o que mudou (`git diff` do alvo). Extrair nomes observáveis: módulo, rota, etapa, mensagem de erro, configuração.
@@ -29,7 +29,7 @@ Não alterar código nem commitar. Criar/atualizar docs direto; só o plano exig
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
 - `docs/documentacao/documentacao.md`: `Módulos` (link + 1 linha) · `Não documentado`. Só aponta; fluxo e API só pelo link do módulo, nunca direto (1 fato, 1 lugar).
-- `docs/documentacao/modulos/<nome>/<nome>.md`: link de volta a `../../documentacao.md` no topo · 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
+- `docs/documentacao/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
 - `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
 - `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
 - **Técnico por projeto:** só sob pedido explícito, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
@@ -40,12 +40,11 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Origem:** todo fato vem de código lido ou do usuário. Não confirmado → não escrever; perguntar. Sem seção `Em aberto` nos docs (exceto no plano).
 - **Regra de negócio:** traduzir só o que o código confirma. Quem executa cada etapa só se o usuário informar.
 - **Só o versionado:** citar (link ou nome) apenas o que o git versiona. Ignorado (`.gitignore`) ou fora do repo → não citar.
-- **Um fato, um lugar:** o resto aponta por link.
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
 - **Nomes:** 100% pt-br (arquivos, pastas, títulos). Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre backlog e documentação.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tabela de tipos). Doc sem `status`; nunca citar task.
 - **Doc existente que o usuário quer ver antes de aplicar** → `previa-diff`.
-- **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto ou "vai desatualizar" (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
+- **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
 
 ## Gate antes de entregar
 1. Reler estas regras contra o doc escrito.

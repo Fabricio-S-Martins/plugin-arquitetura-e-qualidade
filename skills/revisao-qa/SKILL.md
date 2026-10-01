@@ -20,7 +20,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 
 ## Escopo (limite de leitura)
 - Identificar a camada do alvo pelo caminho/projeto. Ler no máximo 3 camadas: a do alvo + até 2 vizinhas diretas (o que ela consome e quem a consome).
-- Camada não clara → perguntar; fora do escopo → sinalizar, não ler; nunca varrer o projeto.
+- Camada não clara → perguntar; fora do escopo (cobertura ou melhoria) → sinalizar, não ler nem criar item; nunca varrer o projeto.
 
 ## Fluxo
 1. Diff: abrir (Read) os arquivos tocados, o diff sozinho engana.
@@ -31,12 +31,11 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 6. **Julgamento:** para cada candidato perguntar: real ou purismo? analyzer já pega? confiança alta? Baixa confiança ou sem regra + local + sugestão → cortar. O filtro não vale para os mecânicos.
 7. Achou um problema → varrer o escopo por todo padrão igual e reportar todos juntos.
 8. **Diff cirúrgico:** apontar linha que não rastreia ao pedido, "melhoria" adjacente não pedida, refatoração do que não estava quebrado, órfão pré-existente apagado (apontar, nunca apagar). Corrigir a convenção do trecho que a mudança já toca é legítimo.
-9. Cobertura ou melhoria fora do alvo vira sinalização, nunca item criado.
 
 Precisão > cobertura. Diff limpo → aprovar; não inventar problema.
 
 ## Além dos defeitos
-Sugerir a construção correta em uma frase: DTO/objeto de dados sem comportamento → `record`; tipo pequeno, imutável e em volume → `readonly struct`; classe/método sem estado → `static`.
+Sugerir a construção imutável/sem estado da linguagem em uma frase (objeto de dados sem comportamento, tipo pequeno imutável em volume, classe/método sem estado). Detalhe de C# em `CSHARP.md`.
 
 ## Relatório
 Primeiro a conclusão: aprovado / com ressalvas / reprovado. Depois `Modo: <rápido|completo>. Escopo: <camadas lidas>. Não lido: <camadas/arquivos>`. Seções, omitir a que ficar vazia (exceto Mecânico, sempre listada):
