@@ -3,7 +3,7 @@
 Tags e status ajudam a achar arquivos de documentação e cards sem abrir um por um. A versão que o Claude lê é [../instrucoes/TAGS.md](../instrucoes/TAGS.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## A ideia
-Cada doc e cada card leva uma linha de tags no topo, por exemplo `tags: [backlog/tarefa, modulo/entregas, fluxo/checkout, status/pendente]`. Para achar tudo de um assunto, o Claude busca essa linha (Grep, uma busca por texto dentro dos arquivos) em vez de ler pasta por pasta.
+Cada doc e cada card leva uma linha de tags no topo, por exemplo `tags: [backlog, modulo/entregas, fluxo/checkout, status/pendente]`. Para achar tudo de um assunto, o Claude busca essa linha (Grep, uma busca por texto dentro dos arquivos) em vez de ler pasta por pasta.
 
 A ligação entre doc e card é só pela tag em comum. A documentação nunca cita tarefas, e nada quebra quando um arquivo muda de nome ou de lugar.
 
@@ -29,22 +29,16 @@ docs/
 Fluxos e decisões que tocam mais de um módulo ficam na pasta do módulo principal (o primeiro citado), e as notas dos outros módulos linkam para eles.
 
 ## Tag de tipo
-Toda nota leva uma tag que diz **que tipo de nota é**. O prefixo é o nome da pasta do grupo:
+Toda nota leva uma tag que diz **de que grupo ela é**: `backlog` ou `documentacao`. As skills gravam sozinhas. Não há tag por subtipo (tarefa, decisão, fluxo...): o Claude já sabe pela pasta onde o arquivo está.
 
-| Grupo | Visão geral | Módulo | Conteúdo |
-|---|---|---|---|
-| backlog | `backlog/geral` | `backlog/modulo` | `backlog/tarefa`, `backlog/decisao` |
-| documentacao | `documentacao/geral` | `documentacao/modulo` | `documentacao/api`, `documentacao/fluxo` |
-
-As skills gravam essa tag sozinhas. Ela serve para você colorir e filtrar o grafo do Obsidian, configuração que fica por sua conta: o plugin não mexe no `graph.json`.
-
-**Dica para as visões do grafo:** digite `tag:#backlog` (só o backlog) ou `tag:#documentacao` (só a documentação) no filtro do grafo, e guarde cada uma como favorito. A tag pai pega todas as filhas, e, como a separação é por tag, renomear uma pasta não quebra nada.
+A tag serve para você filtrar o grafo do Obsidian, configuração que fica por sua conta: o plugin não mexe no `graph.json`. Digite `tag:#backlog` ou `tag:#documentacao` no filtro e guarde cada uma como favorito. Quer cor por subtipo? Use `path:tarefas`, `path:decisoes`, `path:fluxos` ou `path:api` nos grupos de cor do grafo.
 
 ## Tags de assunto
-- `modulo/`: o módulo, com o nome da pasta do módulo.
-- `fluxo/`: o fluxo, com o nome do arquivo em `fluxos/`.
+Só entram onde o caminho não diz o assunto:
+- `modulo/`: o módulo, com o nome da pasta. Vai em tarefas, decisões, APIs e fluxos (decisão e fluxo que tocam vários módulos levam todos).
+- `fluxo/`: o fluxo, com o nome do arquivo em `fluxos/`. Vai em tarefas e decisões, que é o elo entre elas e a documentação.
 
-As notas do módulo levam `modulo/<m>`; as visões gerais levam só a tag de tipo.
+Visões gerais e notas do módulo levam só a tag de tipo: a pasta já diz o módulo. A nota do fluxo também não leva `fluxo/`: o nome do arquivo já é o fluxo.
 
 ## Sem lista de tags
 Não há arquivo com a lista. As tags de assunto só usam nomes que já existem: uma pasta de módulo ou um arquivo de fluxo. Se o Claude precisar de uma tag sem correspondente (por exemplo, um fluxo ainda não documentado), ele **propõe e espera você aprovar**. Assim o vocabulário não se espalha (`entrega`, `entregas`, `delivery`).

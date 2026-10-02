@@ -1,5 +1,5 @@
 ---
-tags: [backlog/tarefa, modulo/<nome>, fluxo/<nome>, status/pendente]
+tags: [backlog, modulo/<nome>, fluxo/<nome>, status/pendente]
 ---
 # [NN] <Acao + Entidade + Modulo>
 

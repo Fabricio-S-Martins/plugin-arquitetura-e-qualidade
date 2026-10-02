@@ -1,5 +1,5 @@
 ---
-tags: [backlog/decisao, modulo/<nome>, status/aberta]
+tags: [backlog, modulo/<nome>, status/aberta]
 ---
 # <Decisão em forma de pergunta ou tema>
 

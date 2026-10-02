@@ -26,7 +26,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo); nunca item perguntando por plano do restante (plano só por pedido explícito). Task sem código novo (só config/texto) → omitir o bloco.
-- **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tipo `backlog/tarefa`; status inicial; índice do módulo e `backlog.md`, se criados aqui, levam o tipo da tabela).
+- **Tags e status:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (tipo `backlog`; status inicial; índice do módulo e `backlog.md`, se criados aqui, levam só `backlog`).
 - **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Deps sem `<modulo>/decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
 - **Testes:** descrever cenários, não nomes de método.
 - **Card existente:** ver a mudança antes de aplicar → `previa-diff`.
