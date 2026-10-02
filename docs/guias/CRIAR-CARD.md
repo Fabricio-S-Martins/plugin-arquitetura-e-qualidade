@@ -15,7 +15,7 @@ Um arquivo `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md`, com o próximo 
 - **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo). Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
 ## Como ela lê o projeto
-Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Ele compara com 1 arquivo irmão real do mesmo tipo e camada, sem varrer o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
+Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Se o projeto tem uma regra do tipo em `docs/padroes/` (veja [CRIAR-REGRA-TELEGRAFICA.md](CRIAR-REGRA-TELEGRAFICA.md)), ele lê só ela; senão compara com 1 arquivo irmão real do mesmo tipo e camada. Em nenhum caso varre o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
 
 ## O que você vai notar nos itens
 - Cada item é uma ação direta: verbo, o quê e onde.

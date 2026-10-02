@@ -7,5 +7,5 @@ Do projeto ativo, se existirem: `MEMORY.md` (só o índice; abrir apenas os arqu
 
 ## Passos
 - Arquivo tocado até ~400 linhas: julgar inteiro; violação fora das linhas alteradas também é achado, rotulada `(pré-existente)`. Acima disso: ler só os trechos apontados pelo diff e pelos Grep, e declarar no relatório.
-- Abrir 1 arquivo irmão real, do mesmo tipo e da mesma camada (achar com Glob); comparar convenções com o código real, não com memória.
+- Regra do tipo em `docs/padroes/` (Glob), se houver, no lugar do irmão (modelo base: particularidade do alvo não é achado). Sem regra, abrir 1 arquivo irmão real, do mesmo tipo e da mesma camada (achar com Glob); comparar convenções com o código real, não com memória.
 - Apontar tudo que destoa dos irmãos (estilo, nomes, estrutura), não só bugs.

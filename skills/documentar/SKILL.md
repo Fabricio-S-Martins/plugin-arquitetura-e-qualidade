@@ -16,7 +16,7 @@ Não alterar código nem commitar. Criar/atualizar docs direto; só o plano exig
 - **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
-1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
+1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; regra do tipo em `docs/padroes/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
 2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Projeto sem a regra "mudou comportamento → atualizar a doc" no `CLAUDE.md` → oferecer a linha (só adicionar se o usuário aceitar).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
 4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.

@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md` (NN = próximo número livre em `tarefas/` do módulo; `<nome>` em pt-br, minúsculas, hífen) a partir de `TEMPLATE-CARD.md`; a estrutura vem só dele, nada do projeto adiciona seção. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations); `Documentação` penúltimo e `QA & Testes` sempre por último. Blocos numerados em sequência; itens `- [ ] **a:**`, letra reiniciando a cada bloco.
 
 ## Escopo de leitura
-Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Camada/módulo não claro → perguntar.
+Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read; nunca varrer o projeto. Tipo com regra em `docs/padroes/` (Glob) → ler a regra no lugar do exemplo (modelo base; particularidade do card vale). Camada/módulo não claro → perguntar.
 
 ## Regras
 - **Título:** verbo no infinitivo + o que entrega, cobrindo todas as frentes; serve de mensagem de commit. Sem prefixo de camada.
@@ -35,5 +35,5 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 
 ## Gate antes de apresentar
 1. Reler estas regras contra o rascunho, inclusive cada palavra do nome do arquivo (100% pt-br).
-2. Abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
+2. Sem regra do tipo em `docs/padroes/`: abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
 3. Correção aplicada → varrer o card por todo padrão igual e corrigir junto; reler o card inteiro e cortar redundância.

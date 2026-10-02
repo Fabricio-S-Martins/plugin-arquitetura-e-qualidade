@@ -7,7 +7,7 @@ Diga o alvo: "revise o card 03-aplicacao-criar-usuario", "revise o arquivo X" ou
 
 ## Os dois modos
 - **Rápido (padrão):** olha só o que mudou. Confere as convenções verificáveis por busca, as regras obrigatórias, segurança e se o código cumpre o card. É o mais barato em tokens.
-- **Completo:** além disso, lê o arquivo inteiro (aponta problemas antigos como `(pré-existente)`), compara com um arquivo irmão, lê o `CLAUDE.md`, a `memory/` e o `.editorconfig` do projeto e aponta o que destoa do padrão.
+- **Completo:** além disso, lê o arquivo inteiro (aponta problemas antigos como `(pré-existente)`), compara com a regra do tipo em `docs/padroes/` (ou, sem ela, com um arquivo irmão), lê o `CLAUDE.md`, a `memory/` e o `.editorconfig` do projeto e aponta o que destoa do padrão.
 - **Parada antecipada:** se há um problema estrutural grave, como um card fora do template, ela reporta e para, sem gastar o resto da revisão.
 
 ## O que ela confere
