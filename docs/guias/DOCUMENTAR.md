@@ -25,7 +25,7 @@ O fluxograma é escrito em Mermaid, uma sintaxe de texto que vira diagrama no Gi
 
 **Estilo dos documentos:** títulos com iniciais maiúsculas, sequências e respostas em tabela (status e passos em negrito, detalhes em itálico) e exceções à regra geral em um destaque de atenção. Os fluxos mantêm o diagrama.
 
-**Tags:** todo documento leva uma linha `tags:` no topo: a tag de tipo `documentacao`, mais `modulo/` nos fluxos e APIs (todos os módulos que o fluxo toca). Visão geral e nota do módulo levam só o tipo. Os nomes só usam pastas que existem; tag sem correspondente é proposta a você antes. Doc não tem status e nunca cita tarefas. Veja [TAGS.md](TAGS.md).
+**Tags:** todo documento leva uma linha `tags:` no topo: `documentacao` mais as tags de assunto: `modulo/` em todas (menos a visão geral), `fluxo/` no fluxo e `camada/` na API e nas docs de camada. Os nomes só usam módulos, fluxos e camadas que existem; tag sem correspondente é proposta a você antes. Doc não tem estado e nunca cita tarefas. Veja [TAGS.md](TAGS.md).
 
 Se o projeto já tem um padrão de documentação, ela segue o padrão dele.
 

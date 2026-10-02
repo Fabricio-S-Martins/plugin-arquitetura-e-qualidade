@@ -17,7 +17,7 @@ Quando o Claude notar uma escolha pendente ou uma sugestão distante durante o t
 Um arquivo `docs/backlog/modulos/<modulo>/decisoes/<nome>.md`, com nome em português e sem número. Uma decisão sempre pertence a pelo menos um módulo (se você não disser, o Claude pergunta). Com 2 ou mais módulos, ela fica na pasta do módulo principal (o primeiro que você citar), e os outros módulos linkam para ela. Usa o [template](../../skills/registrar-decisao/TEMPLATE-DECISAO.md): contexto, opções com prós e contras, o que depende da escolha e a decisão (vazia até você decidir).
 
 ## Status
-O status é uma tag na linha `tags:` (`status/aberta`, `status/decidida`, `status/adiada`), com uma só por decisão.
+O estado é uma tag na linha `tags:` (`decisao/aberta`, `decisao/decidida`, `decisao/adiada`), com uma só por decisão.
 
 | Status | Significa |
 |:---:|---|

@@ -38,7 +38,7 @@ Auditoria sem editar; as únicas edições são as linhas de commit e de status 
 - `CLAUDE.md` ausente → avisar e sugerir criar; parar.
 - Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
 - Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos da tarefa.` (acrescentar só se aceitar).
-- Sem regra de status → oferecer a linha `Ao iniciar, concluir ou bloquear um card, trocar só a tag \`status/...\` em \`tags:\` (pendente, em-andamento, concluido, bloqueado, cancelado).` (acrescentar só se aceitar).
+- Sem regra de estado → oferecer a linha `Ao iniciar, concluir ou bloquear um card, trocar só a tag \`tarefa/...\` em \`tags:\` (pendente, em-andamento, concluido, bloqueado, cancelado).` (acrescentar só se aceitar). Regra antiga com `status/...` → oferecer a troca.
 - Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
@@ -51,9 +51,9 @@ Existente → somar se faltar; preservar o resto, nunca remover entrada.
 Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## 7. Tags (migração)
-Só se `docs/` tiver notas sem tag de tipo (`backlog` ou `documentacao`), com tag de tipo antiga (`tipo/`, `grupo/`, `backlog/x`, `documentacao/x`), com `modulo/` na nota do módulo, com `fluxo/` na nota do fluxo, ou com campo `status:` fora das tags. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
-1. Achar (Grep `-L "^tags:.*\b(backlog|documentacao)\b"`, Grep `"tipo/|grupo/|(backlog|documentacao)/"` e Grep `"^status:"`, só em `docs/`; ignorar `docs/sessoes/`; módulo e fluxo: ver a tabela do TAGS.md).
-2. Propor, por arquivo: tag de tipo pelo caminho (`backlog` ou `documentacao`; tag antiga é substituída); `modulo/`/`fluxo/` conforme a tabela do TAGS.md (pelo nome do arquivo e pasta; só o título se preciso); em tarefa, tag `status/` (campo `status:` existente vira a tag e sai do frontmatter; sem campo: caixas `[x]` todas marcadas → `concluido`; senão `pendente`); em decisão, `status/` pelo campo existente, senão a cargo do Dev (listar). Notas gerais e do módulo: só o tipo (remover `modulo/` e `fluxo/` que haja); nota de fluxo: remover `fluxo/`. Tag sem pasta ou arquivo correspondente → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
+Só se `docs/` tiver notas fora do formato do TAGS.md: sem tag de grupo (`backlog`/`documentacao`), com tag antiga (`tipo/`, `grupo/`, `backlog/x`, `documentacao/x`, `status/x`) ou com campo `status:`. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
+1. Achar (Grep `-L "^tags:.*\b(backlog|documentacao)\b"`, Grep `"tipo/|grupo/|(backlog|documentacao)/|status/"` e Grep `"^status:"`, só em `docs/`; ignorar `docs/sessoes/`).
+2. Propor, por arquivo (a pasta só serve de pista nesta migração): grupo (`backlog`/`documentacao`; tag antiga é substituída); card → `tarefa/<valor>` e decisão → `decisao/<valor>`, com o valor da tag `status/` ou do campo `status:` existente (some do frontmatter; card sem valor: caixas `[x]` todas marcadas → `concluido`, senão `pendente`; decisão sem valor: a cargo do Dev, listar); `modulo/` em card, decisão, módulo, fluxo e camada; `fluxo/<nome do arquivo>` em doc de fluxo (se faltar); `camada/api` na doc da API e `camada/<c>` em doc técnica por projeto (nome da camada, propor ao Dev); nota geral só o grupo. Tag sem correspondente → listar para o Dev aprovar. Nota sem frontmatter → criar o bloco no topo.
 3. Mostrar via `previa-diff` (só o bloco de frontmatter). Aplicar só após aprovação, sem tocar no resto do arquivo.
 Sem notas pendentes → pular.
 
