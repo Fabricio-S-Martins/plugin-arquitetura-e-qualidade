@@ -20,7 +20,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 
 ## Escopo (limite de leitura)
 - Identificar a camada do alvo pelo caminho/projeto. Ler no máximo 3 camadas: a do alvo + até 2 vizinhas diretas (o que ela consome e quem a consome).
-- Camada não clara → perguntar; fora do escopo (cobertura ou melhoria) → sinalizar, não ler nem criar item; nunca varrer o projeto.
+- Camada não clara → perguntar; fora do escopo (cobertura ou melhoria) → sinalizar, não ler nem criar item.
 
 ## Fluxo
 1. Diff: abrir (Read) os arquivos tocados, o diff sozinho engana.

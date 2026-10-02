@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(rm docs/backlog/modulos/*/dec
 
 # registrar-decisao
 
-Não alterar código nem commitar. Decisão não é card: não tem checklist. Só fatos: opção não confirmada → perguntar, nunca inventar. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (plugin).
+Não alterar código. Decisão não é card: não tem checklist. Só fatos: opção não confirmada → perguntar, nunca inventar. Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (plugin).
 
 ## Criar
 Pedido do Dev, ou sugestão distante/escolha pendente que o Claude identifica (oferecer; criar só se o Dev aceitar).
@@ -25,5 +25,4 @@ Decisão que vai virar trabalho (`planejar`/`criar-card` ou pedido do Dev) ou é
 ## Regras
 - Card → decisão, nunca o contrário: a decisão não cita ID nem link de card (só o índice do módulo linka a decisão); `O que depende` descreve em texto.
 - Nunca apagar decisão sem o ok do Dev nem antes de a escolha estar no card.
-- Nomes 100% pt-br, inclusive o arquivo.
 - Decisão existente que o Dev quer ver antes de aplicar → `previa-diff`.

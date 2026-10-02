@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff 
 
 # documentar
 
-Não alterar código nem commitar. Criar/atualizar docs direto; só o plano exige aprovação.
+Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação.
 **Um documento por rodada:** escrever 1 doc → gate → informar só nome e caminho e qual é o próximo → parar. Seguir só com "próximo" ou pedido explícito.
 
 ## Modos

@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Bash(git status *), Bash(git log *), Bash(git rev-par
 
 # gerir-contexto
 
-Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`. Não editar código, não criar arquivo, não commitar.
+Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`. Não editar código, não criar arquivo.
 
 Leitor do prompt: outra sessão da IA ou outro dev, sem ter visto a conversa. O prompt é autocontido.
 

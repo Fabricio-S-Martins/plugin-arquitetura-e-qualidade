@@ -6,7 +6,7 @@ allowed-tools: Read, Glob, Grep, Skill
 
 # planejar
 
-Não editar nem criar arquivos até a aprovação. Só fatos: nunca suposição. Demanda que cabe em 1 card → direto ao `criar-card`, sem plano.
+Não editar nem criar arquivos até a aprovação. Demanda que cabe em 1 card → direto ao `criar-card`, sem plano.
 
 ## Fluxo
 1. **Dados:** receber a demanda (objetivo, escopo, restrições, critérios de aceite) e ler o que o usuário citar (docs, cards, links). Dado faltando → passos 2 e 3.

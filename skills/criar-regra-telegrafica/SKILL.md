@@ -6,11 +6,11 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 
 # criar-regra-telegrafica
 
-Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código nem commitar. Um tipo por rodada. Só fato: regra vem do código lido; dúvida → perguntar.
+Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra vem do código lido; dúvida → perguntar.
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).
-- **Sem arquivo:** módulo não claro → perguntar. Glob só de nomes no módulo, agrupar por pasta e sufixo; propor os grupos com ≥3 arquivos parecidos (nome, quantidade, 1 exemplo) e perguntar qual virar regra. Nunca varrer o projeto.
+- **Sem arquivo:** módulo não claro → perguntar. Glob só de nomes no módulo, agrupar por pasta e sufixo; propor os grupos com ≥3 arquivos parecidos (nome, quantidade, 1 exemplo) e perguntar qual virar regra.
 - **Confirmar similaridade:** Grep das linhas estruturais (declaração, base, construtores, atributos) do grupo; Read de 3 amostras. Estrutura não se repete → dizer, não criar.
 
 ## Existente
