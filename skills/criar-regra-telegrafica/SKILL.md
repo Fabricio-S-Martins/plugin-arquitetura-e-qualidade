@@ -18,16 +18,22 @@ Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste; apli
 
 ## Escrever
 `docs/padroes/<tipo>.md` (pt-br, minúsculas, hífen, singular), sem frontmatter nem tags:
-```
+````
 # <Tipo>
-Modelo base: o alvo pode ter particularidades.
-Origem: <arquivos lidos>
-- <regra, 1 linha>
-Variações: <o que difere entre os lidos>
+
+**Modelo base:** o alvo pode ter particularidades. | **Origem:** <arquivos lidos>
+
+## Esqueleto
+```<linguagem>
+<esqueleto em pseudocódigo>
 ```
-- Só o que se repete na maioria; o que difere vai em `Variações` (omitir se não houver).
-- Regras em ordem de construção (membros → construtores → fábrica e validações), 1 linha cada, em prosa; assinatura mínima só se a prosa não couber.
-- Nomes do negócio viram `<Nome>`. Sem exemplo completo de código.
+
+## Variações
+- **<Nome real>:** <o que difere entre os lidos>
+````
+- Esqueleto de até ~12 linhas, em ordem de construção (ex.: construtores → propriedades → fábrica e validações), com comentários de 2-3 palavras; sem corpo de regra de negócio.
+- Omitir o que o Claude faria sem regra (visibilidade, namespace, idioma, texto de mensagem). Em todos os lidos → esqueleto; em ≥2 mas não todos → comentário `(se houver)`; em 1 só → `Variações` (1 item de 1 linha; omitir a seção se não houver).
+- Nomes do negócio viram `<Nome>` no esqueleto; `Origem` e `Variações` levam os nomes reais.
 - Amostra de 1 arquivo → dizer em `Origem`.
 
 ## Entrega
