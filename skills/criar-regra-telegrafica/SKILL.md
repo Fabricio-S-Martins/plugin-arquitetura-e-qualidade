@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 
 # criar-regra-telegrafica
 
-Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra vem do código lido; dúvida → perguntar.
+Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra, `Origem` e `Variações` vêm de arquivo lido com Read (Grep só confirma estrutura); dúvida → perguntar.
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).
@@ -14,7 +14,7 @@ Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por ro
 - **Confirmar similaridade:** Grep das linhas estruturais (declaração, base, construtores, atributos) do grupo; Read de 3 amostras. Estrutura não se repete → dizer, não criar.
 
 ## Existente
-Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste; aplicar (Edit) só após aprovação.
+Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste, com o comparativo de tokens; aplicar (Edit) só após "sim"/"aprovado" explícito (reclamação ou ajuste não é aprovação).
 
 ## Escrever
 `docs/padroes/<tipo>.md` (pt-br, minúsculas, hífen, singular), sem frontmatter nem tags:
@@ -28,7 +28,12 @@ Variações: <o que difere entre os lidos>
 - Só o que se repete na maioria; o que difere vai em `Variações` (omitir se não houver).
 - Regras em ordem de construção (membros → construtores → fábrica e validações), 1 linha cada, em prosa; assinatura mínima só se a prosa não couber.
 - Nomes do negócio viram `<Nome>`. Sem exemplo completo de código.
+- Até ~12 linhas.
 - Amostra de 1 arquivo → dizer em `Origem`.
 
 ## Entrega
-Informar só o caminho e a regra gerada.
+Informar o caminho, a regra gerada e o comparativo de tokens aproximados (caracteres ÷ 4, dezena mais próxima):
+| | Tokens |
+|-|-|
+| 1 arquivo irmão (média dos lidos) | ~N |
+| Regra | ~M (−X%) |

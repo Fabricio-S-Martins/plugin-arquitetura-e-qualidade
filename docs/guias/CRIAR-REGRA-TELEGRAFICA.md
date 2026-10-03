@@ -7,7 +7,7 @@ Quando o projeto tem muitos arquivos do mesmo tipo (entidades, commands, handler
 - **Sem arquivo:** "cria uma regra telegráfica no módulo Autenticação". Ela lista só os nomes dos arquivos do módulo, mostra os grupos que se repetem (por exemplo, 6 entidades) e você escolhe qual vira regra.
 
 ## O que sai
-Um arquivo `docs/padroes/<tipo>.md` no projeto, com o tipo, de onde a regra veio, uma linha por regra e as variações entre os arquivos lidos. Só texto, sem código completo. Se a regra do tipo já existe, ela mostra a prévia da mudança e só aplica com seu "aprovado".
+Um arquivo `docs/padroes/<tipo>.md` no projeto, com o tipo, de onde a regra veio, uma linha por regra e as variações entre os arquivos lidos. Só texto, sem código completo. Junto vem um comparativo de tokens aproximados: 1 arquivo irmão × a regra. Se a regra do tipo já existe, ela mostra a prévia da mudança e só aplica com seu "aprovado".
 
 ## Como as outras skills usam
 `criar-card`, `planejar`, `documentar` e `revisao-qa` procuram em `docs/padroes/` uma regra do tipo antes de abrir um arquivo irmão. Havendo regra, leem só ela; não havendo, abrem 1 irmão como antes.
