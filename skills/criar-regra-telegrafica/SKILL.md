@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 
 # criar-regra-telegrafica
 
-Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra vem do código lido; dúvida → perguntar.
+Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra, `Origem` e `Variações` vêm de arquivo lido com Read (Grep só confirma estrutura); dúvida → perguntar.
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).
@@ -14,7 +14,7 @@ Só cria/atualiza `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por ro
 - **Confirmar similaridade:** Grep das linhas estruturais (declaração, base, construtores, atributos) do grupo; Read de 3 amostras. Estrutura não se repete → dizer, não criar.
 
 ## Existente
-Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste; aplicar (Edit) só após aprovação.
+Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste, após a barreira de tokens; aplicar (Edit) só após "sim"/"aprovado" explícito (reclamação ou ajuste não é aprovação).
 
 ## Escrever
 `docs/padroes/<tipo>.md` (pt-br, minúsculas, hífen, singular), sem frontmatter nem tags:
@@ -35,6 +35,15 @@ Glob em `docs/padroes/`. Já há regra do tipo → `previa-diff` do ajuste; apli
 - Omitir o que o Claude faria sem regra (visibilidade, namespace, idioma, texto de mensagem). Em todos os lidos → esqueleto; em ≥2 mas não todos → comentário `(se houver)`; em 1 só → `Variações` (1 item de 1 linha; omitir a seção se não houver).
 - Nomes do negócio viram `<Nome>` no esqueleto; `Origem` e `Variações` levam os nomes reais.
 - Amostra de 1 arquivo → dizer em `Origem`.
+
+## Barreira de tokens
+Antes de gravar, estimar (caracteres ÷ 4, dezena mais próxima) a regra e a média dos irmãos lidos e mostrar:
+| | Tokens |
+|-|-|
+| 1 arquivo irmão (média dos lidos) | ~N |
+| Regra | ~M (−X%) |
+- Regra < média → gravar (ou, se já existir, prévia e aprovação).
+- Regra ≥ média → avisar e não gravar nem prévia; o tipo não compensa regra.
 
 ## Entrega
 Informar só o caminho e a regra gerada.
