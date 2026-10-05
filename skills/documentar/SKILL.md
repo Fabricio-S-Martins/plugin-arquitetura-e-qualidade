@@ -1,6 +1,6 @@
 ---
 name: documentar
-description: Documenta o código novo (fluxo, módulo, API, visão geral), mantém a documentação em dia quando o código muda e, sob pedido, gera um plano aprovado para documentar o restante, item a item. Usar ao pedir documentar, doc de fluxo/módulo, plano de documentação, ou ao alterar código que já tem doc.
+description: Documenta código novo (módulo, fluxo, API, visão geral), atualiza a doc quando o código muda e gera plano de documentação. Usar ao pedir documentar/plano, ou ao alterar código que já tem doc.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff *), Bash(git check-ignore *)
 ---
 
@@ -8,7 +8,6 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff 
 
 Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação.
 **Um documento por rodada:** escrever 1 doc → gate → informar só nome e caminho e qual é o próximo → parar. Seguir só com "próximo" ou pedido explícito.
-
 ## Modos
 - **Código novo** (padrão): alvo = arquivos criados na sessão (`git status --short`) ou citados.
 - **Alterado:** código que já tem doc mudou de comportamento, rota, mensagem, regra ou configuração observável → atualizar o doc afetado.
