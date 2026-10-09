@@ -1,29 +1,23 @@
 # Configurar projeto: guia para Devs
 
-A skill `configurar-projeto` prepara um projeto para ter documentação no Obsidian. A versão que o Claude lê é [../../skills/configurar-projeto/SKILL.md](../../skills/configurar-projeto/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
+A skill `configurar-projeto` prepara um projeto para usar o plugin. A versão que o Claude lê é [../../skills/configurar-projeto/SKILL.md](../../skills/configurar-projeto/SKILL.md), telegráfica de propósito. Obsidian e `.editorconfig` são opcionais e ficam em arquivos à parte, lidos só quando você aceita: [OBSIDIAN.md](../../skills/configurar-projeto/OBSIDIAN.md) e [EDITORCONFIG.md](../../skills/configurar-projeto/EDITORCONFIG.md).
 
 ## Quando usar
-No início de um projeto, ou quando quiser abrir a documentação dele no Obsidian pela primeira vez. Peça algo como "configura este projeto" ou "prepara o Obsidian aqui". Ela roda sem pedir permissão.
-
-## Ferramentas necessárias
-A skill mantém uma lista de ferramentas que o projeto precisa ter instaladas. Hoje são três: o Obsidian e, só em projeto C#, o `csharp-ls` e o plugin `csharp-lsp` (juntos, deixam o Claude navegar pelo código com precisão: definições, referências e erros de tipo, em vez de só buscar texto). Quando surgir outra (por exemplo Python, se um projeto passar a precisar), ela entra como uma linha nova na lista, sem mudar o resto da skill.
+No início de um projeto, ou quando quiser preparar o Obsidian ou o `.editorconfig`. Peça algo como "configura este projeto" ou "prepara o Obsidian aqui".
 
 ## O que ela faz, em ordem
-Os passos dependem um do outro, por isso a ordem é fixa:
+1. **Confere as ferramentas de C#** (só em projeto C#): o `csharp-ls` e o plugin `csharp-lsp`, que deixam o Claude navegar pelo código com precisão (definições, referências e erros de tipo). Se faltar alguma, pergunta antes de instalar; no Windows instala pelo `dotnet`/`claude`, senão pede para você instalar pelo link oficial.
+2. **Cria `docs/`** e põe `docs/sessoes/` (planos e notas de trabalho) no `.gitignore`, se faltar.
+3. **Pergunta pelos opcionais que faltam**, numa pergunta só:
+   - **Obsidian** (se não houver `docs/.obsidian/`): instala o app se precisar, ignora `docs/.obsidian/` no git e, com o cofre já aberto, sincroniza a configuração: o grafo e a busca ignoram as mesmas pastas do `.gitignore` (só acrescenta, nunca apaga o que você pôs à mão) e os Wikilinks são desligados. No final avisa para fechar e reabrir o Obsidian. Abrir `docs/` como cofre só o app faz. Se o cofre já existe, ela sincroniza sem perguntar.
+   - **`.editorconfig`** (projeto C# sem o arquivo): cria com a formatação do projeto, para o código gerado sair igual. Só fixa o que o código já segue (namespace file-scoped ou em bloco, campo privado `_x`) e nunca fixa `charset` nem `end_of_line`. Avisa que as regras de estilo só aparecem no build com `EnforceCodeStyleInBuild` e pergunta se cria o `Directory.Build.props`. Antes de subir severidade, faz um build com a opção ligada e lista o que o arquivo acusa, sem corrigir.
+   - Se você recusar, ela segue sem insistir.
+4. **Audita o `CLAUDE.md`** (peso e regras repetidas) sem editar. Se faltar a regra de commit, oferece "commit só quando pedido e só no repo da conversa, nunca em outro"; se faltar o ponteiro da skill, oferece "executar tarefa/card → usar a skill `executar-tarefa`". Só adiciona o que você aceitar.
+5. **Habilita o plugin no projeto** (`enabledPlugins` em `.claude/settings.json`). A permissão das skills não vai para o projeto: é preferência sua. Para não ser perguntado a cada skill, coloque `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do `settings.json` global; a skill avisa e nunca mexe nele.
 
-1. **Confere cada ferramenta da lista.** Se faltar alguma, ela pergunta antes de instalar (é a única confirmação que pede; o resto roda direto). No Windows, instala pelo `winget` quando houver um comando pronto; senão, pede para você instalar manualmente pelo link oficial e espera confirmação antes de seguir.
-2. **Cria a pasta `docs/`**, se não existir. Como abrir uma pasta no Obsidian só o próprio app faz, ela avisa que você precisa abrir `docs/` como cofre (**Abrir pasta como cofre**) antes de seguir.
-3. **Ajusta o `.gitignore`** do projeto, garantindo duas entradas: `docs/.obsidian/` (a configuração local do cofre, que não deve ir para o git) e `docs/sessoes/` (onde ficam planos e notas de trabalho, também fora do git). Só acrescenta o que faltar.
-4. **Sincroniza a configuração do cofre**, se ele já existir (você já abriu `docs/` no Obsidian ao menos uma vez):
-   - Faz o Obsidian **ignorar no grafo e na busca** as mesmas pastas que o `.gitignore` já ignora dentro de `docs/`. Ela lê o `.gitignore`, e não mexe manualmente: o que você adicionar lá no futuro, ela replica na próxima vez que rodar. Ela nunca apaga um item que você configurou à mão, só acrescenta.
-   - **Desliga os Wikilinks**, para os links do cofre ficarem no mesmo formato markdown que a skill `documentar` já usa.
-   - No final, avisa para você **fechar e reabrir o Obsidian**. Sem isso, o app pode sobrescrever a mudança sem querer, ao salvar qualquer outra configuração.
-
-5. **Audita o `CLAUDE.md`** do projeto (peso e regras repetidas) sem editar. Se ele não tiver a regra de commit, ela oferece a linha "commit só quando pedido e só no repo da conversa, nunca em outro"; se não tiver o ponteiro da skill, oferece a linha "executar tarefa/card → usar a skill `executar-tarefa`", que cuida da tag de estado (`tarefa/...`) do card. Só adiciona o que você aceitar.
-6. **Habilita o plugin no projeto**, garantindo `enabledPlugins` em `.claude/settings.json`. A permissão das skills não vai para o projeto: ela é preferência sua, não do time, e só vale depois de você confiar na pasta. Para o Claude Code não perguntar a cada skill, coloque `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do `settings.json` global. A skill avisa disso e nunca mexe nesse arquivo.
 ## Rodar de novo
-É seguro repetir a qualquer momento. Se a pasta e as entradas do `.gitignore` já existirem, esses passos não fazem nada. A sincronização do cofre só acrescenta o que estiver faltando.
+É seguro repetir: o que já está feito não muda, e a sincronização do cofre só acrescenta o que faltar.
 
 ## Regras
 - Não altera código.
-- Não remove nada que você configurou manualmente no Obsidian.
+- Não remove nada que você configurou manualmente.

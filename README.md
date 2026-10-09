@@ -37,7 +37,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | `conferir-saida` | Confere se a saída de um teste de skill cumpre o que a skill pede. |
 | `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |
 | `previa-diff` | Mostra prévia de uma alteração (`+`/`-`) sem editar o arquivo. |
-| `configurar-projeto` | Prepara um projeto novo: cria `docs/`, ajusta `.gitignore`, sincroniza o Obsidian. |
+| `configurar-projeto` | Prepara um projeto novo: cria `docs/`, audita o `CLAUDE.md`, habilita o plugin; Obsidian e `.editorconfig` opcionais. |
 
 Cada skill tem sua versão telegráfica (lida pela IA) em `skills/<nome>/SKILL.md`, e, quando o assunto exige, um guia amigável em `docs/guias/`.
 
