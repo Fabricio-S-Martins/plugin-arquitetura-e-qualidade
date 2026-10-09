@@ -15,7 +15,7 @@ Card: `docs/backlog/modulos/<modulo>/tarefas/NN-*.md`. Ler inteiro. Tags: `${CLA
 
 ## Execução
 4. Deps ok → `tarefa/em-andamento` (só a tag `tarefa/...`).
-5. Checklist na ordem, só itens/seções pedidos (sem recorte = card todo). Seguir `docs/padroes/` aplicáveis (Glob). Nada fora do card. Bloco Documentação → skill `documentar` (ela marca o item e fecha o card).
+5. Checklist na ordem, só itens/seções pedidos (sem recorte = card todo). Seguir `docs/padroes/` aplicáveis (Glob); alvo fora do esqueleto (outra interface, retorno ou forma de endpoint) → perguntar ao Dev, não adaptar sozinho. Nada fora do card. Bloco Documentação → skill `documentar` (ela marca o item e fecha o card).
 6. `[x]` só em item pedido, feito e conferido. Edit na linha inteira do item (letras repetem entre blocos).
 7. **Build obrigatório:** comando do `CLAUDE.md` do projeto; sem ele, `dotnet build` na `.sln` (ou `.csproj` do módulo) achada por Glob. Zero erros; erro → corrigir dentro do card e rebuildar; build falho → sem `[x]` nem `concluido`. Sem como compilar → dizer.
 8. Todos `[x]` → `tarefa/concluido`; parcial → `tarefa/em-andamento`; impedimento → `tarefa/bloqueado`.
