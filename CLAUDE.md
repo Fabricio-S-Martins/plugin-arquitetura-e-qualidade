@@ -18,3 +18,4 @@ Regras de trabalho neste repo:
 12. Commit só quando pedido e só no repo da conversa, nunca em outro; `git add` só dos arquivos da tarefa. Mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
 13. Mudança em skill → subir `version` em `.claude-plugin/plugin.json`: correção `0.y.Z`; skill nova, comportamento novo ou nome alterado `0.Y.0`.
 14. Mudança que altera o formato de arquivo do projeto (frontmatter, pasta, nome, tag) → no mesmo commit, `docs/migracoes/X.Y.Z.md` com o prompt só daquela versão: regras novas + passos com prévia (`previa-diff`), sem alterar código nem commitar.
+15. Ao criar ou mexer em skill, perguntar: o que o Dev precisa no 1º uso? O resto é parte opcional, escolhida por ele (modo ou escopo). Parte grande e de uso raro → arquivo à parte, lido sob demanda; parte curta → fica no `SKILL.md` como modo. O padrão funciona sem escolha; gate e regras comuns ficam no núcleo.

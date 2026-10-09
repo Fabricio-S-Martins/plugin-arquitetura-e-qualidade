@@ -1,6 +1,6 @@
 ---
 name: documentar
-description: Documenta código novo (módulo, fluxo, API, visão geral), atualiza a doc quando o código muda e gera plano de documentação. Usar ao pedir documentar/plano, ou ao alterar código que já tem doc.
+description: Documenta código novo (módulo, fluxo, API, visão geral), atualiza a doc quando o código muda, verifica fluxos sem documentação e gera plano de documentação. Usar ao pedir documentar, atualizar doc, plano ou verificar fluxos sem documentação.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff *), Bash(git check-ignore *)
 ---
 
@@ -10,13 +10,14 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 **Um documento por rodada:** escrever 1 doc → gate → informar só nome e caminho e qual é o próximo → parar. Seguir só com "próximo" ou pedido explícito.
 ## Modos
 - **Código novo** (padrão): alvo = arquivos criados na sessão (`git status --short`) ou citados.
-- **Alterado:** código que já tem doc mudou de comportamento, rota, mensagem, regra ou configuração observável → atualizar o doc afetado.
+- **Alterado** (só sob pedido): código que já tem doc mudou de comportamento, rota, mensagem, regra ou configuração observável → atualizar o doc afetado.
+- **Verificar** (só sob pedido: "fluxos sem documentação"): ver "Verificar".
 - **Sistema existente:** só sob pedido, por escopo nomeado. Escopo não claro → perguntar. Nunca varrer o projeto.
 - **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
 1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; regra do tipo em `docs/padroes/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
-2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Projeto sem a regra "mudou comportamento → atualizar a doc" no `CLAUDE.md` → oferecer a linha (só adicionar se o usuário aceitar).
+2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar.
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
 4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
 
@@ -24,6 +25,9 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 1. **Mudança:** ler só o que mudou (`git diff` do alvo). Extrair nomes observáveis: módulo, rota, etapa, mensagem de erro, configuração.
 2. **Achar o doc:** Grep desses nomes em `docs/documentacao/` (docs não citam código; o vínculo é por nome). Nada achado → perguntar; nunca concluir que não há doc.
 3. **Atualizar** o que ficou falso ou incompleto, 1 doc por rodada, listando os demais afetados → **Gate**. Refatoração sem mudança observável → não mexer.
+
+## Verificar
+Só lista, sem escrever nem ler código. Grep `tags:.*tarefa/concluido` em `docs/backlog/` → fluxos (`fluxo/<f>`) dos cards concluídos; Grep `tags:.*fluxo/` em `docs/documentacao/` → fluxos documentados. Diferença = sem doc: listar fluxo, módulo e card de origem. Dev escolhe qual → modo Código novo. Fluxo sem card não aparece (plano ou escopo nomeado).
 
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
@@ -50,3 +54,6 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 2. Conferir com ferramenta: rotas e mensagens de erro contra o código (Grep); links relativos (Glob); nomes ignorados pelo git (`git check-ignore`).
 3. Mermaid fechado, com rótulos entre aspas.
 4. Correção aplicada → varrer os docs já criados na sessão por padrão igual e corrigir junto.
+
+## Card ligado
+Após o Gate, doc do bloco Documentação de um card (informado, ou único `tarefa/em-andamento` do módulo em `docs/backlog/modulos/<m>/tarefas/`, via Grep; mais de um → perguntar): marcar `[x]` só no item daquele doc (Edit na linha inteira; item que não bate com o doc → não marcar). Era o último `[ ]` do card (conferir lendo) → tag `tarefa/concluido` (só a `tarefa/...`, regras em `TAGS.md`). Sem card ligado → ignorar.

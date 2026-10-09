@@ -35,11 +35,12 @@ Presente:
 3. Avisar ao final: "feche e reabra o Obsidian para a mudança valer" — o app pode sobrescrever `app.json` ao salvar qualquer configuração antes disso.
 
 ## 5. CLAUDE.md do projeto
-Auditoria sem editar; as únicas edições são as linhas de commit e de status abaixo, e só se o Dev aceitar.
+Auditoria sem editar; as únicas edições são as linhas de commit e da skill abaixo, e só se o Dev aceitar.
 - `CLAUDE.md` ausente → avisar e sugerir criar; parar.
 - Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
 - Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos da tarefa.` (acrescentar só se aceitar).
-- Sem regra de estado → oferecer a linha `Ao iniciar, concluir ou bloquear um card, trocar só a tag \`tarefa/...\` em \`tags:\` (pendente, em-andamento, concluido, bloqueado, cancelado).` (acrescentar só se aceitar).- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
+- Sem ponteiro da skill → oferecer a linha `Executar tarefa/card → usar a skill executar-tarefa.` (acrescentar só se aceitar).
+- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
 ## 6. Plugin no projeto (`.claude/settings.json`)

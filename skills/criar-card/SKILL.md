@@ -18,10 +18,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Localização:** todo arquivo/pasta diz onde fica; ordem pasta → arquivo → conteúdo. Projeto novo = 1 passo ("Na pasta `<pai>/`, criar o projeto `<Nome>` (<tipo>)"), sem passo para a pasta do projeto. Pasta que não vem de graça (agrupadora do módulo, interna ao projeto) = passo próprio.
 - **Sem passos mecânicos** de convenção fixa (registrar na solution, referência entre projetos, apagar arquivo de template).
 - **Validações:** critério concreto (tamanho, formato, valores). Não definido → perguntar, nunca inventar.
-- **Tipo novo:** um tipo por vez, completo, antes do próximo. Ordem: props → construtores (parâmetros recebidos; props preenchidas internamente, como Id, à parte, com o valor exato) → fábrica e validações.
-- **DTO/Command/Query:** forma em prosa, não assinatura; tipo entre parênteses só se não óbvio.
-- **Dados sem comportamento** (request, response, VO simples): o passo já cita a construção imutável/sem estado da linguagem. Se houver `.cs`, Grep `^\| Construção` em `${CLAUDE_SKILL_DIR}/../revisao-qa/CSHARP.md` (só essa linha).
-- **Agregado com filhos:** copiar 1 par pai/filho equivalente já existente no repo. Pai nasce sem filhos; filho entra por método do pai, que valida e cria; coleção interna privada exposta como somente leitura.
+- **Card cria tipo** (classe, DTO, Command, Query, VO, agregado): ler `${CLAUDE_SKILL_DIR}/TIPOS.md` antes de escrever o checklist. Sem tipo novo, não ler.
 - **Consistência:** nenhum membro citado sem definição no passo do tipo. Usar expressão exata do código (`resultado.Sucesso == false`).
 - **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
 - **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz.
@@ -34,6 +31,6 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com Deps.
 
 ## Gate antes de apresentar
-1. Reler estas regras contra o rascunho, inclusive cada palavra do nome do arquivo (100% pt-br).
+1. Reler estas regras (e o `TIPOS.md`, se o card cria tipo; ainda não lido → ler agora) contra o rascunho, inclusive cada palavra do nome do arquivo (100% pt-br).
 2. Sem regra do tipo em `docs/padroes/`: abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
 3. Correção aplicada → varrer o card por todo padrão igual e corrigir junto; reler o card inteiro e cortar redundância.

@@ -8,7 +8,8 @@ Em qualquer situação, cada rodada produz **um** documento. Ao terminar, ela di
 ## Como pedir
 - **Depois de criar código novo:** "documenta o que foi feito". Ela usa os arquivos alterados na sessão.
 - **Sistema que já existe:** só quando você pede, e por escopo: "documenta o fluxo de pedidos". Ela nunca varre o projeto inteiro. Se o escopo não estiver claro, pergunta.
-- **Depois de alterar código que já tem documentação:** ela atualiza o que ficou desatualizado, na mesma tarefa. Como os documentos não citam arquivos de código, ela acha o documento afetado pelos nomes (módulo, rota, etapa, mensagem de erro, configuração). Se não achar nenhum, pergunta a você em vez de concluir que não existe. Refatoração que não muda nada observável não gera edição.
+- **Fluxos sem documentação:** "verifica fluxos sem documentação". Ela compara as tags de fluxo dos cards concluídos com as dos documentos e lista o que falta (fluxo, módulo e card de origem), sem escrever nada. Você escolhe qual documentar. Fluxo que nunca passou por card não aparece; para esse, use o plano.
+- **Depois de alterar código que já tem documentação** (só quando você pede): ela atualiza o que ficou desatualizado. Como os documentos não citam arquivos de código, ela acha o documento afetado pelos nomes (módulo, rota, etapa, mensagem de erro, configuração). Se não achar nenhum, pergunta a você em vez de concluir que não existe. Refatoração que não muda nada observável não gera edição.
 - **Plano:** "monta o plano de documentação do módulo Vendas".
 - **Um item do plano:** "faz o item 3".
 
@@ -30,9 +31,12 @@ O fluxograma é escrito em Mermaid, uma sintaxe de texto que vira diagrama no Gi
 Se o projeto já tem um padrão de documentação, ela segue o padrão dele.
 
 ## Código novo: o que acontece
-1. Ela lê o código que mudou, identifica o fluxo e o módulo tocados e procura se já existe documento deles. Se existir, atualiza; se não, cria. Se o projeto ainda não tem no `CLAUDE.md` a regra de manter a documentação em dia, ela oferece a linha e só a adiciona se você aceitar.
+1. Ela lê o código que mudou, identifica o fluxo e o módulo tocados e procura se já existe documento deles. Se existir, atualiza; se não, cria.
 2. Ela escreve **um documento por vez**, nesta ordem: módulo, fluxos, API (se houver rotas) e, por último, a visão geral, que ganha só o link do módulo (os fluxos e a API já estão linkados a partir dele). Cada documento é conferido antes de entregar.
 3. Depois do último, ela para. O que ficou de fora aparece na visão geral como "não documentado". Se quiser o plano do restante, peça (veja "O plano").
+
+## Documentação de um card
+Se o documento escrito é um item do bloco Documentação de um card, ela marca esse item `[x]`. Se era o último item pendente do card, troca a tag para `tarefa/concluido`. O card vem do que você informar ou do único card `em-andamento` do módulo; havendo mais de um, ela pergunta. Sem card ligado, nada muda.
 
 ## O plano
 Funciona como o da skill `planejar`:
