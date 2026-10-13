@@ -11,9 +11,7 @@ Um arquivo `docs/padroes/<tipo>.md` com só duas partes: o título e um **esquel
 
 Para separar o padrão das manias de um arquivo isolado, ela lê vários irmãos e usa o mais limpo como molde. Se os irmãos divergirem entre si, vale a maioria e ela avisa você dos desvios, sem registrá-los. Se o mesmo bloco se repete em todos, ela avisa que pode virar método de extensão, sem mexer no código.
 
-Antes de gravar, compara os tokens aproximados da regra com os de 2 arquivos irmãos (1 só não fixa o padrão). Menor: grava. Maior: avisa e você decide.
-
-Se a regra do tipo já existe (ou você pede "atualiza a regra de handler"), ela compara com 1 arquivo atual: sem diferença, diz que está em dia; com diferença, mostra a prévia e só aplica com seu "aprovado". Regras antigas com `Modelo base`, `Origem` ou `Variações` têm esses trechos removidos na prévia. Não há checagem automática: você aciona quando o padrão mudar.
+Antes de gravar, compara os tokens aproximados da regra com os de 2 arquivos irmãos (1 só não fixa o padrão). Menor: grava. Maior: avisa e você decide. Se o arquivo da regra já existe, ela pergunta antes de sobrescrever.
 
 ## Como as outras skills usam
 `criar-card`, `planejar`, `documentar` e `revisao-qa` procuram em `docs/padroes/` uma regra do tipo antes de abrir um arquivo irmão. Havendo regra, leem só ela; não havendo, abrem 1 irmão como antes.

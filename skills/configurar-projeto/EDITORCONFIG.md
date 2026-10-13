@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 insert_final_newline = false
 
 [*.cs]
-csharp_style_namespace_declarations = block_scoped:warning
+csharp_style_namespace_declarations = <maioria>:warning
 csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
@@ -29,5 +29,5 @@ generated_code = true
 [*.{csproj,slnx,json,yml,yaml}]
 indent_size = 2
 ```
-`block_scoped`/`file_scoped` pela maioria; nunca fixar `charset` nem `end_of_line`.
+`<maioria>` = `file_scoped` ou `block_scoped`, pelo Grep da linha 4; nunca fixar `charset` nem `end_of_line`.
 Avisar: regras de estilo só aparecem no build com `EnforceCodeStyleInBuild` (`Directory.Build.props`); perguntar se cria esse arquivo (se ausente). Antes de subir severidade: `dotnet build -p:EnforceCodeStyleInBuild=true` e listar o que o `.editorconfig` acusa no código existente, sem corrigir.
