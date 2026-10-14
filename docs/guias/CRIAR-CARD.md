@@ -19,6 +19,7 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 
 ## O que você vai notar nos itens
 - Cada item é uma ação direta: verbo, o quê e onde.
+- Pasta com vários arquivos vira um item que termina em "com:", e cada arquivo é um sub-item (`b.1`, `b.2`...) sem repetir a pasta: o contexto vem do item pai, e cada sub-item pode ser executado sozinho. Nada de "Dentro dela" entre itens irmãos.
 - Todo arquivo ou pasta diz onde fica. Projeto novo é um passo só ("Na pasta X/, criar o projeto Y"), porque a pasta do projeto já vem com ele; pastas que não vêm de graça (agrupadora do módulo, internas ao projeto) têm passo próprio.
 - Objeto de dados sem comportamento (request, response, VO simples) já sai com a construção imutável da linguagem indicada no passo, em vez de esperar a revisão.
 - Validações trazem critério concreto. Se faltar, o Claude pergunta em vez de inventar.

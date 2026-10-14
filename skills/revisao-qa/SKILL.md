@@ -9,7 +9,7 @@ allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git status *)
 Só revisa e reporta. Não editar arquivos, não escrever código pronto, não se oferecer para corrigir. Corrigir apenas se o usuário pedir ("corrige", "ajusta"). Usuário quer ver como ficaria uma correção → `previa-diff` (não aplica). Rodar build/testes só se pedido, com o comando do `CLAUDE.md` do projeto.
 
 ## Alvo
-- **Card `.md`:** conferir contra as Regras e o Gate de `skills/criar-card/SKILL.md`.
+- **Card `.md`:** conferir contra as Regras e o Gate de `skills/criar-card/SKILL.md`. Item que depende de irmão ("Dentro dela", "nela", "idem") em vez de sub-item sob o pai (regra Hierarquia) = desvio; Grep no card.
 - **Código:** ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`; se houver `.cs`, ler também `CSHARP.md` desta skill.
 - Sem alvo informado → `git diff` atual; sem diff → perguntar.
 

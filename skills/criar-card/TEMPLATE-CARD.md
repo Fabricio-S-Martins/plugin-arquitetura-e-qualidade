@@ -19,7 +19,10 @@ tags: [backlog, modulo/<nome>, fluxo/<nome>, tarefa/pendente]
 
 ### 2. <Camada tocada>
 - [ ] **a:** <Ação direta>
-- [ ] **b:** <Ação direta>
+- [ ] **b:** <Onde>, criar a pasta `<Pasta>/`, com:
+  - [ ] **b.1:** <O arquivo/classe, sem repetir pasta nem verbo>
+  - [ ] **b.2:** <O arquivo/classe, sem repetir pasta nem verbo>
+- [ ] **c:** <Ação direta (altera um só lugar: letra simples)>
 
 ### N. Documentação
 - [ ] **a:** Criar/atualizar `docs/documentacao/modulos/<modulo>/fluxos/<fluxo>.md` com o fluxo tocado (passos e diagrama Mermaid)
