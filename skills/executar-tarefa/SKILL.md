@@ -11,7 +11,7 @@ Card: `docs/backlog/modulos/<modulo>/tarefas/NN-*.md`. Ler inteiro. Tags: `${CLA
 ## Dependências (antes de qualquer código)
 1. `Deps` do cabeçalho. Card citado (Read): tag `tarefa/concluido` e, via Glob/Grep, o que ele entrega existe no código (projeto, pasta, tipo). Dep `<modulo>/decisoes/<nome>` com `decisao/aberta` ou `decisao/adiada` = pendente.
 2. Dep pendente → parar, nada implementado. Dizer o que falta; card não `bloqueado` → propor `tarefa/bloqueado`. Seguir só se o Dev mandar.
-3. **Cadeia:** Grep literal `[[<arquivo-do-card>` em `Deps:` dos cards de `docs/backlog/modulos/*/tarefas/` pelos que dependem do card (direta ou indiretamente); listar. Também ficam `tarefa/bloqueado`; mudar só o que o Dev aprovar.
+3. **Cadeia:** Grep literal `<arquivo-do-card>.md)` em `Deps:` dos cards de `docs/backlog/modulos/*/tarefas/` pelos que dependem do card (direta ou indiretamente); listar. Também ficam `tarefa/bloqueado`; mudar só o que o Dev aprovar.
 
 ## Execução
 4. Deps ok → `tarefa/em-andamento` (só a tag `tarefa/...`).
@@ -19,7 +19,7 @@ Card: `docs/backlog/modulos/<modulo>/tarefas/NN-*.md`. Ler inteiro. Tags: `${CLA
 6. `[x]` só em item pedido, feito e conferido. Edit na linha inteira do item (letras repetem entre blocos).
 7. **Build obrigatório:** comando do `CLAUDE.md` do projeto; sem ele, `dotnet build` na `.sln` (ou `.csproj` do módulo) achada por Glob. Zero erros; erro → corrigir dentro do card e rebuildar; build falho → sem `[x]` nem `concluido`. Sem como compilar → dizer.
 8. Todos `[x]` → `tarefa/concluido`; parcial → `tarefa/em-andamento`; impedimento → `tarefa/bloqueado`.
-9. **Desbloqueio (só ao concluir):** Grep literal `[[<arquivo-do-card>` (nome sem `.md`) em `Deps:` dos cards de `docs/backlog/modulos/*/tarefas/`. Dependente `tarefa/bloqueado`: ler TODAS as suas deps; só com todas `tarefa/concluido` (e sem decisão `aberta`/`adiada`) → `tarefa/pendente` (Edit só nessa tag, linha 2). Uma dep concluída não basta; falta alguma → segue bloqueado. Índice `<modulo>.md` com status → atualizar igual. Nada além de tags e status.
+9. **Desbloqueio (só ao concluir):** Grep literal `<arquivo-do-card>.md)` em `Deps:` dos cards de `docs/backlog/modulos/*/tarefas/`. Dependente `tarefa/bloqueado`: ler TODAS as suas deps; só com todas `tarefa/concluido` (e sem decisão `aberta`/`adiada`) → `tarefa/pendente` (Edit só nessa tag, linha 2). Uma dep concluída não basta; falta alguma → segue bloqueado. Índice `<modulo>.md` com status → atualizar igual. Nada além de tags e status.
 10. **Consistência (só avisar, nunca corrigir):** entre os dependentes do passo 9, card com dep não concluída e fora de `tarefa/bloqueado` → listar.
 
 ## Resposta
