@@ -14,6 +14,7 @@ No início de um projeto, ou quando quiser preparar o Obsidian ou o `.editorconf
    - Se você recusar, ela segue sem insistir.
 4. **Audita o `CLAUDE.md`** (peso e regras repetidas) sem editar. Se faltar a regra de commit, oferece "commit só quando pedido e só no repo da conversa, nunca em outro"; se faltar o ponteiro da skill, oferece "executar tarefa/card → usar a skill `executar-tarefa`". Só adiciona o que você aceitar.
 5. **Habilita o plugin no projeto** (`enabledPlugins` em `.claude/settings.json`). A permissão das skills não vai para o projeto: é preferência sua. Para não ser perguntado a cada skill, coloque `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do `settings.json` global; a skill avisa e nunca mexe nele.
+   - **Proteção do ambiente de produção:** soma em `permissions.ask` do projeto regras que fazem o Claude pedir sua aprovação antes de qualquer comando com `Production`, e acrescenta ao `CLAUDE.md` a regra de nunca usar produção nem como contorno de bloqueio sem perguntar. É `ask` e não `deny`, para você poder aprovar. Mostra a prévia antes de aplicar e não duplica o que já existe.
 
 ## Rodar de novo
 É seguro repetir: o que já está feito não muda, e a sincronização do cofre só acrescenta o que faltar.

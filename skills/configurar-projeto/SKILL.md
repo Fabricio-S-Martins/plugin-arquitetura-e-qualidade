@@ -27,7 +27,7 @@ Uma pergunta só, com os itens que faltam; aceitou → Read do arquivo e seguir;
 - **.editorconfig** (`EDITORCONFIG.md`): projeto C# (critério do passo 1) sem `.editorconfig` na raiz.
 
 ## 4. CLAUDE.md do projeto
-Auditoria sem editar; as únicas edições são as linhas de commit e da skill abaixo, e só se o Dev aceitar.
+Auditoria sem editar; as únicas edições são as linhas de commit, da skill e de Production (passo 5), e só se o Dev aceitar.
 - `CLAUDE.md` ausente → avisar e sugerir criar; parar.
 - Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
 - Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos da tarefa.` (acrescentar só se aceitar).
@@ -41,8 +41,9 @@ Garantir `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPl
 { "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true } }
 ```
 Existente → somar se faltar; preservar o resto, nunca remover entrada.
+**Proteção Production** (também no settings): somar em `permissions.ask` (criar a chave se faltar; sem duplicar; nunca `deny`, o Dev precisa poder aprovar) `Bash(*ENVIRONMENT*Production*)` e `Bash(*--environment*Production*)`, mais as 2 iguais com `PowerShell(...)`. Com `CLAUDE.md` presente e sem regra de `Production` nele, somar: ``Ambiente de produção (`Production`): nunca usar nem como contorno de bloqueio (ex: validação de DI) sem perguntar antes, listando as opções de forma clara e objetiva.`` Prévia (`previa-diff`) sempre obrigatória aqui: uma só, settings e `CLAUDE.md`; aplicar só após o ok. Nada a somar → sem prévia.
 Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## Regras
-- JSON do settings: editar só as chaves citadas; preservar o resto do arquivo.
+- JSON do settings: editar só as chaves citadas (`enabledPlugins`, `permissions.ask`); preservar o resto do arquivo.
 - Rodar de novo no mesmo projeto é seguro: passos já feitos ficam sem efeito.
