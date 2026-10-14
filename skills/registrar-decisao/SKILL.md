@@ -24,4 +24,4 @@ Decisão que vai virar trabalho (`planejar`/`criar-card` ou pedido do Dev) ou é
 ## Regras
 - Card → decisão, nunca o contrário: a decisão não cita ID nem link de card (só o índice do módulo linka a decisão); `O que depende` descreve em texto.
 - Nunca apagar decisão sem o ok do Dev nem antes de a escolha estar no card.
-- Decisão existente que o Dev quer ver antes de aplicar → `previa-diff`.
+- Decisão existente: editar direto; `previa-diff` só se o Dev pedir para ver antes.

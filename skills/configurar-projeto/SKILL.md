@@ -32,7 +32,7 @@ Auditoria sem editar; as únicas edições são as linhas de commit e da skill a
 - Presente → Read + `wc -c`; avaliar pelo passo 1 (Auditoria) de `otimizar-tokens`: peso, regras duplicadas, conteúdo de uso raro carregado em toda sessão.
 - Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos da tarefa.` (acrescentar só se aceitar).
 - Sem ponteiro da skill → oferecer a linha `Executar tarefa/card → usar a skill executar-tarefa.` (acrescentar só se aceitar).
-- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (ou `previa-diff` para ver antes).
+- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (`previa-diff` só se o Dev pedir para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
 ## 5. Plugin no projeto (`.claude/settings.json`)

@@ -46,7 +46,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
 - **Nomes:** 100% pt-br (arquivos, pastas, títulos). Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre backlog e documentação.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `documentacao`; `modulo/` + `fluxo/` no fluxo; `modulo/` + `camada/` na API e em doc de camada; módulo e geral sem `fluxo/` nem `camada/`). Doc sem estado; nunca citar task.
-- **Doc existente que o usuário quer ver antes de aplicar** → `previa-diff`.
+- **Doc existente:** editar direto; `previa-diff` só se o usuário pedir para ver antes.
 - **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
 
 ## Gate antes de entregar

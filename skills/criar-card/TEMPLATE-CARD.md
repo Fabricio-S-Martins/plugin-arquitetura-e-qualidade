@@ -3,7 +3,7 @@ tags: [backlog, modulo/<nome>, fluxo/<nome>, tarefa/pendente]
 ---
 # [NN] <Acao + Entidade + Modulo>
 
-**Modulo:** <Nome> | **Camada:** <Camada> | **Deps:** <NN-nome>
+**Modulo:** <Nome> | **Camada:** <Camada> | **Deps:** [[<NN-nome-do-arquivo>|<Módulo> <NN>]], ... (ou —)
 
 ## O que fazer
 - **<Tema 1>:** <Regra ou decisao da task em 1 linha>
