@@ -34,7 +34,7 @@ Sem arquivo de lista: tag de assunto = nome já em uso (Grep `modulo/`, `camada/
 
 ## Estado do card
 Exatamente 1 tag `tarefa/<valor>` por nota; trocar = substituir só esse item da lista, preservando as demais. Valores fechados: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`. Outro valor → não gravar.
-Card com Deps em `<modulo>/decisoes/<nome>` `decisao/aberta` ou `decisao/adiada` → `tarefa/bloqueado`.
+Card com Dependências em `<modulo>/decisoes/<nome>` `decisao/aberta` ou `decisao/adiada` → `tarefa/bloqueado`.
 
 ## Estado da decisão
 Skill `registrar-decisao`. Mesma regra (1 tag `decisao/<valor>`). Valores fechados: `aberta`, `decidida` (intervalo até virar card), `adiada`. Vira card ou é descartada → apagada (skill `registrar-decisao`). Decisão nunca cita card.

@@ -28,14 +28,14 @@ O estado é uma tag na linha `tags:` (`decisao/aberta`, `decisao/decidida`, `dec
 ## Quando a decisão vira trabalho
 Decisão não é arquivo morto: quando ela vira card (pelo `planejar` ou pelo `criar-card`) ou é descartada, ela **é apagada**. Antes, o Claude mostra o que vai fazer e espera o seu ok:
 - a escolha e o motivo vão para uma linha `**Decisão:**` no "O que fazer" do card, então o porquê continua a um passo do código;
-- `<modulo>/decisoes/<nome>` sai do Deps dos cards que a citavam, e o status deles só muda se você confirmar;
+- `<modulo>/decisoes/<nome>` sai das Dependências dos cards que a citavam, e o status deles só muda se você confirmar;
 - o link sai da seção `Decisões` do índice do módulo;
 - o arquivo é apagado. O git guarda o histórico.
 
 Por isso não existe status `descartada`: descartar é apagar.
 
 ## Ligação com os cards
-Só o card aponta para a decisão: ele a cita em Deps (`<modulo>/decisoes/<nome>`) e fica `bloqueado` enquanto ela estiver `aberta` ou `adiada`. A decisão nunca cita card. Quando você decide, o Claude avisa quais cards estavam bloqueados, mas não muda o status deles sem você pedir.
+Só o card aponta para a decisão: ele a cita em Dependências (`<modulo>/decisoes/<nome>`) e fica `bloqueado` enquanto ela estiver `aberta` ou `adiada`. A decisão nunca cita card. Quando você decide, o Claude avisa quais cards estavam bloqueados, mas não muda o status deles sem você pedir.
 
 Para os módulos que a decisão toca, o índice do módulo no backlog ganha um link para ela (`decisoes/<nome>.md` no módulo principal, `../<principal>/decisoes/<nome>.md` nos demais), numa seção `Decisões`, e o grafo do Obsidian passa a ligar os dois. O link sai do índice do módulo, e a decisão continua sem citar nada.
 
