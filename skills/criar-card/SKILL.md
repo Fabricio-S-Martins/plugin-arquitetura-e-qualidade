@@ -30,6 +30,7 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Card existente:** editar direto; `previa-diff` só se o Dev pedir para ver antes.
 - **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice (link `tarefas/<card>.md`), nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com dependências.
+- **Especificação:** demanda com especificação aprovada → linha `Especificação` no cabeçalho com link relativo (de `tarefas/`: `../../../../especificacoes/modulos/<m>/fluxos/<m>-<f>.md`, `<m>` = módulo da pasta da especificação; conferir que existe via Glob). Item que cumpre critério termina com `(Critério N)`; o card não repete regra da especificação. Especificação `rascunho` ou `obsoleta` → parar e avisar. Sem especificação: demanda que `especificar` não dispensa → apontar `especificar` antes; senão, sem a linha.
 - **Dependências:** sem nenhuma → sem a linha. Card = link `[<Módulo> NN](<caminho relativo a partir de tarefas/>/NN-nome.md)` (mesmo módulo: `NN-nome.md`; outro: `../../<modulo>/tarefas/NN-nome.md`), conferindo que o arquivo existe (Glob); decisão segue `<modulo>/decisoes/<nome>`.
 
 ## Gate antes de apresentar

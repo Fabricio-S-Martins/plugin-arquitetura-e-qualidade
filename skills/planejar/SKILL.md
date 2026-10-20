@@ -6,10 +6,10 @@ allowed-tools: Read, Glob, Grep, Skill
 
 # planejar
 
-Não editar nem criar arquivos até a aprovação. Demanda que cabe em 1 card → direto ao `criar-card`, sem plano.
+Não editar nem criar arquivos até a aprovação. Demanda nova (exceto o que `especificar` dispensa) sem especificação aprovada → `especificar` primeiro; o plano parte dela. Demanda que cabe em 1 card → direto ao `criar-card`, sem plano.
 
 ## Fluxo
-1. **Dados:** receber a demanda (objetivo, escopo, restrições, critérios de aceite) e ler o que o usuário citar (docs, cards, links). Dado faltando → passos 2 e 3.
+1. **Dados:** receber a demanda (objetivo, escopo, restrições, critérios de aceite) e ler o que o usuário citar (docs, cards, links). Especificação do assunto (Grep `tags:.*especificacao/` + `modulo/`/`fluxo/`): `aprovada` → regras e critérios vêm dela, sem perguntar de novo; `rascunho` → parar e pedir aprovação. Dado faltando → passos 2 e 3.
 2. **Fatos primeiro:** antes de perguntar, verificar no projeto (Glob → Grep → Read; até 3 divisões (camada, módulo, pasta); regra do tipo em `docs/padroes/` (Glob) no lugar do irmão; sem regra, 1 arquivo irmão real do mesmo tipo). Docs e cards do assunto: Grep por tag (`tags:.*modulo/x`, `tags:.*camada/api`, `tags:.*tarefa/pendente`) antes de abrir pastas; formato em `docs/instrucoes/TAGS.md`. Decisões `decisao/aberta`/`decisao/adiada` do assunto (Grep dessas tags) que bloqueiam o plano → perguntar ao Dev antes de seguir (`registrar-decisao`). Fato = ler e citar a fonte. Decisão (regra, escopo, prioridade) é do usuário: perguntar, nunca chutar.
 3. **Perguntas:** em rodadas, numeradas, curtas e priorizadas, formuladas pela consequência observável, não em vocabulário de código. Cada uma diz o que já foi verificado e por que a resposta muda o plano. Repetir até não restar ponto em aberto que mude o plano. Resposta vaga → perguntar de novo; nunca preencher.
 4. **Padrão do projeto:** seguir o existente (regra de `docs/padroes/` ou irmão real, `CLAUDE.md` e docs do projeto). Sem padrão: qualidade → `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`, dizendo que não há padrão; nomenclatura, organização, arquitetura e testes são escolha do Dev → perguntar.
@@ -21,10 +21,11 @@ Não editar nem criar arquivos até a aprovação. Demanda que cabe em 1 card �
 ## Plano
 - **Objetivo:** 1 linha.
 - **Fluxo:** entrada, processamento, saída e eventos gerados.
+- **Especificação:** arquivo e critérios que o plano cobre; critério sem card → listar; "nenhuma" se `especificar` dispensa.
 - **Fatos:** cada um com fonte (`arquivo:linha` ou "usuário").
 - **Impacto por divisão:** só as divisões (camada, módulo, pasta) da arquitetura do projeto (verificadas no código), com os componentes a criar ou alterar.
 - **Decisões:** o que será feito e por quê; marcar as que dependem de confirmação.
 - **Alternativas descartadas:** 1 linha cada, com o motivo; prefixar `ARMADILHA:` quando o caminho parece barato e cobra caro.
 - **Padrão seguido:** arquivo de referência, ou "nenhum".
-- **Cards:** `NN-nome` título · divisões · deps · pronto quando (critério observável: build, teste ou fluxo), em ordem de execução. Dependência externa (credencial, terceiro) → `BLOQUEADO` + o que destrava.
+- **Cards:** `NN-nome` título · divisões · deps · critérios atendidos · pronto quando (critério observável: build, teste ou fluxo), em ordem de execução. Dependência externa (credencial, terceiro) → `BLOQUEADO` + o que destrava.
 - **Em aberto:** o que ainda não é fato; suposição não entra no plano. Risco só se comprovado no código ou informado pelo usuário.

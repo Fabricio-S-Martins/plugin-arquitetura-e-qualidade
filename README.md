@@ -30,6 +30,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | `executar-tarefa` | Executa um card (ou parte do checklist) conferindo antes as dependências; troca a tag de estado e faz o build. |
 | `registrar-decisao` | Registra decisão em aberto, adiada ou tomada em `docs/backlog/modulos/<modulo>/decisoes/`; o card que depende dela fica bloqueado. |
 | `criar-regra-telegrafica` | Resume em `docs/padroes/` o padrão de arquivos parecidos (entidades, commands...); as skills leem a regra no lugar de um arquivo irmão. |
+| `especificar` | Define e registra as regras de negócio (especificação aprovada) antes de planejar; ajuste pequeno dispensa. |
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera cards após aprovação. |
 | `revisao-qa` | Revisa card ou código contra as regras de qualidade; só reporta, não corrige. |
 | `documentar` | Documenta código novo, atualiza a documentação quando você pede e lista fluxos sem documentação. |

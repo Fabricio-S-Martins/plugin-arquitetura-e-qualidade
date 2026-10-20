@@ -54,3 +54,6 @@ Funciona como o da skill `planejar`:
 - **Nomes em português**, em arquivos, pastas e títulos. Os documentos de um módulo levam o nome do módulo na frente (`pedidos-api.md`), porque o grafo e a busca do Obsidian mostram só o nome do arquivo e vários `api.md` seriam indistinguíveis. A exceção é a nota do módulo (`pedidos.md`), que repete o nome no backlog e na documentação. A visão geral se chama `documentacao.md`.
 - **Não altera código e não faz commit.**
 - **Prévia:** para ver a mudança de um documento existente antes de aplicar, peça a prévia (`+` e `-`).
+
+## Especificação
+A especificação aprovada ([ESPECIFICAR.md](ESPECIFICAR.md)) orienta o que documentar, mas a documentação só registra o que o código confirma e nunca cita a especificação.

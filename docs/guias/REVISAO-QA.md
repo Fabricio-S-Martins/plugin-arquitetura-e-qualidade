@@ -13,6 +13,7 @@ Diga o alvo: "revise o card 03-aplicacao-criar-usuario", "revise o arquivo X" ou
 ## O que ela confere
 - **Card:** as mesmas regras usadas para criar o card (título, localização, validações, consistência, nomes, escopo).
 - **Código:** as regras de [QUALIDADE.md](../instrucoes/QUALIDADE.md) e, em C#, as convenções de estilo (campo privado, `internal`, namespace file-scoped, nome de teste, fim de arquivo).
+- **Especificação:** se o card cita uma, cada critério citado precisa ter contrapartida no código e as regras do fluxo não podem ser contrariadas.
 - **Card × código:** se há um card associado, cada item do checklist precisa ter contrapartida no código e os cenários de teste precisam estar cobertos. Build e testes verdes não bastam para dizer que o card está pronto.
 - **Segurança:** hash, token, criptografia e autorização têm prioridade máxima, porque o erro é silencioso. Sem teste dedicado, é bloqueante.
 - **Testes:** aponta teste que não consegue falhar, como um que só afirma o caso "falso" ou um mock que já devolve o resultado esperado.

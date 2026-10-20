@@ -12,8 +12,8 @@ tags: [backlog, modulo/entregas, fluxo/checkout, tarefa/pendente]
 ---
 ```
 Minúsculas, pt-br, sem acento, hífen.
-- **Grupo** (exatamente 1 por nota): `backlog` ou `documentacao`. Fixo no plugin; não pede aprovação.
-- **Estado** (só card e decisão; exatamente 1): `tarefa/<valor>` no card, `decisao/<valor>` na decisão. Dizem o tipo e o estado.
+- **Grupo** (exatamente 1 por nota): `backlog`, `documentacao` ou `especificacao`. Fixo no plugin; não pede aprovação.
+- **Estado** (só card, decisão e especificação; exatamente 1): `tarefa/<valor>` no card, `decisao/<valor>` na decisão, `especificacao/<valor>` na especificação. Dizem o tipo e o estado.
 - **Assunto:** `modulo/<m>`, `camada/<c>`, `fluxo/<f>`.
 
 | Nota | Tags |
@@ -23,9 +23,11 @@ Minúsculas, pt-br, sem acento, hífen.
 | Card | `backlog` + ≥1 `modulo/` + `fluxo/` e `camada/` herdados + `tarefa/<valor>` |
 | Decisão | `backlog` + ≥1 `modulo/` (obrigatório) + `fluxo/` se houver + `decisao/<valor>` |
 | Doc de fluxo | `documentacao` + ≥1 `modulo/` + ≥1 `fluxo/` |
+| Especificação de módulo | `especificacao` + ≥1 `modulo/` + `especificacao/<valor>` |
+| Especificação de fluxo | `especificacao` + ≥1 `modulo/` + ≥1 `fluxo/` + `especificacao/<valor>` |
 | Doc de camada (API, domínio, aplicação, infra; inclui técnico por projeto) | `documentacao` + ≥1 `modulo/` + ≥1 `camada/` |
 
-- Nota do módulo = a que não tem `camada/`, `fluxo/` nem estado. Geral, módulo, fluxo e camada não levam estado.
+- Nota do módulo = a que não tem `camada/` nem `fluxo/` (nem estado, exceto na especificação). Geral, módulo, fluxo e camada da documentação e do backlog não levam estado; a especificação (de módulo ou fluxo) leva.
 - Card herda `modulo/`, `fluxo/` e `camada/` dos docs do bloco Documentação; sem doc dessa camada, sem `camada/`. `fluxo/` = nome do fluxo; `camada/` = nome da camada (a API é `camada/api`).
 
 ## Vocabulário
@@ -34,7 +36,10 @@ Sem arquivo de lista: tag de assunto = nome já em uso (Grep `modulo/`, `camada/
 
 ## Estado do card
 Exatamente 1 tag `tarefa/<valor>` por nota; trocar = substituir só esse item da lista, preservando as demais. Valores fechados: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`. Outro valor → não gravar.
-Card com Dependências em `<modulo>/decisoes/<nome>` `decisao/aberta` ou `decisao/adiada` → `tarefa/bloqueado`.
+Card com Dependências em `<modulo>/decisoes/<nome>` `decisao/aberta` ou `decisao/adiada`, ou com `Especificação` fora de `aprovada`/`implementada` → `tarefa/bloqueado`.
+
+## Estado da especificação
+Skill `especificar`. Mesma regra (1 tag `especificacao/<valor>`). Valores fechados: `rascunho` (ao criar ou alterar), `aprovada` (só com aprovação explícita do Dev), `implementada` (só especificação de fluxo; `executar-tarefa`, quando todo card que a cita está `concluido` ou `cancelado` e ao menos um `concluido`), `obsoleta` (só se o Dev disser).
 
 ## Estado da decisão
 Skill `registrar-decisao`. Mesma regra (1 tag `decisao/<valor>`). Valores fechados: `aberta`, `decidida` (intervalo até virar card), `adiada`. Vira card ou é descartada → apagada (skill `registrar-decisao`). Decisão nunca cita card.

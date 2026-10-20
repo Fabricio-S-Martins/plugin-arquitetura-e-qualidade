@@ -40,7 +40,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Estilo:** títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
 
 ## Regras
-- **Origem:** todo fato vem de código lido ou do usuário. Não confirmado → não escrever; perguntar. Sem seção `Em aberto` nos docs (exceto no plano).
+- **Origem:** todo fato vem de código lido ou do usuário. Não confirmado → não escrever; perguntar. Especificação aprovada orienta o que documentar, mas só entra o que o código confirma; doc nunca cita especificação. Sem seção `Em aberto` nos docs (exceto no plano).
 - **Regra de negócio:** traduzir só o que o código confirma. Quem executa cada etapa só se o usuário informar.
 - **Só o versionado:** citar (link ou nome) apenas o que o git versiona. Ignorado (`.gitignore`) ou fora do repo → não citar.
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.

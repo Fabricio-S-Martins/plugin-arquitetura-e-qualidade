@@ -10,7 +10,7 @@ Um arquivo `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md`, com o próximo 
 
 - **Título:** verbo no infinitivo mais o que a task entrega, cobrindo todas as frentes. Deve servir como mensagem de commit.
 - **Frontmatter:** `tags` (`backlog` mais módulo, fluxo e camada dos documentos que o card toca) e a tag de estado, que começa em `tarefa/pendente`. Veja [TAGS.md](TAGS.md).
-- **Cabeçalho:** módulo, camada e dependências.
+- **Cabeçalho:** módulo, camada, dependências e, quando a demanda tem especificação aprovada, o link para ela. Os itens que cumprem um critério dela terminam com `(Critério N)`; o card não repete as regras.
 - **O que fazer:** as regras e decisões da task que o checklist não deixa óbvias, em uma linha cada. Padrões de projeto aplicados são citados pelo nome.
 - **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo). Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 

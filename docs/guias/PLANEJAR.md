@@ -2,6 +2,9 @@
 
 A skill `planejar` transforma uma demanda em um plano aprovado por você e, só depois, em cards. A versão que o Claude lê é [../../skills/planejar/SKILL.md](../../skills/planejar/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
+## Antes do plano: a especificação
+Toda demanda nova começa por [especificar](ESPECIFICAR.md), que decide e registra as regras de negócio. O plano parte da especificação aprovada e cuida só do "como". Ajuste pequeno, que não muda regra de negócio, dispensa a especificação.
+
 ## Como pedir
 Descreva a demanda e passe o que já tiver: objetivo, o que entra e o que não entra, restrições, critérios de aceite e links ou documentos. Quanto mais dados você der no começo, menos perguntas ela faz. Se a demanda cabe em um único card, ela dispensa o plano e vai direto para a criação do card.
 
@@ -16,6 +19,7 @@ Descreva a demanda e passe o que já tiver: objetivo, o que entra e o que não e
 ## O que tem no plano
 - **Objetivo:** uma linha.
 - **Fluxo:** entrada, processamento, saída e eventos gerados.
+- **Especificação:** o arquivo e os critérios de aceite que o plano cobre.
 - **Fatos:** cada um com a fonte, que é um arquivo e linha ou "usuário".
 - **Impacto por camada:** só as camadas da arquitetura do projeto, verificadas no código, com os componentes a criar ou alterar.
 - **Decisões:** o que será feito e por quê, com marca nas que dependem da sua confirmação.

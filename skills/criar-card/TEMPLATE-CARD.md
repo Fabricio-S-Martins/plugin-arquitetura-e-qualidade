@@ -6,6 +6,7 @@ tags: [backlog, modulo/<nome>, fluxo/<nome>, tarefa/pendente]
 - **Modulo:** <Nome>
 - **Camada:** <Camada>
 - **Dependências:** [<Módulo> <NN>](<caminho-relativo>/<NN-nome-do-arquivo>.md), ... (sem dependência: apagar esta linha)
+- **Especificação:** [<Fluxo>](<caminho-relativo>/<módulo>-<fluxo>.md) (sem especificação: apagar esta linha)
 
 ## O que fazer
 - **<Tema 1>:** <Regra ou decisao da task em 1 linha>

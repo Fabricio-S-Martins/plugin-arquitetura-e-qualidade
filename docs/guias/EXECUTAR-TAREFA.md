@@ -3,6 +3,7 @@
 Executa um card sem pular a checagem de dependências.
 
 - **Dependência pendente:** para e avisa o que falta; você decide se segue.
+- **Especificação:** se o card cita uma, ela precisa estar aprovada, senão o tratamento é o de dependência pendente. O critério da especificação manda; se o card discorda dela, para e pergunta. Ao concluir, quando todos os cards que a citam estão concluídos, a especificação vira `implementada`.
 - **Cadeia:** lista os cards que dependem do bloqueado; só muda a tag do que você aprovar.
 - **Em andamento:** o card vira `em-andamento` ao começar e, com algum item marcado, só sai disso para `concluido`.
 - **Ao concluir:** tira o card das Dependências dos que dependiam dele (apaga a linha se esvaziar) e libera os que ficaram sem nenhuma.

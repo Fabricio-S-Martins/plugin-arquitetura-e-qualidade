@@ -3,9 +3,10 @@
 Contexto: a fonte de verdade é o projeto atual (arquivos, CLAUDE.md, o que o Dev disse), nunca outro projeto, a memória ou os exemplos do plugin (ilustrativos).
 Boas práticas (KISS, YAGNI, DRY, SRP, limites…) valem sempre: não dependem de arquitetura.
 Escolha do Dev: nomenclatura (idioma, camelCase/snake_case/kebab-case…), organização, arquitetura (DDD, monólito, microsserviços…) e uso de testes. Ordem: o que o projeto já usa → o que o Dev disser → perguntar uma vez (sem padrão silencioso do plugin). Escolhido, vira o padrão: seguir rigidamente, sem misturar.
-Regra que cita camada (ex: DIP) vale na forma que o projeto der à camada. Projeto com testes → regras de teste valem; sem testes → não exigir nem cobrar.
+Projeto com testes → regras de teste valem; sem testes → não exigir nem cobrar.
 Regra do plugin (ex: nomes em pt-br) vale para os arquivos do plugin, não para o projeto.
-Escrita: o que o Dev lê ou vai para o projeto usa termos descritivos, sem abreviação nem jargão; sigla de conhecimento geral de programação (API, CI/CD, VO, KISS) fica como está; sigla ou termo do plugin ou pouco conhecido → por extenso ou explicado na 1ª vez. Instrução interna do plugin pode ser telegráfica, mas o termo interno que aparece na saída vem por extenso.
+Escrita: o que o Dev lê ou vai para o projeto usa termos descritivos, sem abreviação nem jargão; sigla de conhecimento geral (API, CI/CD, VO, KISS) fica; sigla ou termo do plugin ou pouco conhecido → por extenso ou explicado na 1ª vez, inclusive o termo interno que aparece na saída. Instrução interna pode ser telegráfica.
+ Todo nome (arquivo, regra, seção, critério) diz o que é em poucas palavras.
 
 Prioridade: KISS/YAGNI > padronização > DRY > SOLID > calisthenics.
 Violou regra obrigatória → registrar `Exceção: <regra> — <motivo>`.
@@ -22,8 +23,8 @@ Calisthenics (preferível): value objects p/ primitivos de domínio, coleção d
 Padronização: ler código existente antes; 1 conceito = 1 nome; não misturar refatoração com mudança de comportamento.
 
 Organização (padrão rígido; nomes não):
-- Unidade = qualquer divisão do projeto (módulo, serviço, contexto, pacote); nunca citar estilo arquitetural. Mesmo nível = mesma estrutura interna.
+- Unidade = qualquer divisão do projeto (módulo, serviço, contexto, pacote). Mesmo nível = mesma estrutura interna.
 - Esqueleto = pastas de toda unidade. Sob demanda = só nasce com conteúdo; ao nascer, mesmo nome e lugar em toda unidade que precisar. Pasta exclusiva de uma unidade: só dentro de pasta do esqueleto, nunca novo nível.
-- Espelho: toda unidade do código existe com o mesmo nome em docs, backlog, testes e specs; subestrutura só onde a área já a usa. Artefato novo (specs, contratos, cenários) nasce dentro da unidade, nunca solto. Compartilhado/transversal = unidade própria nas mesmas áreas.
-- Nomes (idioma, caixa, plural): ler do existente (Glob), senão perguntar ao Dev (escolha dele); depois fixos. Caixa pode variar por área se cada área for uniforme.
-- Criar/alterar: ler 1 unidade equivalente como modelo → replicar nas que precisam → criar o espelho no mesmo passo. Assimetria existente: listar, não corrigir sem pedir; nome ambíguo → perguntar.
+- Espelho: toda unidade do código existe com o mesmo nome em docs, backlog, testes e especificações; subestrutura só onde a área já a usa. Artefato novo (especificações, contratos, cenários) nasce dentro da unidade, nunca solto. Compartilhado/transversal = unidade própria nas mesmas áreas.
+- Nomes (idioma, caixa, plural): fixos após escolhidos (Glob no existente). Caixa pode variar por área se cada área for uniforme.
+- Criar/alterar: ler 1 unidade equivalente como modelo → replicar nas que precisam → criar o espelho no mesmo passo. Assimetria existente: listar, não corrigir sem pedir.

@@ -10,6 +10,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 
 ## Alvo
 - **Card `.md`:** conferir contra as Regras e o Gate de `skills/criar-card/SKILL.md`. Item que depende de irmão ("Dentro dela", "nela", "idem") em vez de sub-item sob o pai (regra Hierarquia) = desvio; Grep no card.
+- **Especificação `.md`:** conferir contra a Escrita e o Gate de `skills/especificar/SKILL.md`.
 - **Código:** ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`; se houver `.cs`, ler também `CSHARP.md` desta skill.
 - Sem alvo informado → `git diff` atual; sem diff → perguntar.
 
@@ -25,7 +26,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 ## Fluxo
 1. Diff: abrir (Read) os arquivos tocados, o diff sozinho engana.
 2. **Mecânico:** itens objetivos (`CSHARP.md`) verificados com Grep restrito às camadas do escopo, nunca de cabeça. Grep em modo contagem/lista de arquivos; Read só nos arquivos que casaram. Item recorrente → recomendar virar `.editorconfig`/analyzer.
-3. **Card × código:** com card associado (informado ou achado em `docs/backlog/`), conferir que cada item do checklist tem contrapartida no código (Grep pelo nome citado) e, em projeto com testes, que os cenários de teste do card estão cobertos. Item sem contrapartida = Bloqueante. Build/testes verdes não provam checklist cumprido.
+3. **Card × código:** com card associado (informado ou achado em `docs/backlog/`), conferir que cada item do checklist tem contrapartida no código (Grep pelo nome citado) e, em projeto com testes, que os cenários de teste do card estão cobertos. Card com `Especificação`: ler (Read) e conferir que cada critério citado tem contrapartida no código e que as regras do fluxo não são contrariadas. Item ou critério sem contrapartida = Bloqueante. Build/testes verdes não provam checklist cumprido.
 4. **Segurança:** hash, token, criptografia e autorização têm prioridade máxima (erro silencioso: compila, roda, lógica errada). Projeto com testes: sem teste dedicado = Bloqueante.
 5. **Testes (projeto com testes):** apontar teste que não pode falhar (afirma só o caso "falso"/vazio, sem preparação relevante, mock que já devolve o esperado): Recomendado.
 6. **Julgamento:** para cada candidato perguntar: real ou purismo? analyzer já pega? confiança alta? Baixa confiança ou sem regra + local + sugestão → cortar. O filtro não vale para os mecânicos.

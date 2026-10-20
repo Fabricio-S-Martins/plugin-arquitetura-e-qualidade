@@ -3,14 +3,14 @@
 As tags ajudam a achar arquivos de documentação e cards sem abrir um por um. A versão que o Claude lê é [../instrucoes/TAGS.md](../instrucoes/TAGS.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## A ideia
-Cada doc e cada card leva uma linha de tags no topo, por exemplo `tags: [backlog, modulo/entregas, fluxo/checkout, tarefa/pendente]`. Para achar tudo de um assunto, o Claude busca essa linha (Grep, uma busca por texto dentro dos arquivos) em vez de ler pasta por pasta.
+Cada doc, especificação e card leva uma linha de tags no topo, por exemplo `tags: [backlog, modulo/entregas, fluxo/checkout, tarefa/pendente]`. Para achar tudo de um assunto, o Claude busca essa linha (Grep, uma busca por texto dentro dos arquivos) em vez de ler pasta por pasta.
 
 A ligação entre doc e card é só pela tag em comum. A documentação nunca cita tarefas, e nada quebra quando um arquivo muda de nome ou de lugar.
 
 **As tags não dependem das pastas.** Toda nota leva todas as suas tags, mesmo quando a pasta "já diria" o mesmo. Se um dia você juntar tudo numa pasta só, as buscas por tag continuam funcionando.
 
 ## Estrutura simétrica
-O projeto tem dois grupos com a mesma forma:
+O projeto tem três grupos com a mesma forma:
 
 ```
 docs/
@@ -20,23 +20,28 @@ docs/
 │       ├── <m>.md                  nota do módulo
 │       ├── tarefas/
 │       └── decisoes/
-└── documentacao/
-    ├── documentacao.md             visão geral
+├── documentacao/
+│   ├── documentacao.md             visão geral
+│   └── modulos/<m>/
+│       ├── <m>.md                  nota do módulo
+│       ├── api/
+│       └── fluxos/
+└── especificacoes/
     └── modulos/<m>/
-        ├── <m>.md                  nota do módulo
-        ├── api/
+        ├── <m>.md                  regras de negócio do módulo
         └── fluxos/
 ```
 
 Fluxos e decisões que tocam mais de um módulo ficam na pasta do módulo principal (o primeiro citado), e as notas dos outros módulos linkam para eles.
 
 ## Grupo
-Toda nota leva uma tag de grupo: `backlog` ou `documentacao`. As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
+Toda nota leva uma tag de grupo: `backlog`, `documentacao` ou `especificacao`. As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
 
-## Estado: tarefa e decisão
-O card leva `tarefa/<estado>` e a decisão leva `decisao/<estado>`. Uma tag só diz **o que a nota é** e **em que pé está**. No Obsidian, `tag:#tarefa` lista todos os cards e `-tag:#tarefa/concluido` esconde os concluídos.
+## Estado: tarefa, decisão e especificação
+O card leva `tarefa/<estado>`, a decisão leva `decisao/<estado>` e a especificação leva `especificacao/<estado>`. Uma tag só diz **o que a nota é** e **em que pé está**. No Obsidian, `tag:#tarefa` lista todos os cards e `-tag:#tarefa/concluido` esconde os concluídos.
 - Card: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`.
 - Decisão: `aberta`, `decidida`, `adiada`.
+- Especificação: `rascunho`, `aprovada`, `implementada`, `obsoleta`.
 
 O Claude troca só essa tag quando o andamento muda, sem mexer nas outras. Quem pede isso é uma regra que a `configurar-projeto` oferece para o `CLAUDE.md` do projeto. Notas gerais, do módulo e docs não levam estado, para não ficarem desatualizadas.
 
@@ -54,6 +59,7 @@ Quais notas levam o quê:
 | Módulo | grupo + `modulo/autenticacao` |
 | Card | `[backlog, modulo/autenticacao, fluxo/autenticacao-cadastro, tarefa/concluido]` |
 | Decisão | `[backlog, modulo/pedidos, decisao/adiada]` |
+| Especificação de fluxo | `[especificacao, modulo/autenticacao, fluxo/autenticacao-cadastro, especificacao/aprovada]` |
 | Doc de fluxo | `[documentacao, modulo/autenticacao, fluxo/autenticacao-cadastro]` |
 | Doc de camada (ex. API) | `[documentacao, modulo/autenticacao, camada/api]` |
 

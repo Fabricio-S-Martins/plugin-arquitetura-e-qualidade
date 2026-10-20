@@ -19,7 +19,7 @@ Linha "só projeto C#": rodar só se Glob achar `*.csproj`/`*.sln` na raiz ou 1 
 Para cada linha: ausente → avisar e perguntar se instala agora. Sim + comando Windows → rodar comando da coluna Instalar. Sem comando ou outro SO → link da coluna "Sem Windows" e parar até confirmar instalado.
 
 ## 2. Pasta docs e .gitignore
-Ausente → criar `docs/`. Garantir `docs/sessoes/` no `.gitignore` (sem duplicar; nunca remover linha existente).
+Ausente → criar `docs/`; criar também `docs/especificacoes/` se ausente. Garantir `docs/sessoes/` no `.gitignore` (sem duplicar; nunca remover linha existente).
 
 ## 3. Opcionais
 Uma pergunta só, com os itens que faltam; aceitou → Read do arquivo e seguir; recusou → seguir sem insistir.
