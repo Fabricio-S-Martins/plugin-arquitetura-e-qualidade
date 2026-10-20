@@ -1,6 +1,6 @@
 ---
 name: criar-regra-telegrafica
-description: Cria regra telegráfica (modelo base) de um tipo de arquivo repetido no projeto, em docs/padroes/, a partir de arquivos citados ou achados por nome. Usar ao pedir regra/padrão/modelo de entidade, command, handler etc.
+description: Cria regra telegráfica (modelo base) de um tipo de arquivo repetido no projeto, em docs/padroes/, a partir de arquivos citados ou achados por nome. Usar ao pedir regra/padrão/modelo de um tipo (ex: entidade, handler).
 allowed-tools: Read, Write, Glob, Grep
 ---
 
@@ -10,11 +10,11 @@ Só cria `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).
-- **Sem arquivo:** módulo não claro → perguntar. Glob só de nomes no módulo, agrupar por pasta e sufixo; propor os grupos com ≥3 arquivos parecidos (nome, quantidade, 1 exemplo) e perguntar qual virar regra.
+- **Sem arquivo:** módulo/pasta não claro → perguntar. Glob só de nomes na pasta, agrupar por pasta e sufixo; propor os grupos com ≥3 arquivos parecidos (nome, quantidade, 1 exemplo) e perguntar qual virar regra.
 - **Confirmar similaridade:** Grep das linhas estruturais (declaração, base, construtores, atributos) do grupo; Read de 3 amostras (molde = a mais limpa). Estrutura não se repete → dizer, não criar. Divergência de nome ou formatação → vale a maioria; avisar o Dev dos desvios, sem registrá-los.
 
 ## Escrever
-`docs/padroes/<tipo>.md` (pt-br, minúsculas, hífen, singular), sem frontmatter nem tags. Arquivo já existe → perguntar se sobrescreve; sem "sim" explícito, parar:
+`docs/padroes/<tipo>.md` (idioma do projeto, minúsculas, hífen, singular), sem frontmatter nem tags. Arquivo já existe → perguntar se sobrescreve; sem "sim" explícito, parar:
 ````
 # <Tipo>
 
@@ -24,7 +24,7 @@ Só cria `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só
 ```
 <3-5 linhas curtas: o que costuma variar>
 ````
-- Esqueleto: C# real, formatação exata (namespace file-scoped `namespace X;`, sem chaves de namespace nem indentação extra; classe, assinatura, chaves, ordem dos membros; construtor com a assinatura inteira numa linha logo abaixo dos campos, sem linha em branco acima, e linha em branco entre o construtor e o primeiro método). Sem corpo de regra de negócio.
+- Esqueleto: código real na linguagem do projeto, formatação exata do arquivo (declaração, assinatura, chaves, ordem dos membros). Ex. C#: namespace file-scoped `namespace X;`, sem chaves de namespace nem indentação extra; construtor com a assinatura inteira numa linha logo abaixo dos campos, sem linha em branco acima, e linha em branco entre o construtor e o primeiro método. Sem corpo de regra de negócio.
 - O que varia entre os arquivos do tipo (verbo, rota, parâmetros, status, exceções, retorno) vira placeholder curto e consistente (`<E>`/`<e>`). Nunca fixar status (204, 400, 404…) se algum arquivo do tipo retorna outro. Vários `catch` → um só (o presente em todos).
 - Omitir `using`. Comentários só os da origem; nunca `///`/`//` novos.
 - Texto abaixo: só o que varia (ex.: "verbo, rota e status variam"; "um catch por exceção lançada"), sem nome de arquivo real nem regra de produto ou segurança (autorização, perfis): é do plano/card.
