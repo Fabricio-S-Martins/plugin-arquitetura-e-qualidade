@@ -14,7 +14,7 @@ Só revisa e reporta. Não editar arquivos, não escrever código pronto, não s
 - Sem alvo informado → `git diff` atual; sem diff → perguntar.
 
 ## Modo
-- **Rápido (padrão):** só o diff/alvo, itens mecânicos, regras OBR, segurança e card × código. Sem fontes do projeto, sem irmão, sem `(pré-existente)`.
+- **Rápido (padrão):** só o diff/alvo, itens mecânicos, regras obrigatórias, segurança e card × código. Sem fontes do projeto, sem irmão, sem `(pré-existente)`.
 - **Completo** (pedido: "completo", "profundo"): rápido + ler e seguir `COMPLETO.md` desta skill.
 - **Parada antecipada:** Bloqueante estrutural (card fora do template, divisão do alvo não identificável) → reportar e parar.
 
@@ -40,9 +40,9 @@ Sugerir a construção imutável/sem estado da linguagem em uma frase (objeto de
 
 ## Relatório
 Primeiro a conclusão: aprovado / com ressalvas / reprovado. Depois `Modo: <rápido|completo>. Escopo: <divisões lidas>. Não lido: <camadas/arquivos>`. Seções, omitir a que ficar vazia (exceto Mecânico, sempre listada):
-- **Bloqueante:** violação OBR de QUALIDADE ou erro que quebra o card/código.
+- **Bloqueante:** violação de regra obrigatória de QUALIDADE ou erro que quebra o card/código.
 - **Mecânico:** achados dos itens objetivos, sempre listada, mesmo pré-existentes. Fechar com "verificados sem ocorrência: <itens>" e "pulados por analyzer: <regra + onde confirmei>".
-- **Recomendado:** violação PREF, convenção do projeto ou da linguagem.
+- **Recomendado:** violação de regra preferível, convenção do projeto ou da linguagem.
 - **Sugestão:** melhoria opcional.
 - **Preservar:** 1 linha com o que carrega peso e não deve ser quebrado na próxima mudança.
 
