@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill
 
 # criar-card
 
-Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md` (NN = próximo número livre em `tarefas/` do módulo; `<nome>` minúsculas, hífen) a partir de `TEMPLATE-CARD.md`; a estrutura vem só dele, nada do projeto adiciona seção. Blocos do checklist: 1 por camada que a task toca, em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations); `Documentação` penúltimo e `QA & Testes` sempre por último. Blocos numerados em sequência; itens `- [ ] **a:**`, letra reiniciando a cada bloco; sub-itens `- [ ] **b.1:**` (regra Hierarquia).
+Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md` (NN = próximo número livre em `tarefas/` do módulo; `<nome>` minúsculas, hífen) a partir de `TEMPLATE-CARD.md`; a estrutura vem só dele, nada do projeto adiciona seção. Blocos do checklist: 1 por divisão do projeto que a task toca (camada, módulo, pasta), em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations); `Documentação` penúltimo e `QA & Testes` por último, só se o projeto usa testes. Blocos numerados em sequência; itens `- [ ] **a:**`, letra reiniciando a cada bloco; sub-itens `- [ ] **b.1:**` (regra Hierarquia).
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que o card cria. Achar com Glob, filtrar com Grep, só então Read. Tipo com regra em `docs/padroes/` (Glob) → ler a regra no lugar do exemplo (modelo base; particularidade do card vale). Camada/módulo não claro → perguntar.
@@ -21,18 +21,18 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Validações:** critério concreto (tamanho, formato, valores). Não definido → perguntar, nunca inventar.
 - **Card cria tipo** (classe, DTO, Command, Query, VO, agregado): ler `${CLAUDE_SKILL_DIR}/TIPOS.md` antes de escrever o checklist. Sem tipo novo, não ler.
 - **Consistência:** nenhum membro citado sem definição no passo do tipo. Usar expressão exata do código (`resultado.Sucesso == false`).
-- **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e task de teste dedicada.
-- **Nomes:** 100% pt-br (arquivo, classe, pasta, projeto). Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz.
+- **Cobertura:** tecnologia nova → passo de registro/config (DI) e dependências de suporte; mecanismo não óbvio → "como" passo a passo; operação com resultado → retorno explícito; segurança/criptografia (erro silencioso) → prioridade e teste dedicado (se o projeto usa testes).
+- **Nomes:** idioma e caixa do projeto (arquivo, classe, pasta, projeto); sem padrão → perguntar. Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo); nunca item perguntando por plano do restante (plano só por pedido explícito). Task sem código novo (só config/texto) → omitir o bloco.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (`backlog`, `modulo/`, `fluxo/` e `camada/` dos docs do bloco Documentação, `tarefa/pendente`; índice do módulo e `backlog.md`, se criados aqui, levam as tags da tabela).
 - **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Dependências sem `<modulo>/decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
-- **Testes:** descrever cenários, não nomes de método.
+- **Testes (se o projeto usa):** descrever cenários, não nomes de método.
 - **Card existente:** editar direto; `previa-diff` só se o Dev pedir para ver antes.
 - **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice (link `tarefas/<card>.md`), nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com dependências.
 - **Dependências:** sem nenhuma → sem a linha. Card = link `[<Módulo> NN](<caminho relativo a partir de tarefas/>/NN-nome.md)` (mesmo módulo: `NN-nome.md`; outro: `../../<modulo>/tarefas/NN-nome.md`), conferindo que o arquivo existe (Glob); decisão segue `<modulo>/decisoes/<nome>`.
 
 ## Gate antes de apresentar
-1. Reler estas regras (e o `TIPOS.md`, se o card cria tipo; ainda não lido → ler agora) contra o rascunho, inclusive cada palavra do nome do arquivo (100% pt-br).
+1. Reler estas regras (e o `TIPOS.md`, se o card cria tipo; ainda não lido → ler agora) contra o rascunho, inclusive cada palavra do nome do arquivo (idioma do projeto).
 2. Sem regra do tipo em `docs/padroes/`: abrir (Read) 1 exemplo real (interface+impl conta como 1) do mesmo tipo e camada; nunca comparar 2 candidatos. Ao introduzir tipo novo em módulo, listar (Glob, 1 nível, sem ler os arquivos) as pastas de 1 outro módulo existente.
 3. Correção aplicada → varrer o card por todo padrão igual e corrigir junto; reler o card inteiro e cortar redundância.

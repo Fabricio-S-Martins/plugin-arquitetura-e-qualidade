@@ -17,7 +17,7 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 
 ## Código novo
 1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; regra do tipo em `docs/padroes/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
-2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar.
+2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (seção Organização de `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
 4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
 
@@ -44,7 +44,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Regra de negócio:** traduzir só o que o código confirma. Quem executa cada etapa só se o usuário informar.
 - **Só o versionado:** citar (link ou nome) apenas o que o git versiona. Ignorado (`.gitignore`) ou fora do repo → não citar.
 - **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
-- **Nomes:** 100% pt-br (arquivos, pastas, títulos). Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre backlog e documentação.
+- **Nomes:** idioma do projeto (arquivos, pastas, títulos); sem padrão → perguntar. Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre backlog e documentação.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `documentacao`; `modulo/` + `fluxo/` no fluxo; `modulo/` + `camada/` na API e em doc de camada; módulo e geral sem `fluxo/` nem `camada/`). Doc sem estado; nunca citar task.
 - **Doc existente:** editar direto; `previa-diff` só se o usuário pedir para ver antes.
 - **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
