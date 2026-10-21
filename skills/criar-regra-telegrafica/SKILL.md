@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Glob, Grep
 
 # criar-regra-telegrafica
 
-Só cria `docs/padroes/<tipo>.md`. Não alterar código. Um tipo por rodada. Só fato: regra vem de arquivo lido com Read (Grep só confirma estrutura); dúvida → perguntar.
+Só cria `docs/padroes/<tipo>.md` (nome da pasta = exemplo: vale o do projeto; sem padrão, perguntar sugerindo-o). Não alterar código. Um tipo por rodada. Só fato: regra vem de arquivo lido com Read (Grep só confirma estrutura); dúvida → perguntar.
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).

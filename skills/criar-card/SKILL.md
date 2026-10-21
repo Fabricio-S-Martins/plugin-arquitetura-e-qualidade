@@ -1,7 +1,7 @@
 ---
 name: criar-card
 description: Cria card de tarefa em .md a partir do template. Usar ao pedir para criar/planejar card ou task.
-allowed-tools: Read, Write, Edit, Glob, Grep, Skill
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # criar-card
@@ -25,13 +25,12 @@ Consultar o código existente em no máximo 3 camadas, priorizando as que o card
 - **Nomes:** idioma e caixa do projeto (arquivo, classe, pasta, projeto); sem padrão → perguntar. Exceção: tipo imposto por biblioteca/framework; a classe própria que o implementa traduz.
 - **Documentação:** task que cria/altera código → bloco com 1 item por doc do que a task toca (fluxo, módulo); nunca item perguntando por plano do restante (plano só por pedido explícito). Task sem código novo (só config/texto) → omitir o bloco.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (`backlog`, `modulo/`, `fluxo/` e `camada/` dos docs do bloco Documentação, `tarefa/pendente`; índice do módulo e `backlog.md`, se criados aqui, levam as tags da tabela).
-- **Card nasce de decisão:** `**Decisão:** escolha + motivo` em `O que fazer`; Dependências sem `<modulo>/decisoes/<nome>`. Após criar o card, acionar `registrar-decisao` (Apagar).
 - **Testes (se o projeto usa):** descrever cenários, não nomes de método.
 - **Card existente:** editar direto; `previa-diff` só se o Dev pedir para ver antes.
 - **Backlog:** `docs/backlog/backlog.md` só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova vai nesse índice (link `tarefas/<card>.md`), nunca no `backlog.md`. Inconsistência achada em linha existente → sinalizar, nunca corrigir sem pedido.
 - **Escopo (YAGNI):** só o pedido; extras como sugestão fora do card. Mais de ~8 itens ou mais de um módulo → propor quebra com dependências.
 - **Especificação:** demanda com especificação aprovada → linha `Especificação` no cabeçalho com link relativo (de `tarefas/`: `../../../../especificacoes/modulos/<m>/fluxos/<m>-<f>.md`, `<m>` = módulo da pasta da especificação; conferir que existe via Glob). Item que cumpre critério termina com `(Critério N)`; o card não repete regra da especificação. Especificação `rascunho` ou `obsoleta` → parar e avisar. Sem especificação: demanda que `especificar` não dispensa → apontar `especificar` antes; senão, sem a linha.
-- **Dependências:** sem nenhuma → sem a linha. Card = link `[<Módulo> NN](<caminho relativo a partir de tarefas/>/NN-nome.md)` (mesmo módulo: `NN-nome.md`; outro: `../../<modulo>/tarefas/NN-nome.md`), conferindo que o arquivo existe (Glob); decisão segue `<modulo>/decisoes/<nome>`.
+- **Dependências:** sem nenhuma → sem a linha. Card = link `[<Módulo> NN](<caminho relativo a partir de tarefas/>/NN-nome.md)` (mesmo módulo: `NN-nome.md`; outro: `../../<modulo>/tarefas/NN-nome.md`), conferindo que o arquivo existe (Glob).
 
 ## Gate antes de apresentar
 1. Reler estas regras (e o `TIPOS.md`, se o card cria tipo; ainda não lido → ler agora) contra o rascunho, inclusive cada palavra do nome do arquivo (idioma do projeto).

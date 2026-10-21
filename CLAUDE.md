@@ -11,11 +11,11 @@ Regras de trabalho neste repo:
 5. Skills: `SKILL.md` enxuto; guia amigável em `docs/guias/` só se necessário.
 6. Respostas no chat: amigáveis e objetivas.
 7. Skills que leem o projeto: no máximo 3 camadas (alvo + até 2 vizinhas), Glob → Grep → Read, 1 arquivo irmão, nunca varrer o projeto; camada não clara → perguntar.
-8. Mudança que o usuário quer ver antes de aplicar (prévia, "mostra como ficaria") → skill `previa-diff`; nunca editar para mostrar.
+8. Prévia (`previa-diff`): nunca mostrar por iniciativa do Claude; no máximo perguntar se o usuário quer ver. Só mostra se ele pedir ("prévia", "mostra como ficaria") ou aceitar. Padrão: alinhar o desenho em texto e, combinado, aplicar direto. Nunca editar para mostrar.
 9. Referência de qualidade ao gerar cards/projetos/código: `docs/instrucoes/QUALIDADE.md`.
 10. Skill que lê/edita arquivo declara `allowed-tools` com só o que usa; regra que ela nunca deve fazer (editar, commitar) fica reforçada aí, não só na prosa.
 11. Nomes de skills, arquivos e pastas em português.
 12. Commit só quando pedido e só no repo da conversa, nunca em outro; `git add` só dos arquivos da tarefa. Mensagem `tipo: descrição` (`feat:`, `fix:`, `docs:`).
 13. Mudança em skill → subir `version` em `.claude-plugin/plugin.json`: correção `0.y.Z`; skill nova, comportamento novo ou nome alterado `0.Y.0`.
-14. Mudança que altera o formato de arquivo do projeto (frontmatter, pasta, nome, tag) → no mesmo commit, `docs/migracoes/X.Y.Z.md` com o prompt só daquela versão: regras novas + passos com prévia (`previa-diff`), sem alterar código nem commitar.
+14. Mudança que altera o formato de arquivo do projeto (frontmatter, pasta, nome, tag) → no mesmo commit, `docs/migracoes/X.Y.Z.md` com o prompt só daquela versão: regras novas + passos que listam o que muda em texto e só aplicam após o "aprovado" do Dev (`previa-diff` só se ele aceitar ver), sem alterar código nem commitar.
 15. Ao criar ou mexer em skill, perguntar: o que o Dev precisa no 1º uso? O resto é parte opcional, escolhida por ele (modo ou escopo). Parte grande e de uso raro → arquivo à parte, lido sob demanda; parte curta → fica no `SKILL.md` como modo. O padrão funciona sem escolha; gate e regras comuns ficam no núcleo.

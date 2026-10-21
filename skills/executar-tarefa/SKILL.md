@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Skill, Bash(dotnet build *)
 Card: `docs/backlog/modulos/<modulo>/tarefas/NN-*.md`. Ler inteiro. Tags: `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`.
 
 ## Dependências (antes de qualquer código)
-1. `Dependências` do cabeçalho (sem a linha = livre). Card citado (Read): tag `tarefa/concluido` e, via Glob/Grep, o que ele entrega existe no código (projeto, pasta, tipo). Dep `<modulo>/decisoes/<nome>` com `decisao/aberta` ou `decisao/adiada` = pendente. Linha `Especificação`: Read; tag diferente de `aprovada`/`implementada` = pendente.
+1. `Dependências` do cabeçalho (sem a linha = livre). Card citado (Read): tag `tarefa/concluido` e, via Glob/Grep, o que ele entrega existe no código (projeto, pasta, tipo). Linha `Especificação`: Read; tag diferente de `aprovada`/`implementada` = pendente.
 2. Dep pendente → parar, nada implementado. Dizer o que falta; card não `bloqueado` e sem `[x]` → propor `tarefa/bloqueado`. Seguir só se o Dev mandar.
 3. **Cadeia:** Grep literal `<arquivo-do-card>.md)` em `Dependências:` dos cards de `docs/backlog/modulos/*/tarefas/` pelos que dependem do card (direta ou indiretamente); listar. Também ficam `tarefa/bloqueado`; mudar só o que o Dev aprovar.
 
@@ -19,7 +19,7 @@ Card: `docs/backlog/modulos/<modulo>/tarefas/NN-*.md`. Ler inteiro. Tags: `${CLA
 6. `[x]` só em item pedido, feito e conferido. Sub-item `[x]` conta como item marcado (passo 4); pai só vira `[x]` com todos os filhos `[x]`. Edit na linha inteira do item (letras repetem entre blocos).
 7. **Build obrigatório:** comando do `CLAUDE.md` do projeto; sem ele, `dotnet build` na `.sln` (ou `.csproj` do módulo) achada por Glob. Zero erros; erro → corrigir dentro do card e rebuildar; build falho → sem `[x]` nem `concluido`. Sem como compilar → dizer.
 8. Todos `[x]` → `tarefa/concluido`; parcial → `tarefa/em-andamento`; impedimento → `tarefa/bloqueado` só se nenhum `[x]` (com `[x]`, segue `em-andamento` e o impedimento vai na resposta).
-9. **Dependentes (só ao concluir):** Grep literal `<arquivo-do-card>.md)` em `Dependências:` dos cards de `docs/backlog/modulos/*/tarefas/`. Em cada dependente, remover só o link deste card (Edit na linha; sobrou vazia → apagar a linha). Dependente `tarefa/bloqueado` sem mais nenhum card em `Dependências` e sem decisão `aberta`/`adiada` e sem `Especificação` fora de `aprovada`/`implementada` → `tarefa/pendente` (Edit só nessa tag, linha 2); resta dep → segue bloqueado. Índice `<modulo>.md` com status → atualizar igual. Nada além de dependência, tag e status.
+9. **Dependentes (só ao concluir):** Grep literal `<arquivo-do-card>.md)` em `Dependências:` dos cards de `docs/backlog/modulos/*/tarefas/`. Em cada dependente, remover só o link deste card (Edit na linha; sobrou vazia → apagar a linha). Dependente `tarefa/bloqueado` sem mais nenhum card em `Dependências` e sem `Especificação` fora de `aprovada`/`implementada` → `tarefa/pendente` (Edit só nessa tag, linha 2); resta dep → segue bloqueado. Índice `<modulo>.md` com status → atualizar igual. Nada além de dependência, tag e status.
 10. **Consistência (só avisar, nunca corrigir):** entre os dependentes do passo 9, card com dependência restante e fora de `tarefa/bloqueado` → listar.
 11. **Especificação (só ao concluir):** Grep literal do nome do arquivo da especificação em `docs/backlog/modulos/*/tarefas/`; todo card que a cita `tarefa/concluido` ou `tarefa/cancelado`, ao menos um `concluido` → tag `especificacao/implementada` na especificação (só essa tag).
 

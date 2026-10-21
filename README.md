@@ -28,7 +28,6 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 |---|---|
 | `criar-card` | Cria card de tarefa em `.md` a partir do template. |
 | `executar-tarefa` | Executa um card (ou parte do checklist) conferindo antes as dependências; troca a tag de estado e faz o build. |
-| `registrar-decisao` | Registra decisão em aberto, adiada ou tomada em `docs/backlog/modulos/<modulo>/decisoes/`; o card que depende dela fica bloqueado. |
 | `criar-regra-telegrafica` | Resume em `docs/padroes/` o padrão de arquivos parecidos (entidades, commands...); as skills leem a regra no lugar de um arquivo irmão. |
 | `especificar` | Define e registra as regras de negócio (especificação aprovada) antes de planejar; ajuste pequeno dispensa. |
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera cards após aprovação. |
@@ -36,7 +35,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | `documentar` | Documenta código novo, atualiza a documentação quando você pede e lista fluxos sem documentação. |
 | `gerir-contexto` | Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada. |
 | `conferir-saida` | Confere se a saída de um teste de skill cumpre o que a skill pede. |
-| `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |
+| `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |   
 | `previa-diff` | Mostra prévia de uma alteração (`+`/`-`) sem editar o arquivo. |
 | `configurar-projeto` | Prepara um projeto novo: cria `docs/`, audita o `CLAUDE.md`, habilita o plugin; Obsidian e `.editorconfig` opcionais. |
 

@@ -1,6 +1,7 @@
 # QUALIDADE
 
 Contexto: a fonte de verdade é o projeto atual (arquivos, CLAUDE.md, o que o Dev disse), nunca outro projeto, a memória ou os exemplos do plugin (ilustrativos).
+Nomes que as skills citam (pasta, subpasta, arquivo, tag, título de seção; ex.: `docs/backlog`, `tarefa/concluido`, `Dependências`) são exemplo do conceito: valem os do projeto (Glob, Grep, nota irmã); sem padrão → perguntar uma vez, sugerindo o exemplo. Conceito e estrutura do plugin não mudam.
 Boas práticas (KISS, YAGNI, DRY, SRP, limites…) valem sempre: não dependem de arquitetura.
 Escolha do Dev: nomenclatura (idioma, camelCase/snake_case/kebab-case…), organização, arquitetura (DDD, monólito, microsserviços…) e uso de testes. Ordem: o que o projeto já usa → o que o Dev disser → perguntar uma vez (sem padrão silencioso do plugin). Escolhido, vira o padrão: seguir rigidamente, sem misturar.
 Projeto com testes → regras de teste valem; sem testes → não exigir nem cobrar.

@@ -18,8 +18,8 @@ Sem alterar código. Ordem fixa.
 Linha "só projeto C#": rodar só se Glob achar `*.csproj`/`*.sln` na raiz ou 1 nível abaixo; senão, pular. Comando de conferir que falha → não pular: avisar e tratar como ausente.
 Para cada linha: ausente → avisar e perguntar se instala agora. Sim + comando Windows → rodar comando da coluna Instalar. Sem comando ou outro SO → link da coluna "Sem Windows" e parar até confirmar instalado.
 
-## 2. Pasta docs e .gitignore
-Ausente → criar `docs/`; criar também `docs/especificacoes/` se ausente. Garantir `docs/sessoes/` no `.gitignore` (sem duplicar; nunca remover linha existente).
+## 2. Pastas e .gitignore
+Nomes citados (`docs/`, `docs/especificacoes/`, `docs/sessoes/`) são sugestão: valem as pastas que o projeto já usa; ausente → perguntar o nome, sugerindo o citado, e criar. Garantir a pasta de sessões no `.gitignore` (sem duplicar; nunca remover linha existente).
 
 ## 3. Opcionais
 Uma pergunta só, com os itens que faltam; aceitou → Read do arquivo e seguir; recusou → seguir sem insistir.
@@ -41,7 +41,7 @@ Garantir `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPl
 { "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true } }
 ```
 Existente → somar se faltar; preservar o resto, nunca remover entrada.
-**Proteção Production** (também no settings): somar em `permissions.ask` (criar a chave se faltar; sem duplicar; nunca `deny`, o Dev precisa poder aprovar) `Bash(*ENVIRONMENT*Production*)` e `Bash(*--environment*Production*)`, mais as 2 iguais com `PowerShell(...)`. Com `CLAUDE.md` presente e sem regra de `Production` nele, somar: ``Ambiente de produção (`Production`): nunca usar nem como contorno de bloqueio (ex: validação de DI) sem perguntar antes, listando as opções de forma clara e objetiva.`` Prévia (`previa-diff`) sempre obrigatória aqui: uma só, settings e `CLAUDE.md`; aplicar só após o ok. Nada a somar → sem prévia.
+**Proteção Production** (também no settings): somar em `permissions.ask` (criar a chave se faltar; sem duplicar; nunca `deny`, o Dev precisa poder aprovar) `Bash(*ENVIRONMENT*Production*)` e `Bash(*--environment*Production*)`, mais as 2 iguais com `PowerShell(...)`. Com `CLAUDE.md` presente e sem regra de `Production` nele, somar: ``Ambiente de produção (`Production`): nunca usar nem como contorno de bloqueio (ex: validação de DI) sem perguntar antes, listando as opções de forma clara e objetiva.`` Listar em texto o que será somado (uma só vez, settings e `CLAUDE.md`) e aplicar só após o ok; prévia com antes e depois só se o Dev aceitar ver. Nada a somar → sem listar.
 Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## Regras

@@ -18,8 +18,7 @@ docs/
 │   ├── backlog.md                  visão geral
 │   └── modulos/<m>/
 │       ├── <m>.md                  nota do módulo
-│       ├── tarefas/
-│       └── decisoes/
+│       └── tarefas/
 ├── documentacao/
 │   ├── documentacao.md             visão geral
 │   └── modulos/<m>/
@@ -32,15 +31,14 @@ docs/
         └── fluxos/
 ```
 
-Fluxos e decisões que tocam mais de um módulo ficam na pasta do módulo principal (o primeiro citado), e as notas dos outros módulos linkam para eles.
+Fluxos que tocam mais de um módulo ficam na pasta do módulo principal (o primeiro citado), e as notas dos outros módulos linkam para eles.
 
 ## Grupo
-Toda nota leva uma tag de grupo: `backlog`, `documentacao` ou `especificacao`. As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
+Toda nota leva uma tag de grupo: `backlog`, `documentacao` ou `especificacao` (nomes de exemplo: se o projeto já usa outros, valem os dele). As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
 
-## Estado: tarefa, decisão e especificação
-O card leva `tarefa/<estado>`, a decisão leva `decisao/<estado>` e a especificação leva `especificacao/<estado>`. Uma tag só diz **o que a nota é** e **em que pé está**. No Obsidian, `tag:#tarefa` lista todos os cards e `-tag:#tarefa/concluido` esconde os concluídos.
+## Estado: tarefa e especificação
+O card leva `tarefa/<estado>` e a especificação leva `especificacao/<estado>`. Uma tag só diz **o que a nota é** e **em que pé está**. No Obsidian, `tag:#tarefa` lista todos os cards e `-tag:#tarefa/concluido` esconde os concluídos.
 - Card: `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`.
-- Decisão: `aberta`, `decidida`, `adiada`.
 - Especificação: `rascunho`, `aprovada`, `implementada`, `obsoleta`.
 
 O Claude troca só essa tag quando o andamento muda, sem mexer nas outras. Quem pede isso é uma regra que a `configurar-projeto` oferece para o `CLAUDE.md` do projeto. Notas gerais, do módulo e docs não levam estado, para não ficarem desatualizadas.
@@ -58,7 +56,6 @@ Quais notas levam o quê:
 | Geral | `[documentacao]` ou `[backlog]` |
 | Módulo | grupo + `modulo/autenticacao` |
 | Card | `[backlog, modulo/autenticacao, fluxo/autenticacao-cadastro, tarefa/concluido]` |
-| Decisão | `[backlog, modulo/pedidos, decisao/adiada]` |
 | Especificação de fluxo | `[especificacao, modulo/autenticacao, fluxo/autenticacao-cadastro, especificacao/aprovada]` |
 | Doc de fluxo | `[documentacao, modulo/autenticacao, fluxo/autenticacao-cadastro]` |
 | Doc de camada (ex. API) | `[documentacao, modulo/autenticacao, camada/api]` |
@@ -69,7 +66,7 @@ A nota do módulo é a que não tem `camada/`, `fluxo/` nem estado. O card herda
 Não há arquivo com a lista. As tags de assunto só usam nomes que já existem: um módulo, camada ou fluxo já em uso ou documentado. Se o Claude precisar de uma tag sem correspondente (por exemplo, um fluxo ainda não documentado), ele **propõe e espera você aprovar**. Assim o vocabulário não se espalha (`entrega`, `entregas`, `delivery`).
 
 ## Projeto que já tem docs e cards
-A `configurar-projeto` lista as notas fora do formato, propõe as tags em prévia (`+` e `-`) e só aplica depois da sua aprovação. A migração da 0.17.0 está em [../migracoes/0.17.0.md](../migracoes/0.17.0.md).
+A `configurar-projeto` lista as notas fora do formato, propõe as tags em texto e só aplica depois da sua aprovação. A migração da 0.17.0 está em [../migracoes/0.17.0.md](../migracoes/0.17.0.md).
 
 ## Exemplos de pedido
 - "Quais cards estão pendentes?"

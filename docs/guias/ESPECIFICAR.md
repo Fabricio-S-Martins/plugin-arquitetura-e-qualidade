@@ -12,15 +12,16 @@ Ajuste pequeno que não cria nem muda regra de negócio (texto, configuração, 
 Diga o módulo e o fluxo: "especifica o cancelamento de pedido". Se você já tem as regras escritas, passe: o Claude organiza e pergunta só o que faltar. Se não tem, ele conduz por perguntas.
 
 ## O que acontece
-1. Ele confere o que o projeto já responde (docs, decisões abertas) antes de perguntar.
-2. Pergunta as regras em rodadas curtas e numeradas, pela consequência que você veria ("o pedido aceito ainda pode ser cancelado?"). Resposta vaga gera nova pergunta; ele nunca preenche por conta própria.
-3. Grava um **rascunho** e pede aprovação. Só "aprovado" vira **aprovada**.
+1. Ele confere o que o projeto já responde (docs do assunto) antes de perguntar.
+2. Pergunta as regras em rodadas curtas e numeradas, pela consequência que você veria ("o pedido aceito ainda pode ser cancelado?"). Resposta vaga gera nova pergunta; ele nunca preenche por conta própria. Regra que você ainda não sabe responder não é escrita: vira uma **validação** na seção `Aguardando Validações` (pergunta + o que acontece hoje), e o resto segue.
+3. Grava um **rascunho** e pede aprovação. Só "aprovado" vira **aprovada**. Com validação pendente não há aprovação: quando você responde, a regra e o critério entram na especificação e a validação sai.
 4. Cards e a execução usam a especificação aprovada. Quando os cards que a citam estão concluídos ou cancelados (ao menos um concluído), ela vira **implementada**.
 
 ## O que sai
-Pasta `docs/especificacoes/modulos/<módulo>/`, com a mesma divisão da documentação e do backlog:
-- `<módulo>.md`: regras de negócio do módulo (a essência).
-- `fluxos/<módulo>-<fluxo>.md`: regras do fluxo e **critérios de aceite**.
+Pasta `docs/especificacoes/`, com a mesma divisão da documentação e do backlog:
+- `<pasta>.md`: visão geral, com o link de cada módulo especificado.
+- `modulos/<módulo>/<módulo>.md`: regras de negócio do módulo (a essência).
+- `modulos/<módulo>/fluxos/<módulo>-<fluxo>.md`: regras do fluxo e **critérios de aceite**.
 
 Um critério de aceite é uma condição concreta que diz como saber se o fluxo está certo, em tabela `Critério | Quando | Então`. O número (`Critério 1: cancelar antes do aceite`) é fixo: o card diz qual critério cada item cumpre, e a revisão confere cada um contra o código.
 
