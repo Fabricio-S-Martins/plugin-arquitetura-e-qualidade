@@ -49,15 +49,3 @@ tags: [especificacao, modulo/<nome>, fluxo/<nome>, especificacao/rascunho]
 - Validação 1: <pergunta de regra de negócio sem resposta>? Hoje: <o que acontece hoje>.
 ```
 Exemplo concreto de uma regra complexa → 1 linha em itálico abaixo dela. Sem item → remover `Fora do escopo`. Sem validação pendente → remover `Aguardando Validações`.
-
-## Visão geral — `<nome da pasta>.md`
-```
----
-tags: [especificacao]
----
-# Especificações
-
-## Módulos
-- [<Módulo>](modulos/<módulo>/<módulo>.md): <1 linha>
-```
-Só aponta; fluxo só pelo link do módulo. Sem estado.

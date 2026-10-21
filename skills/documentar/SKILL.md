@@ -18,8 +18,8 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 ## Código novo
 1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; regra do tipo em `docs/padroes/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
 2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (seção Organização de `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`).
-3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → `docs/documentacao/documentacao.md` (criar se ausente; senão acrescentar o link do que já existe). Escrever só o próximo da fila → **Gate**.
-4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no `docs/documentacao/documentacao.md` (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
+3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → índice da documentação (modelo em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`; criar se ausente; senão incluir o módulo novo). Escrever só o próximo da fila → **Gate**.
+4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no índice da documentação (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
 
 ## Alterado
 1. **Mudança:** ler só o que mudou (`git diff` do alvo). Extrair nomes observáveis: módulo, rota, etapa, mensagem de erro, configuração.
@@ -31,12 +31,12 @@ Só lista, sem escrever nem ler código. Grep `tags:.*tarefa/concluido` em `docs
 
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
-- `docs/documentacao/documentacao.md`: `Módulos` (link + 1 linha) · `Não documentado`. Só aponta; fluxo e API só pelo link do módulo, nunca direto (1 fato, 1 lugar).
+- Índice da documentação: modelo e regras em `INDICE.md` (acima); exceção `Não documentado`.
 - `docs/documentacao/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
 - `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
 - `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
 - **Técnico por projeto:** só sob pedido explícito, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
-- **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo e API → `../<nome>.md`; módulo → `../../documentacao.md`); só o geral não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
+- **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo e API → `../<nome>.md`; módulo → índice da documentação); só o índice não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
 - **Estilo:** títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
 
 ## Regras

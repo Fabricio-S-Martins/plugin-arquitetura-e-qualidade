@@ -24,7 +24,7 @@ Regra ou critério mudou → editar o arquivo, voltar para `rascunho` e pedir no
 ## Estrutura
 - `docs/especificacoes/modulos/<módulo>/<módulo>.md`: regras de negócio do módulo (a essência).
 - `docs/especificacoes/modulos/<módulo>/fluxos/<módulo>-<fluxo>.md`: regras do fluxo e critérios de aceite. Fluxo com 2+ módulos fica na pasta do principal (o 1º citado).
-- `docs/especificacoes/<nome da pasta>.md`: visão geral, só com o link de cada módulo (criar se ausente; senão acrescentar o link do módulo novo).
+- Índice das especificações: modelo e regras em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md` (criar se ausente; senão incluir o módulo novo).
 - Mesma divisão e nomes de `docs/documentacao/`; mesmo nome de módulo em `docs/backlog/`. Pasta do módulo ausente → criar.
 - Tags: `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `especificacao`).
 

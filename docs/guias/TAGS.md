@@ -26,6 +26,7 @@ docs/
 │       ├── api/
 │       └── fluxos/
 └── especificacoes/
+    ├── especificacoes.md           visão geral
     └── modulos/<m>/
         ├── <m>.md                  regras de negócio do módulo
         └── fluxos/

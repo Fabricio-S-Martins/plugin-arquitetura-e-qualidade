@@ -19,7 +19,7 @@ Diga o módulo e o fluxo: "especifica o cancelamento de pedido". Se você já te
 
 ## O que sai
 Pasta `docs/especificacoes/`, com a mesma divisão da documentação e do backlog:
-- `<pasta>.md`: visão geral, com o link de cada módulo especificado.
+- `<pasta>.md`: visão geral no mesmo modelo da documentação e das tarefas: uma frase sobre a pasta e a lista de módulos em ordem alfabética, com link e descrição.
 - `modulos/<módulo>/<módulo>.md`: regras de negócio do módulo (a essência).
 - `modulos/<módulo>/fluxos/<módulo>-<fluxo>.md`: regras do fluxo e **critérios de aceite**.
 
