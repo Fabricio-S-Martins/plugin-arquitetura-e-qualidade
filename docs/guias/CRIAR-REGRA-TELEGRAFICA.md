@@ -11,7 +11,7 @@ Um arquivo `docs/padroes/modelos/<tipo>.md` com só duas partes: o título e um 
 
 Para separar o padrão das manias de um arquivo isolado, ela lê vários irmãos e usa o mais limpo como molde. Se os irmãos divergirem entre si, vale a maioria e ela avisa você dos desvios, sem registrá-los. Se o mesmo bloco se repete em todos, ela avisa que pode virar código compartilhado, sem mexer no código.
 
-Antes de gravar, compara os tokens aproximados da regra com os de 2 arquivos irmãos (1 só não fixa o padrão). Menor: grava. Maior: avisa e você decide. Se o arquivo da regra já existe, ela pergunta antes de sobrescrever.
+Antes de gravar, compara os tokens aproximados da regra com os de 2 arquivos irmãos (1 só não fixa o padrão). Menor: grava. Maior: avisa e você decide. Se o arquivo da regra já existe, ela pergunta antes de sobrescrever. Gravada a regra, acrescenta uma linha para ela no índice da pasta de modelos (e cria o índice se faltar).
 
 ## Como as outras skills usam
 `criar-card`, `planejar`, `documentar` e `revisao-qa` procuram em `docs/padroes/modelos/` uma regra do tipo antes de abrir um arquivo irmão. Havendo regra, leem só ela; não havendo, abrem 1 irmão como antes.

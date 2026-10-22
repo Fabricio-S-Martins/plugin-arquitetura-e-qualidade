@@ -43,7 +43,7 @@ Cada skill tem sua versão telegráfica (lida pela IA) em `skills/<nome>/SKILL.m
 
 ## Regras de qualidade
 
-`docs/instrucoes/QUALIDADE.md` traz os princípios e as exceções que as skills seguem ao gerar cards, projetos e código. `docs/instrucoes/ORGANIZACAO.md` traz a organização de pastas e o espelho entre unidades, lido só ao criar ou alterar estrutura. Práticas e convenções da linguagem ficam no projeto (por exemplo `docs/padroes/praticas.md`, `convencoes.md` e `testes.md`; nomes e pasta são seus): a `configurar-projeto` oferece criá-los vazios e as skills cobram só o que estiver neles.
+`docs/instrucoes/QUALIDADE.md` traz os princípios e as exceções que as skills seguem ao gerar cards, projetos e código. `docs/instrucoes/ORGANIZACAO.md` traz a árvore de pastas do projeto, por papel, e o espelho entre unidades, lido só ao criar ou alterar estrutura. Práticas e convenções da linguagem ficam no projeto (por exemplo `docs/padroes/regras/praticas.md`, `convencoes.md` e `testes.md`, cada grupo com índice; nomes e pastas são seus): a `configurar-projeto` oferece criá-los vazios e as skills cobram só o que estiver neles.
 
 ## Leitura do projeto
 

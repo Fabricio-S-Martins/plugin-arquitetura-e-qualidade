@@ -12,7 +12,7 @@ Diga o alvo: "revise o card 03-aplicacao-criar-usuario", "revise o arquivo X" ou
 
 ## O que ela confere
 - **Card:** as mesmas regras usadas para criar o card (título, localização, validações, consistência, nomes, escopo).
-- **Código:** os princípios de [QUALIDADE.md](../instrucoes/QUALIDADE.md) (KISS, YAGNI, DRY, SRP e padronização) e as práticas e convenções que você registrou no projeto (por exemplo `docs/padroes/praticas.md` e `convencoes.md`). Sem esses arquivos, ela confere só os princípios e a consistência com o código existente, e avisa que eles não existem.
+- **Código:** os princípios de [QUALIDADE.md](../instrucoes/QUALIDADE.md) (KISS, YAGNI, DRY, SRP e padronização) e as práticas e convenções que você registrou no projeto (por exemplo `docs/padroes/regras/praticas.md` e `convencoes.md`). Sem esses arquivos, ela confere só os princípios e a consistência com o código existente, e avisa que eles não existem.
 - **Especificação:** se o card cita uma, cada critério citado precisa ter contrapartida no código e as regras do fluxo não podem ser contrariadas.
 - **Card × código:** se há um card associado, cada item do checklist precisa ter contrapartida no código e os cenários de teste precisam estar cobertos. Build e testes verdes não bastam para dizer que o card está pronto.
 - **Segurança:** hash, token, criptografia e autorização têm prioridade máxima, porque o erro é silencioso. Sem teste dedicado, é bloqueante.

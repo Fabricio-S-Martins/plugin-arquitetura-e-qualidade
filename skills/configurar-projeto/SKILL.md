@@ -19,13 +19,13 @@ Linha "só projeto C#": rodar só se Glob achar `*.csproj`/`*.sln` na raiz ou 1 
 Para cada linha: ausente → avisar e perguntar se instala agora. Sim + comando Windows → rodar comando da coluna Instalar. Sem comando ou outro SO → link da coluna "Sem Windows" e parar até confirmar instalado.
 
 ## 2. Pastas e .gitignore
-Nomes citados (`docs/`, `docs/especificacoes/`, `docs/sessoes/`) são sugestão: valem as pastas que o projeto já usa; ausente → perguntar o nome, sugerindo o citado, e criar. Garantir a pasta de sessões no `.gitignore` (sem duplicar; nunca remover linha existente).
+Nomes citados (`docs/`, `docs/especificacoes/`, `docs/sessoes/`) são sugestão: valem as pastas que o projeto já usa; ausente → perguntar o nome, sugerindo o citado, e criar. Garantir a pasta de sessões no `.gitignore` (sem duplicar; nunca remover linha existente). Árvore de `docs/`: ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/ORGANIZACAO.md` (Árvore do projeto) e oferecer criar só as áreas e os índices que faltam; nunca mover, renomear nem apagar.
 
 ## 3. Opcionais
 Uma pergunta só, com os itens que faltam; aceitou → Read do arquivo e seguir; recusou → seguir sem insistir.
 - **Obsidian** (`OBSIDIAN.md`): sem `docs/.obsidian/`. Se já existe → Read sem perguntar (só sincroniza o que faltar).
 - **.editorconfig** (`EDITORCONFIG.md`): projeto C# (critério do passo 1) sem `.editorconfig` na raiz.
-- **Padrões do projeto** (ex.: `docs/padroes/praticas.md`, `convencoes.md` e, se o projeto usa testes, `testes.md`; pasta e nomes do projeto: Glob, senão perguntar sugerindo o exemplo): arquivo ausente → aceitou → criar vazio, idioma do projeto, só título e 1 linha-guia (`# Práticas adotadas` / `<1 prática por linha, além de KISS, YAGNI, DRY, SRP e padronização; formato opcional "regra — como verificar"; "(preferível)" no fim se não for obrigatória>`; `# Convenções da linguagem` / `<1 convenção por linha: estilo e nomenclatura; mesmo formato>`; `# Testes` / `<1 regra de teste por linha; mesmo formato>`). O conteúdo é do Dev; nunca preencher.
+- **Padrões do projeto** (ex.: `docs/padroes/regras/` com `praticas.md`, `convencoes.md` e, se o projeto usa testes, `testes.md`; pastas e nomes do projeto: Glob, senão perguntar sugerindo o exemplo): arquivo ausente → aceitou → criar vazio, idioma do projeto, só título e 1 linha-guia (`# Práticas adotadas` / `<1 prática por linha, além de KISS, YAGNI, DRY, SRP e padronização; formato opcional "regra — como verificar"; "(preferível)" no fim se não for obrigatória>`; `# Convenções da linguagem` / `<1 convenção por linha: estilo e nomenclatura; mesmo formato>`; `# Testes` / `<1 regra de teste por linha; mesmo formato>`). O conteúdo é do Dev; nunca preencher. Criar também, se faltarem, o índice da área de padrões e o do grupo (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`, seção Índice de padrões; 1 linha por arquivo, descrição do que ele guarda tirada do título).
 
 ## 4. CLAUDE.md do projeto
 Auditoria sem editar; as únicas edições são as linhas de commit, da skill e de Production (passo 5), e só se o Dev aceitar.

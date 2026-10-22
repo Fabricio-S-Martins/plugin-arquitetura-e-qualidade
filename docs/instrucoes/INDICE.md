@@ -22,5 +22,8 @@
 - Tarefas: lista também unidade sem regra de negócio nem fluxo (ex.: compartilhada). Exceção declarada ao Espelho de `ORGANIZACAO.md`, não assimetria a corrigir.
 - Documentação: mantém a seção do que ainda não foi documentado (`Não documentado`), só nomes (Glob de 1 nível, sem ler).
 
+## Índice de padrões
+Área de padrões e cada grupo dela (regras, modelos de tipo…) levam índice no mesmo modelo, sem `## Módulos`: título = nome da pasta, 1 frase do que guarda, lista `[<Item>](<caminho relativo>): descrição de 1 linha` sob `## Grupos` (índice da área) ou `## Itens` (índice do grupo). Ordem, lista e escrita como acima. Sem tags de área. Descrição do item: 1 linha escrita ao criar o item.
+
 ## Atualizar
 Incluir só a unidade da rodada. Inconsistência em linha existente → sinalizar, nunca corrigir sem pedido.

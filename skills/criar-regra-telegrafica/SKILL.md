@@ -1,7 +1,7 @@
 ---
 name: criar-regra-telegrafica
 description: Cria regra telegráfica (modelo base) de um tipo de arquivo repetido no projeto, em docs/padroes/modelos/, a partir de arquivos citados ou achados por nome. Usar ao pedir regra/padrão/modelo de um tipo (ex: entidade, handler).
-allowed-tools: Read, Write, Glob, Grep
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # criar-regra-telegrafica
@@ -36,4 +36,4 @@ Antes de gravar: estimar (caracteres ÷ 4, dezena mais próxima) a regra e o cus
 |-|-|
 | 2 arquivos irmãos (soma dos lidos) | ~N |
 | Regra | ~M (−X%) |
-Regra < 2 irmãos → gravar; ≥ 2 → avisar e deixar o Dev decidir, sem bloquear. Entrega: só o caminho e a regra gerada.
+Regra < 2 irmãos → gravar; ≥ 2 → avisar e deixar o Dev decidir, sem bloquear. Gravada a regra: acrescentar ao índice dos modelos (ex.: `modelos.md`; criar se faltar, modelo em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`, seção Índice de padrões) a linha `[<tipo>](<tipo>.md): <1 linha do que o tipo é>`, em ordem alfabética. Entrega: só o caminho e a regra gerada.
