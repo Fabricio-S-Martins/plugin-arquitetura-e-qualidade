@@ -14,8 +14,11 @@ Só cria `docs/padroes/modelos/<tipo>.md` (nome da pasta = exemplo: vale o do pr
 - **Confirmar similaridade:** Grep das linhas estruturais (declaração, base, construtores, atributos) do grupo; Read de 3 amostras (molde = a mais limpa). Estrutura não se repete → dizer, não criar. Divergência de nome ou formatação → vale a maioria; avisar o Dev dos desvios, sem registrá-los.
 
 ## Escrever
-`docs/padroes/modelos/<tipo>.md` (idioma do projeto, minúsculas, hífen, singular), sem frontmatter nem tags. Arquivo já existe → perguntar se sobrescreve; sem "sim" explícito, parar:
+`docs/padroes/modelos/<tipo>.md` (idioma do projeto, minúsculas, hífen, singular), com frontmatter `tags` (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`: grupo de padrões + `camada/<c>` se o tipo pertence a uma camada). Arquivo já existe → perguntar se sobrescreve; sem "sim" explícito, parar:
 ````
+---
+tags: [<grupo de padrões>, camada/<c>]
+---
 # <Tipo>
 
 ## Esqueleto

@@ -35,7 +35,7 @@ docs/
 Fluxos que tocam mais de um módulo ficam na pasta do módulo principal (o primeiro citado), e as notas dos outros módulos linkam para eles.
 
 ## Grupo
-Toda nota leva uma tag de grupo: `backlog`, `documentacao` ou `especificacao` (nomes de exemplo: se o projeto já usa outros, valem os dele). As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
+Toda nota leva uma tag de grupo: `backlog`, `documentacao`, `especificacao` ou `padrao` (nomes de exemplo: se o projeto já usa outros, valem os dele). As skills gravam sozinhas. Ela serve para filtrar o grafo do Obsidian (`tag:#backlog` ou `tag:#documentacao`; guarde cada uma como favorito). Cor e filtros do grafo ficam por sua conta: o plugin não mexe no `graph.json`.
 
 ## Estado: tarefa e especificação
 O card leva `tarefa/<estado>` e a especificação leva `especificacao/<estado>`. Uma tag só diz **o que a nota é** e **em que pé está**. No Obsidian, `tag:#tarefa` lista todos os cards e `-tag:#tarefa/concluido` esconde os concluídos.
@@ -60,6 +60,7 @@ Quais notas levam o quê:
 | Especificação de fluxo | `[especificacao, modulo/autenticacao, fluxo/autenticacao-cadastro, especificacao/aprovada]` |
 | Doc de fluxo | `[documentacao, modulo/autenticacao, fluxo/autenticacao-cadastro]` |
 | Doc de camada (ex. API) | `[documentacao, modulo/autenticacao, camada/api]` |
+| Padrão (índice, regra ou modelo de tipo) | `[padrao]`; modelo de uma camada: `[padrao, camada/aplicacao]` |
 
 A nota do módulo é a que não tem `camada/`, `fluxo/` nem estado. O card herda `fluxo/` e `camada/` das docs do bloco Documentação: se ele não gera doc de domínio, não leva `camada/dominio`. Para documentar algo novo (comportamento, domínio, infra), basta usar um valor desses eixos, sem criar tag nova.
 

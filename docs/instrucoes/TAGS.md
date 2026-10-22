@@ -12,7 +12,7 @@ tags: [backlog, modulo/entregas, fluxo/checkout, tarefa/pendente]
 ---
 ```
 Minúsculas, pt-br, sem acento, hífen.
-- **Grupo** (exatamente 1 por nota): `backlog`, `documentacao` ou `especificacao` (exemplos; vale o nome que o projeto já usa, `QUALIDADE.md`).
+- **Grupo** (exatamente 1 por nota): `backlog`, `documentacao`, `especificacao` ou `padrao` (exemplos; vale o nome que o projeto já usa, `QUALIDADE.md`).
 - **Estado** (só card e especificação; exatamente 1): `tarefa/<valor>` no card, `especificacao/<valor>` na especificação. Dizem o tipo e o estado.
 - **Assunto:** `modulo/<m>`, `camada/<c>`, `fluxo/<f>`.
 
@@ -25,8 +25,9 @@ Minúsculas, pt-br, sem acento, hífen.
 | Especificação de módulo | `especificacao` + ≥1 `modulo/` + `especificacao/<valor>` |
 | Especificação de fluxo | `especificacao` + ≥1 `modulo/` + ≥1 `fluxo/` + `especificacao/<valor>` |
 | Doc de camada (API, domínio, aplicação, infra; inclui técnico por projeto) | `documentacao` + ≥1 `modulo/` + ≥1 `camada/` |
+| Padrão (índice da área ou do grupo, regra, modelo de tipo) | `padrao`; modelo de tipo de uma camada: + `camada/<c>` (nome já em uso; senão propor) |
 
-- Nota do módulo = a que não tem `camada/` nem `fluxo/` (nem estado, exceto na especificação). Geral, módulo, fluxo e camada da documentação e do backlog não levam estado; a especificação (de módulo ou fluxo) leva.
+- Nota do módulo = a que não tem `camada/` nem `fluxo/` (nem estado, exceto na especificação). Geral, módulo, fluxo e camada da documentação e do backlog não levam estado; a especificação (de módulo ou fluxo) leva. Padrões não levam estado.
 - Card herda `modulo/`, `fluxo/` e `camada/` dos docs do bloco Documentação; sem doc dessa camada, sem `camada/`. `fluxo/` = nome do fluxo; `camada/` = nome da camada (a API é `camada/api`).
 
 ## Vocabulário
