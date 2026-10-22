@@ -2,7 +2,7 @@
 
 ADR é o registro de uma escolha estrutural e do porquê dela. Serve para você (daqui a meses) e para a IA não reabrirem uma discussão já resolvida nem sugerirem uma alternativa que já foi descartada. A versão que o Claude lê é [../instrucoes/DECISOES.md](../instrucoes/DECISOES.md), telegráfica de propósito.
 
-É opcional. O plugin só oferece; o projeto decide se adota. Para adotar, aceite a pergunta do `configurar-projeto`: ele cria o modelo e a área de decisões (só o índice). Projeto que não adotou nunca recebe sugestão de ADR.
+É opcional. O plugin só oferece; o projeto decide se adota. Para adotar, aceite a pergunta do `configurar-projeto`: ele cria a área de decisões (só o índice). O molde do ADR é do plugin e não é copiado para `docs/padroes/`, que guarda só o que é exclusivo do projeto. Projeto que não adotou nunca recebe sugestão de ADR.
 
 ## O que vira ADR
 Escolha estrutural difícil de reverter: tecnologia, framework, fronteira entre módulos, uma proibição. Escolha que vale só para um card fica no próprio card (`**Decisão:**`); regra de negócio fica na especificação.
