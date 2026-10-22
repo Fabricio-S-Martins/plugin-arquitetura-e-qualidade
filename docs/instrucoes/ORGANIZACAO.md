@@ -18,7 +18,7 @@ Por papel: nomes, níveis e número de áreas são do projeto (Glob no existente
     ├── <área com unidades>/             <índice da área> · <unidade>/ (<nota da unidade> · subpastas sob demanda)
     └── <área de padrões>/               <índice da área> · <grupo>/ (<índice do grupo> · itens)
 ```
-- Área com unidades (ex.: tarefas, documentação, especificações): mesma estrutura em todas; cada unidade do código aparece nelas (espelho).
+- Área com unidades (ex.: tarefas, documentação, especificações, decisões): mesma estrutura em todas; cada unidade do código aparece nelas (espelho).
 - Área de padrões: sem unidades; grupos por assunto (ex.: regras, modelos de tipo), cada grupo com índice.
 - Índice: 1 por área e 1 por grupo; modelo em `INDICE.md`.
 - Área fora da árvore (ex.: notas operacionais): fica como está; listar, não corrigir sem pedir. As que o `CLAUDE.md` do projeto lista como fora da árvore não entram na conferência.

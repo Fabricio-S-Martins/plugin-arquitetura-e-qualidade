@@ -16,9 +16,11 @@ Ela compara o que falta para terminar a tarefa (pelo que está na conversa) com 
 Manter a sessão aproveita o cache (o início repetido da conversa sai mais barato e rápido). O `/compact` resume e pode perder detalhe. Trocar de sessão com `/clear` tira o peso do histórico, que é reenviado a cada mensagem, e depois de alguns minutos parado o cache já expirou.
 
 ## O que você recebe
-Um prompt no chat, em um bloco de código, com o estado da frente: objetivo, o que está feito e pendente, o próximo passo, decisões com o porquê, o que foi descartado, dúvidas em aberto e o que ler antes de agir. Ele é autocontido: não depende de arquivo, e serve igual para a IA e para uma pessoa (frases curtas, caminhos exatos, datas completas). Tem no máximo cerca de 25 linhas e termina com "Sem presumir, deve ler."
+**Com um card em execução**, o estado vai para o próprio card, na seção `Retomada`, sempre no fim do arquivo. Ela guarda só o que o checklist não diz: decisões com o porquê, descartes, armadilhas, dúvidas em aberto, próximo passo e o que ler antes de agir. No chat vem uma linha só, apontando para o card; a sessão nova (ou o outro dev) lê o card inteiro. Se a skill não tiver certeza de qual é o card, pergunta. Ao concluir o card, a `executar-tarefa` pergunta o destino das decisões que valem além dele e apaga a seção.
 
-Nada é salvo em arquivo. Copie o prompt antes de fechar o chat. Você dá `/clear` e cola na sessão nova.
+**Sem card**, um prompt no chat, em um bloco de código, com o estado da frente: objetivo, o que está feito e pendente, o próximo passo, decisões com o porquê, o que foi descartado, dúvidas em aberto e o que ler antes de agir. Ele é autocontido: não depende de arquivo, e serve igual para a IA e para uma pessoa (frases curtas, caminhos exatos, datas completas). Tem no máximo cerca de 25 linhas e termina com "Sem presumir, deve ler."
+
+O prompt sem card não é salvo em arquivo: copie antes de fechar o chat. Você dá `/clear` e cola na sessão nova.
 
 ## Passar para outro dev
 Envie o prompt por chat ou e-mail; o outro dev cola na sessão dele. O texto não usa "você" nem "nós", para fazer sentido para quem não viu a conversa.
@@ -28,6 +30,6 @@ Antes de entregar, a skill confere se alguma pendência já foi resolvida no có
 
 ## Regras
 - **Só o que foi dito na conversa:** ela não lê o projeto para completar lacunas. As únicas leituras extras são o estado do git e a busca pontual da conferência.
-- **Não altera código, não cria arquivo e não faz commit.**
+- **Não altera código, não cria arquivo e não faz commit.** A única edição é a seção `Retomada` do card em execução.
 - **Dúvida vira "em aberto"**, nunca suposição.
 - Toda retomada termina com "Sem presumir, deve ler.": a sessão nova lê os arquivos indicados em vez de imaginar.

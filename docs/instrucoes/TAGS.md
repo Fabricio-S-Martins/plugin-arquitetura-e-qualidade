@@ -12,8 +12,8 @@ tags: [backlog, modulo/entregas, fluxo/checkout, tarefa/pendente]
 ---
 ```
 Minúsculas, pt-br, sem acento, hífen.
-- **Grupo** (exatamente 1 por nota): `backlog`, `documentacao`, `especificacao` ou `padrao` (exemplos; vale o nome que o projeto já usa, `QUALIDADE.md`).
-- **Estado** (só card e especificação; exatamente 1): `tarefa/<valor>` no card, `especificacao/<valor>` na especificação. Dizem o tipo e o estado.
+- **Grupo** (exatamente 1 por nota): `backlog`, `documentacao`, `especificacao`, `adr` ou `padrao` (exemplos; vale o nome que o projeto já usa, `QUALIDADE.md`).
+- **Estado** (só card, especificação e ADR; exatamente 1): `tarefa/<valor>` no card, `especificacao/<valor>` na especificação, `adr/<valor>` no ADR. Dizem o tipo e o estado.
 - **Assunto:** `modulo/<m>`, `camada/<c>`, `fluxo/<f>`.
 
 | Nota | Tags |
@@ -25,6 +25,7 @@ Minúsculas, pt-br, sem acento, hífen.
 | Especificação de módulo | `especificacao` + ≥1 `modulo/` + `especificacao/<valor>` |
 | Especificação de fluxo | `especificacao` + ≥1 `modulo/` + ≥1 `fluxo/` + `especificacao/<valor>` |
 | Doc de camada (API, domínio, aplicação, infra; inclui técnico por projeto) | `documentacao` + ≥1 `modulo/` + ≥1 `camada/` |
+| ADR (`DECISOES.md`) | `adr` + ≥1 `modulo/` + `adr/<valor>` |
 | Padrão (índice da área ou do grupo, regra, modelo de tipo) | `padrao`; modelo de tipo de uma camada: + `camada/<c>` (nome já em uso; senão propor) |
 
 - Nota do módulo = a que não tem `camada/` nem `fluxo/` (nem estado, exceto na especificação). Geral, módulo, fluxo e camada da documentação e do backlog não levam estado; a especificação (de módulo ou fluxo) leva. Padrões não levam estado.
@@ -37,6 +38,9 @@ Sem arquivo de lista: tag de assunto = nome já em uso (Grep `modulo/`, `camada/
 ## Estado do card
 Exatamente 1 tag `tarefa/<valor>` por nota; trocar = substituir só esse item da lista, preservando as demais. Valores fechados (conjunto e significado; o nome da tag é o do projeto): `pendente` (ao criar), `em-andamento`, `concluido`, `bloqueado`, `cancelado`. Outro valor → não gravar.
 Card com `Especificação` fora de `aprovada`/`implementada` → `tarefa/bloqueado`.
+
+## Estado do ADR
+Mesma regra (1 tag `adr/<valor>`). Valores fechados: `proposta` (ao criar), `aceita` (só com aceite explícito do Dev), `substituida` (só quando um ADR novo `aceita` o substitui).
 
 ## Estado da especificação
 Skill `especificar`. Mesma regra (1 tag `especificacao/<valor>`). Valores fechados: `rascunho` (ao criar ou alterar), `aprovada` (só com aprovação explícita do Dev), `implementada` (só especificação de fluxo; `executar-tarefa`, quando todo card que a cita está `concluido` ou `cancelado` e ao menos um `concluido`), `obsoleta` (só se o Dev disser).

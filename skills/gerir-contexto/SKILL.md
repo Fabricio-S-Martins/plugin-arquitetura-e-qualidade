@@ -1,12 +1,12 @@
 ---
 name: gerir-contexto
 description: Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada, senão avisa que não precisa. Usar ao informar o uso do contexto, ou pedir trocar de sessão, compactar, prompt de retomada, passar para outro dev ou resumo da conversa.
-allowed-tools: Read, Grep, Bash(git status *), Bash(git log *), Bash(git rev-parse *), Bash(git config user.name)
+allowed-tools: Read, Grep, Edit, Bash(git status *), Bash(git log *), Bash(git rev-parse *), Bash(git config user.name)
 ---
 
 # gerir-contexto
 
-Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`. Não editar código, não criar arquivo.
+Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, e o card em execução (só ao gravar a Retomada). Não editar código, não criar arquivo; única edição: a seção `Retomada` desse card.
 
 ## Avaliar
 Chamada após o usuário conferir o `/context`. Nunca rodar `/context` nem medir o contexto.
@@ -23,4 +23,4 @@ Chamada após o usuário conferir o `/context`. Nunca rodar `/context` nem medir
 Usuário pediu passar para outro dev → sempre gerar o Prompt.
 
 ## Prompt
-Ler `${CLAUDE_SKILL_DIR}/PROMPT.md` e seguir (só neste caso).
+Ler `${CLAUDE_SKILL_DIR}/PROMPT.md` e seguir (só neste caso): com card em execução, a seção "Retomada no card"; sem card, "Prompt".

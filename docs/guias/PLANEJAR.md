@@ -23,6 +23,7 @@ Descreva a demanda e passe o que já tiver: objetivo, o que entra e o que não e
 - **Fatos:** cada um com a fonte, que é um arquivo e linha ou "usuário".
 - **Impacto por camada:** só as camadas da arquitetura do projeto, verificadas no código, com os componentes a criar ou alterar.
 - **Decisões:** o que será feito e por quê, com marca nas que dependem da sua confirmação.
+- **Decisões estruturais:** em projeto que adotou [ADR](DECISOES.md), a decisão difícil de reverter vem marcada `ADR proposto`; só é gravada se você aceitar, junto com os cards. ADRs aceitos do módulo são lidos antes e mandam sobre o plano.
 - **Alternativas descartadas:** uma linha por alternativa, com o motivo. Quando o caminho parece barato mas cobra caro depois, vem marcado com `ARMADILHA:`. Assim, ninguém reabre uma discussão sem lembrar por que aquela opção foi rejeitada.
 - **Padrão seguido:** o arquivo do projeto usado como referência, ou "nenhum".
 - **Cards:** título, camadas, dependências e critério de pronto observável (build, teste ou fluxo), em ordem de execução. Um card que depende de algo externo, como uma credencial ou a resposta de um terceiro, vem marcado como `BLOQUEADO`, com o que o destrava.
@@ -31,4 +32,4 @@ Descreva a demanda e passe o que já tiver: objetivo, o que entra e o que não e
 ## Regras
 - **Só fatos:** tudo o que o plano afirma vem do código, dos documentos ou de você.
 - **Padrão do projeto primeiro:** ela segue o que já existe. Se não houver padrão, usa as regras de qualidade do plugin e avisa.
-- **Nada é alterado antes da aprovação.**
+- **Nada é alterado antes da aprovação.** Depois dela, além dos cards, só o ADR que você aceitou.
