@@ -16,8 +16,8 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 - **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
-1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas; regra do tipo em `docs/padroes/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
-2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (seção Organização de `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md`).
+1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; regra do tipo em `docs/padroes/modelos/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
+2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/ORGANIZACAO.md`).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → índice da documentação (modelo em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`; criar se ausente; senão incluir o módulo novo). Escrever só o próximo da fila → **Gate**.
 4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no índice da documentação (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
 
@@ -30,7 +30,7 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 Só lista, sem escrever nem ler código. Grep `tags:.*tarefa/concluido` em `docs/backlog/` → fluxos (`fluxo/<f>`) dos cards concluídos; Grep `tags:.*fluxo/` em `docs/documentacao/` → fluxos documentados. Diferença = sem doc: listar fluxo, módulo e card de origem. Dev escolhe qual → modo Código novo. Fluxo sem card não aparece (plano ou escopo nomeado).
 
 ## Estrutura e modelos
-Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos de camada (Domínio, Aplicação, Infraestrutura, handler, MediatR). Um arquivo por assunto; frases curtas, títulos sempre iguais.
+Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos técnicos de camada ou de padrão do projeto (ex.: Domínio, Infraestrutura, handler). Um arquivo por assunto; frases curtas, títulos sempre iguais.
 - Índice da documentação: modelo e regras em `INDICE.md` (acima); exceção `Não documentado`.
 - `docs/documentacao/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
 - `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.

@@ -13,7 +13,7 @@ Ajuste que não cria nem muda regra de negócio nem comportamento observável (t
 
 ## Fluxo
 1. **Alvo:** módulo e fluxo (nome não claro → perguntar). Glob do arquivo do fluxo (e do módulo) em `docs/especificacoes/modulos/<módulo>/`: existe → modo Atualizar; senão criar o que faltar.
-2. **Fatos primeiro:** antes de perguntar, verificar no projeto (Glob → Grep → Read; até 3 divisões; docs do assunto em `docs/documentacao/`; vocabulário do projeto). Fato = ler e citar a fonte. Regra de negócio é do Dev: perguntar, nunca chutar. Regra sem resposta → `Aguardando Validações` (formato na Escrita); o resto segue.
+2. **Fatos primeiro:** antes de perguntar, verificar no projeto (Glob → Grep → Read; até 3 divisões, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; docs do assunto em `docs/documentacao/`; vocabulário do projeto). Fato = ler e citar a fonte. Regra de negócio é do Dev: perguntar, nunca chutar. Regra sem resposta → `Aguardando Validações` (formato na Escrita); o resto segue.
 3. **Perguntas:** em rodadas, numeradas, curtas, pela consequência observável ("o pedido aceito ainda pode ser cancelado?"), cada uma dizendo o que já foi verificado. Resposta vaga → perguntar de novo. Regra do Dev já escrita → organizar no modelo, perguntando só o que faltar.
 4. **Rascunho:** gravar com `especificacao/rascunho`, apresentar e encerrar com "Aguardando aprovação." Só "aprovado" (ou equivalente explícito) troca para `especificacao/aprovada`; ajuste pedido → revisar e reapresentar. Silêncio não é aprovação. Com `Aguardando Validações` não vazia: sem aprovação; pedir as respostas e encerrar com "Aguardando validações."
 5. **Próximo passo:** informar o caminho e que a demanda segue para `planejar`.

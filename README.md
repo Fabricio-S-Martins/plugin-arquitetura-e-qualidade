@@ -1,6 +1,6 @@
 # arquitetura-e-qualidade
 
-Plugin do Claude Code com regras de qualidade (SOLID, DRY, KISS, YAGNI, Demeter, object calisthenics, padronização) e skills para criar cards, planejar, revisar QA, documentar, gerir contexto e otimizar tokens — gastando poucos tokens e sem perder contexto entre sessões.
+Plugin do Claude Code para qualidade de arquitetura em todo o ciclo do projeto: especificar, planejar, implementar, testar, documentar e organizar. Impõe o método (KISS, YAGNI, DRY, SRP e padronização) e deixa práticas, convenções e nomes a cada projeto. Inclui utilitários para gerir o contexto e reduzir tokens.
 
 ## Instalar em outro projeto
 
@@ -28,7 +28,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 |---|---|
 | `criar-card` | Cria card de tarefa em `.md` a partir do template. |
 | `executar-tarefa` | Executa um card (ou parte do checklist) conferindo antes as dependências; troca a tag de estado e faz o build. |
-| `criar-regra-telegrafica` | Resume em `docs/padroes/` o padrão de arquivos parecidos (entidades, commands...); as skills leem a regra no lugar de um arquivo irmão. |
+| `criar-regra-telegrafica` | Resume em `docs/padroes/modelos/` o padrão de arquivos parecidos (entidades, commands...); as skills leem a regra no lugar de um arquivo irmão. |
 | `especificar` | Define e registra as regras de negócio (especificação aprovada) antes de planejar; ajuste pequeno dispensa. |
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera cards após aprovação. |
 | `revisao-qa` | Revisa card ou código contra as regras de qualidade; só reporta, não corrige. |
@@ -43,4 +43,8 @@ Cada skill tem sua versão telegráfica (lida pela IA) em `skills/<nome>/SKILL.m
 
 ## Regras de qualidade
 
-`docs/instrucoes/QUALIDADE.md` traz os princípios, limites e exceções que as skills seguem ao gerar cards, projetos e código.
+`docs/instrucoes/QUALIDADE.md` traz os princípios e as exceções que as skills seguem ao gerar cards, projetos e código. `docs/instrucoes/ORGANIZACAO.md` traz a organização de pastas e o espelho entre unidades, lido só ao criar ou alterar estrutura. Práticas e convenções da linguagem ficam no projeto (por exemplo `docs/padroes/praticas.md`, `convencoes.md` e `testes.md`; nomes e pasta são seus): a `configurar-projeto` oferece criá-los vazios e as skills cobram só o que estiver neles.
+
+## Leitura do projeto
+
+As skills que leem o projeto leem até 3 camadas (a do alvo e até 2 vizinhas) e avisam isso no início. Para ler mais, é só pedir (por exemplo, "varredura completa"): vale só para aquela execução; na seguinte, volta às 3 camadas.

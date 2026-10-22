@@ -2,30 +2,21 @@
 
 Contexto: a fonte de verdade é o projeto atual (arquivos, CLAUDE.md, o que o Dev disse), nunca outro projeto, a memória ou os exemplos do plugin (ilustrativos).
 Nomes que as skills citam (pasta, subpasta, arquivo, tag, título de seção; ex.: `docs/backlog`, `tarefa/concluido`, `Dependências`) são exemplo do conceito: valem os do projeto (Glob, Grep, nota irmã); sem padrão → perguntar uma vez, sugerindo o exemplo. Conceito e estrutura do plugin não mudam.
-Boas práticas (KISS, YAGNI, DRY, SRP, limites…) valem sempre: não dependem de arquitetura.
+Boas práticas (KISS, YAGNI, DRY, SRP…) valem sempre: não dependem de arquitetura.
 Escolha do Dev: nomenclatura (idioma, camelCase/snake_case/kebab-case…), organização, arquitetura (DDD, monólito, microsserviços…) e uso de testes. Ordem: o que o projeto já usa → o que o Dev disser → perguntar uma vez (sem padrão silencioso do plugin). Escolhido, vira o padrão: seguir rigidamente, sem misturar.
-Projeto com testes → regras de teste valem; sem testes → não exigir nem cobrar.
+Projeto com testes → vale o arquivo de testes do projeto (ex.: `testes.md`); sem testes → não exigir nem cobrar.
+Padrões do projeto: 1 arquivo por assunto (ex.: `docs/padroes/praticas.md`, `convencoes.md`, `testes.md`; modelos de tipo em `docs/padroes/modelos/`; pasta e nomes são do projeto). Item sem marca = obrigatório; `(preferível)` no fim = preferível. Formato opcional `regra — como verificar` (a verificação por busca alimenta o Mecânico). Existindo, ler e cobrar só o que está neles; ausentes → só os princípios abaixo e a consistência com o código existente.
 Regra do plugin (ex: nomes em pt-br) vale para os arquivos do plugin, não para o projeto.
 Escrita: o que o Dev lê ou vai para o projeto usa termos descritivos, sem abreviação nem jargão; sigla de conhecimento geral (API, CI/CD, VO, KISS) fica; sigla ou termo do plugin ou pouco conhecido → por extenso ou explicado na 1ª vez, inclusive o termo interno que aparece na saída. Instrução interna pode ser telegráfica.
- Todo nome (arquivo, regra, seção, critério) diz o que é em poucas palavras.
+Todo nome (arquivo, regra, seção, critério) diz o que é em poucas palavras.
+Organização: criar ou alterar pasta, arquivo ou unidade (código, docs, backlog, testes, especificações) → ler antes `ORGANIZACAO.md` (mesma pasta).
 
-Prioridade: KISS/YAGNI > padronização > DRY > SOLID > calisthenics.
-Violou regra obrigatória → registrar `Exceção: <regra> — <motivo>`.
+Prioridade: KISS/YAGNI > padronização > DRY > SRP.
+Violou regra obrigatória (princípio ou prática do projeto) → registrar `Exceção: <regra> — <motivo>`.
 
-Obrigatórias: KISS, YAGNI, DRY, SRP, LSP, DIP, Demeter, padronização, 1 indentação/método, sem else.
-Preferíveis: OCP, ISP, demais calisthenics.
+Obrigatórias: KISS, YAGNI, DRY, SRP, padronização.
 
-Limites: classe ≤150 linhas, método ≤15, ≤5 atributos.
-KISS/método: privado só com reuso real ou (complexidade isolável + conceito de domínio nomeável); senão inline. Projeto com testes: merece teste direto → classe pública, nunca privado nem reflection. Não fragmentar método longo e narrativo só para "simplificar".
-YAGNI: interface só com 2+ implementações ou fronteira de infraestrutura; nada fora do escopo do card (registrar como sugestão).
-DRY: extrair na 3ª duplicação; não unir código parecido com razões de mudança distintas.
-DIP: depender de abstração, na direção que a arquitetura do projeto definir; injeção via construtor.
-Calisthenics (preferível): value objects p/ primitivos de domínio, coleção de 1ª classe, sem abreviações, sem getters/setters expondo estado.
+KISS/método: método extraído só com reuso real ou (complexidade isolável + conceito de domínio nomeável); senão inline. Não fragmentar método longo e narrativo só para "simplificar".
+YAGNI: não criar abstração (ex.: interface) sem necessidade real; nada fora do escopo do card (registrar como sugestão).
+DRY: remover redundância; não unir código parecido com razões de mudança distintas.
 Padronização: ler código existente antes; 1 conceito = 1 nome; não misturar refatoração com mudança de comportamento.
-
-Organização (padrão rígido; nomes não):
-- Unidade = qualquer divisão do projeto (módulo, serviço, contexto, pacote). Mesmo nível = mesma estrutura interna.
-- Esqueleto = pastas de toda unidade. Sob demanda = só nasce com conteúdo; ao nascer, mesmo nome e lugar em toda unidade que precisar. Pasta exclusiva de uma unidade: só dentro de pasta do esqueleto, nunca novo nível.
-- Espelho: toda unidade do código existe com o mesmo nome em docs, backlog, testes e especificações; subestrutura só onde a área já a usa. Artefato novo (especificações, contratos, cenários) nasce dentro da unidade, nunca solto. Compartilhado/transversal = unidade própria nas mesmas áreas.
-- Nomes (idioma, caixa, plural): fixos após escolhidos (Glob no existente). Caixa pode variar por área se cada área for uniforme.
-- Criar/alterar: ler 1 unidade equivalente como modelo → replicar nas que precisam → criar o espelho no mesmo passo. Assimetria existente: listar, não corrigir sem pedir.

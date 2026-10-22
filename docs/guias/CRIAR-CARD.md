@@ -15,7 +15,7 @@ Um arquivo `docs/backlog/modulos/<modulo>/tarefas/NN-<nome>.md`, com o próximo 
 - **Checklist:** o passo a passo, com um bloco para cada camada que a task toca (por exemplo Domínio, Aplicação, Infraestrutura, API, DI & Migrations), em ordem de dependência. O bloco "Documentação" vem em penúltimo: um item para cada documento que a task toca (fluxo, módulo). Task sem código novo (só configuração ou texto) fica sem esse bloco. O bloco "QA & Testes" existe sempre e vem por último. Os blocos são numerados em sequência e os itens usam só letras (`a:`, `b:`...), recomeçando em `a` a cada bloco.
 
 ## Como ela lê o projeto
-Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Se o projeto tem uma regra do tipo em `docs/padroes/` (veja [CRIAR-REGRA-TELEGRAFICA.md](CRIAR-REGRA-TELEGRAFICA.md)), ele lê só ela; senão compara com 1 arquivo irmão real do mesmo tipo e camada. Em nenhum caso varre o projeto. Se a camada ou o módulo não estiver claro, ele pergunta.
+Para não gastar tokens, o Claude consulta o código existente em no máximo 3 camadas, priorizando as que o card cria. Se o projeto tem uma regra do tipo em `docs/padroes/modelos/` (veja [CRIAR-REGRA-TELEGRAFICA.md](CRIAR-REGRA-TELEGRAFICA.md)), ele lê só ela; senão compara com 1 arquivo irmão real do mesmo tipo e camada. Ele avisa que lê só isso; se quiser mais, é só pedir (vale só naquela vez). Se a camada ou o módulo não estiver claro, ele pergunta.
 
 ## O que você vai notar nos itens
 - Cada item é uma ação direta: verbo, o quê e onde.
@@ -28,6 +28,6 @@ Para não gastar tokens, o Claude consulta o código existente em no máximo 3 c
 
 ## Escopo
 - **Escopo mínimo:** o card cobre só o que foi pedido. Ideias extras vão como sugestão, fora do card.
-- **Card grande demais:** com mais de uns 8 itens ou mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
+- **Card grande demais:** com mais de um módulo, a skill propõe quebrar em cards ligados por dependências.
 - **Prévia:** para ver como ficaria a alteração de um card existente antes de aplicar, peça a prévia (`+` e `-`).
 - **Backlog:** o índice geral (uma frase sobre a pasta e a lista de módulos em ordem alfabética, com link e descrição, igual ao da documentação e ao das especificações) só linka o índice de cada módulo (`docs/backlog/modulos/<modulo>/<modulo>.md`); a linha da task nova (link `tarefas/<card>.md`) é adicionada no índice do módulo, não no geral. Módulo sem regra de negócio nem fluxo (ex.: compartilhado) também entra na lista. Inconsistência numa linha existente é sinalizada, nunca corrigida sem pedido. O índice do módulo leva `backlog` e `modulo/<m>`, sem estado.

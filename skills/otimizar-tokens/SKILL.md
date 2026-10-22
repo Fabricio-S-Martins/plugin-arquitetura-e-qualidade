@@ -16,9 +16,9 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 
 ## Fluxo (maior ganho primeiro)
 1. **Auditoria:** Glob nos arquivos do plugin, `wc -c` de cada um, ranking por bytes × frequência de carga: `description` e `CLAUDE.md` = toda sessão; `SKILL.md` = ao disparar; demais = quando lidos. Arquivo que a IA não carrega (`docs/guias/`) não economiza tokens. Agir primeiro no que mais pesa.
-2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `CSHARP.md` só com `.cs`); regra repetida entre arquivos → uma fonte, o outro aponta (DRY); regra que se repetiria por item de uma lista sujeita a crescer (ex: 1 parágrafo por ferramenta a checar) → tabela de dados + 1 regra genérica que a percorre. Conferir que nenhum uso passa a carregar mais que antes.
-3. **Palavras**, só nos arquivos que ainda justificam: ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin.
-4. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos.
+2. **Estrutura** (costuma render mais que cortar palavras): bloco de uso raro → arquivo à parte lido sob demanda, com ponteiro condicional (ex: `COMPLETO.md` só no modo completo); regra repetida entre arquivos → uma fonte, o outro aponta (DRY); regra que se repetiria por item de uma lista sujeita a crescer (ex: 1 parágrafo por ferramenta a checar) → tabela de dados + 1 regra genérica que a percorre. Conferir que nenhum uso passa a carregar mais que antes.
+3. **Palavras**, só nos arquivos que ainda justificam: ler o arquivo; Grep de quem o referencia (links, caminhos) e de regras dele repetidas em outros arquivos do plugin. Aplicar também `Abstração e redundância`.
+4. **Inventário:** fatos atômicos: regras, números/limites, exceções, condicionais (só se / exceto / nunca), caminhos, nomes, formatos, ordem de passos. Marcar os que o plugin impõe a projeto (ver `Abstração e redundância`).
 5. Reescrever com as técnicas abaixo.
 6. **Conferência:** cada item do inventário presente, com a mesma condição e o mesmo número. Faltou → restaurar.
 7. `description` alterada: comparar palavras de gatilho antes/depois e testar 2-3 frases que devem e 2-3 que não devem acionar a skill.
@@ -34,6 +34,13 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 - Enfeite: emoji, negrito em excesso, separadores, tabela com uma coluna útil, título de seção com um item só.
 - "Porquê" longo; manter uma oração só se evita aplicar a regra errado.
 - Negação de algo que a IA não faria sem ela — isolada ("sem X") ou dentro de instrução composta ("faça X, não Y") → omitir; vale também para texto novo. Antes de manter por "limita regra vizinha": sem a negação, a regra vizinha sozinha já permite o erro? Não → redundante. Manter só se sim, se o padrão do modelo é o oposto, ou se já houve erro real. Dúvida → perguntar.
+
+## Abstração e redundância
+Auditar, não cortar sozinho: remover ou trocar muda comportamento → listar no relatório e perguntar.
+- **Impõe ao projeto:** teste = um projeto com outra linguagem, paradigma, ferramenta ou número quebraria com essa regra? Sim → sinalizar. Casos: número ou limite (linhas, contagens, "na 3ª vez", "2+"), estilo (else, indentação, injeção), linguagem ou ferramenta (C#, dotnet, MediatR), paradigma (orientação a objetos), nome, pasta ou tag fixos. Destino a propor: marcar como exemplo, "vale o do projeto", arquivo condicional (só quando o projeto usa) ou remover.
+- **Não é isso:** número do plugin sobre o próprio trabalho (camadas lidas, arquivos por rodada, tamanho de resumo) fica.
+- **Redundância entre regras:** regra que outra já cobre (ex: limite de tamanho já coberto por SRP/KISS), ou que repete `CLAUDE.md`, `QUALIDADE.md` ou outro arquivo → sinalizar. Teste: sem esta regra, a vizinha leva ao mesmo resultado? Sim → candidata a remover. Grep dos termos da regra nos outros arquivos do plugin antes de concluir.
+- Número ou limite do plugin é protegido pelo `Nunca` só quando o plugin é o dono dele; imposto ao projeto, é achado, não item a preservar.
 
 ## Condensar
 - Prosa → lista curta ou frase telegráfica (verbo + objeto); condição em vez de narrativa. Cortar preposição, artigo e conectivo de ligação ("de um", "para o", "que está") que a forma telegráfica já dispensa.
@@ -57,4 +64,6 @@ Saída: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/
 Por arquivo: `antes → depois (−%)` em linhas e bytes. Depois:
 - **Removido:** categorias e itens relevantes.
 - **Condensado:** o que mudou de forma, sem mudar de conteúdo.
+- **Impõe ao projeto:** regra ou número fixo achado, com destino proposto; só o Dev decide.
+- **Redundantes:** regras cobertas por outra, com a que cobre.
 - **Dúvidas:** o que não cortei por risco de perda.

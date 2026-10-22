@@ -1,6 +1,6 @@
 # ÍNDICE
 
-Índice da pasta raiz de uma área (tarefas, documentação, especificações): 1 por área, mesmo modelo nas três. Nomes de pasta, arquivo, tag e título de seção citados são exemplo: valem os do projeto (Glob/Grep no índice existente ou em área irmã; sem padrão → perguntar uma vez). Unidade = módulo, serviço, contexto etc., como em `QUALIDADE.md`.
+Índice da pasta raiz de uma área (tarefas, documentação, especificações): 1 por área, mesmo modelo nas três. Nomes de pasta, arquivo, tag e título de seção citados são exemplo: valem os do projeto (Glob/Grep no índice existente ou em área irmã; sem padrão → perguntar uma vez). Unidade = módulo, serviço, contexto etc., como em `ORGANIZACAO.md`.
 
 ## Modelo
 ```
@@ -19,7 +19,7 @@
 - Escrita para quem abre o índice isolado: termos descritivos, sem termo do plugin.
 
 ## Exceções (únicas diferenças permitidas)
-- Tarefas: lista também unidade sem regra de negócio nem fluxo (ex.: compartilhada). Exceção declarada ao Espelho de `QUALIDADE.md`, não assimetria a corrigir.
+- Tarefas: lista também unidade sem regra de negócio nem fluxo (ex.: compartilhada). Exceção declarada ao Espelho de `ORGANIZACAO.md`, não assimetria a corrigir.
 - Documentação: mantém a seção do que ainda não foi documentado (`Não documentado`), só nomes (Glob de 1 nível, sem ler).
 
 ## Atualizar

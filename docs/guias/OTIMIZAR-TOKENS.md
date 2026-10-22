@@ -8,8 +8,15 @@ Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos 
 ## Em que ordem ela trabalha
 Do que mais economiza para o que menos economiza:
 1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/guias/` não são lidos pelo Claude, então otimizá-los não economiza tokens. Peça "auditoria" para receber só esse relatório, sem alterar nada.
-2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `CSHARP.md`, que só entra com código C#), uma regra escrita em mais de um arquivo fica em uma fonte só, e uma regra que se repetiria a cada item de uma lista que cresce (por exemplo, um parágrafo novo para cada ferramenta que a skill passa a checar) vira uma tabela de dados mais uma regra genérica que a percorre. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
+2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `COMPLETO.md`, que só entra na revisão completa), uma regra escrita em mais de um arquivo fica em uma fonte só, e uma regra que se repetiria a cada item de uma lista que cresce (por exemplo, um parágrafo novo para cada ferramenta que a skill passa a checar) vira uma tabela de dados mais uma regra genérica que a percorre. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
 3. **Palavras:** só nos arquivos que ainda justificam, corta o que sobra no texto.
+
+## Abstração e redundância
+Além de economizar tokens, ela procura dois problemas e **só os aponta, sem cortar sozinha**:
+- **Regras que o plugin impõe ao projeto:** número fixo (limite de linhas, "na 3ª duplicação"), estilo, linguagem ou ferramenta, paradigma, nome ou pasta fixos. O teste é: um projeto com outro padrão quebraria? Para cada achado ela propõe um destino: virar exemplo, "vale o do projeto", arquivo lido só quando o projeto usa, ou remover. Número do plugin sobre o próprio trabalho (como as 3 camadas lidas) fica.
+- **Regras redundantes:** uma regra que outra já cobre ou que repete o `CLAUDE.md` ou outro arquivo. Ela confere se, sem a regra, a vizinha leva ao mesmo resultado.
+
+Você decide o que fazer com cada achado.
 
 ## Como ela protege o conteúdo
 1. **Inventário:** antes de mexer, lista tudo o que o arquivo afirma: regras, números, limites, exceções, condições, caminhos e a ordem dos passos.
@@ -40,7 +47,7 @@ O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a re
 - **Código e configuração:** inclusive blocos de código dentro de um `.md` (csharp, json, yaml), ficam intactos. Só saem comentários óbvios e espaços supérfluos, sem alterar o comportamento. No cabeçalho das skills, o nome e as palavras de gatilho da descrição são preservados.
 
 ## O que sai
-Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, três listas: o que foi removido, o que foi condensado e as dúvidas (o que ela deixou de cortar por risco de perda). Ela edita direto, sem pedir permissão, e só pergunta quando tem dúvida real sobre perder informação. Se o arquivo tem alterações ainda não commitadas, ela guarda uma cópia antes de editar e informa no relatório, para você poder desfazer.
+Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, as listas: o que foi removido, o que foi condensado, o que impõe regra ao projeto, o que é redundante e as dúvidas (o que ela deixou de cortar por risco de perda). Ela edita direto, sem pedir permissão, e só pergunta quando tem dúvida real sobre perder informação. Se o arquivo tem alterações ainda não commitadas, ela guarda uma cópia antes de editar e informa no relatório, para você poder desfazer.
 
 ## Permissões
 O cabeçalho da skill declara que ela pode ler, editar e criar arquivos e usar `wc` e `cp`, para o Claude Code não pedir aprovação a cada edição enquanto ela roda. Se mesmo assim o VS Code pedir, o modo de permissões da sua sessão ou as regras do seu `settings.json` estão prevalecendo. Nesse caso, libere `Edit` e `Write` para a pasta do plugin lá.

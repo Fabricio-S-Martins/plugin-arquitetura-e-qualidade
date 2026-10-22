@@ -25,6 +25,7 @@ Nomes citados (`docs/`, `docs/especificacoes/`, `docs/sessoes/`) são sugestão:
 Uma pergunta só, com os itens que faltam; aceitou → Read do arquivo e seguir; recusou → seguir sem insistir.
 - **Obsidian** (`OBSIDIAN.md`): sem `docs/.obsidian/`. Se já existe → Read sem perguntar (só sincroniza o que faltar).
 - **.editorconfig** (`EDITORCONFIG.md`): projeto C# (critério do passo 1) sem `.editorconfig` na raiz.
+- **Padrões do projeto** (ex.: `docs/padroes/praticas.md`, `convencoes.md` e, se o projeto usa testes, `testes.md`; pasta e nomes do projeto: Glob, senão perguntar sugerindo o exemplo): arquivo ausente → aceitou → criar vazio, idioma do projeto, só título e 1 linha-guia (`# Práticas adotadas` / `<1 prática por linha, além de KISS, YAGNI, DRY, SRP e padronização; formato opcional "regra — como verificar"; "(preferível)" no fim se não for obrigatória>`; `# Convenções da linguagem` / `<1 convenção por linha: estilo e nomenclatura; mesmo formato>`; `# Testes` / `<1 regra de teste por linha; mesmo formato>`). O conteúdo é do Dev; nunca preencher.
 
 ## 4. CLAUDE.md do projeto
 Auditoria sem editar; as únicas edições são as linhas de commit, da skill e de Production (passo 5), e só se o Dev aceitar.
@@ -41,7 +42,7 @@ Garantir `"arquitetura-e-qualidade@arquitetura-e-qualidade": true` em `enabledPl
 { "enabledPlugins": { "arquitetura-e-qualidade@arquitetura-e-qualidade": true } }
 ```
 Existente → somar se faltar; preservar o resto, nunca remover entrada.
-**Proteção Production** (também no settings): somar em `permissions.ask` (criar a chave se faltar; sem duplicar; nunca `deny`, o Dev precisa poder aprovar) `Bash(*ENVIRONMENT*Production*)` e `Bash(*--environment*Production*)`, mais as 2 iguais com `PowerShell(...)`. Com `CLAUDE.md` presente e sem regra de `Production` nele, somar: ``Ambiente de produção (`Production`): nunca usar nem como contorno de bloqueio (ex: validação de DI) sem perguntar antes, listando as opções de forma clara e objetiva.`` Listar em texto o que será somado (uma só vez, settings e `CLAUDE.md`) e aplicar só após o ok; prévia com antes e depois só se o Dev aceitar ver. Nada a somar → sem listar.
+**Proteção do ambiente de produção** (também no settings; `Production` abaixo = nome do ambiente de produção do projeto: Grep na configuração de ambiente, senão perguntar sugerindo `Production`): somar em `permissions.ask` (criar a chave se faltar; sem duplicar; nunca `deny`, o Dev precisa poder aprovar) `Bash(*ENVIRONMENT*Production*)` e `Bash(*--environment*Production*)`, mais as 2 iguais com `PowerShell(...)`. Com `CLAUDE.md` presente e sem regra de `Production` nele, somar: ``Ambiente de produção (`Production`): nunca usar nem como contorno de bloqueio (ex: uma validação) sem perguntar antes, listando as opções de forma clara e objetiva.`` Listar em texto o que será somado (uma só vez, settings e `CLAUDE.md`) e aplicar só após o ok; prévia com antes e depois só se o Dev aceitar ver. Nada a somar → sem listar.
 Permissão das skills: nunca no settings do projeto (só vale após confiar no workspace e é preferência pessoal, não do time). Avisar que, para não ser perguntado a cada skill, o Dev adiciona `Skill(arquitetura-e-qualidade:*)` em `permissions.allow` do settings global (`settings.json` da pasta de config do Claude Code). Nunca editar o global.
 
 ## Regras

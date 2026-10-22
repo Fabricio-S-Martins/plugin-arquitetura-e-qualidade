@@ -6,30 +6,30 @@ A skill `revisao-qa` revisa um card ou um código e devolve um relatório. Este 
 Diga o alvo: "revise o card 03-aplicacao-criar-usuario", "revise o arquivo X" ou "revise o que mudei". Sem alvo, o Claude revisa o `git diff` atual. Por padrão a revisão é **rápida**; peça "revisão completa" para o modo profundo.
 
 ## Os dois modos
-- **Rápido (padrão):** olha só o que mudou. Confere as convenções verificáveis por busca, as regras obrigatórias, segurança e se o código cumpre o card. É o mais barato em tokens.
-- **Completo:** além disso, lê o arquivo inteiro (aponta problemas antigos como `(pré-existente)`), compara com a regra do tipo em `docs/padroes/` (ou, sem ela, com um arquivo irmão), lê o `CLAUDE.md`, a `memory/` e o `.editorconfig` do projeto e aponta o que destoa do padrão.
+- **Rápido (padrão):** olha só o que mudou. Confere os itens verificáveis por busca, os princípios e itens obrigatórios, segurança e se o código cumpre o card. É o mais barato em tokens.
+- **Completo:** além disso, lê o arquivo inteiro (aponta problemas antigos como `(pré-existente)`), compara com a regra do tipo em `docs/padroes/modelos/` (ou, sem ela, com um arquivo irmão), lê o `CLAUDE.md`, a `memory/` e o `.editorconfig` do projeto e aponta o que destoa do padrão.
 - **Parada antecipada:** se há um problema estrutural grave, como um card fora do template, ela reporta e para, sem gastar o resto da revisão.
 
 ## O que ela confere
 - **Card:** as mesmas regras usadas para criar o card (título, localização, validações, consistência, nomes, escopo).
-- **Código:** as regras de [QUALIDADE.md](../instrucoes/QUALIDADE.md) e, em C#, as convenções de estilo (campo privado, `internal`, namespace file-scoped, nome de teste, fim de arquivo).
+- **Código:** os princípios de [QUALIDADE.md](../instrucoes/QUALIDADE.md) (KISS, YAGNI, DRY, SRP e padronização) e as práticas e convenções que você registrou no projeto (por exemplo `docs/padroes/praticas.md` e `convencoes.md`). Sem esses arquivos, ela confere só os princípios e a consistência com o código existente, e avisa que eles não existem.
 - **Especificação:** se o card cita uma, cada critério citado precisa ter contrapartida no código e as regras do fluxo não podem ser contrariadas.
 - **Card × código:** se há um card associado, cada item do checklist precisa ter contrapartida no código e os cenários de teste precisam estar cobertos. Build e testes verdes não bastam para dizer que o card está pronto.
 - **Segurança:** hash, token, criptografia e autorização têm prioridade máxima, porque o erro é silencioso. Sem teste dedicado, é bloqueante.
 - **Testes:** aponta teste que não consegue falhar, como um que só afirma o caso "falso" ou um mock que já devolve o resultado esperado.
 - **Escopo da mudança:** aponta alterações que não têm relação com o pedido.
-- **Construção certa:** quando cabe, sugere `record`, `readonly struct` ou `static`.
+- **Construção certa:** quando cabe, sugere a construção imutável ou sem estado que a linguagem do projeto oferece.
 
 ## Como ela trabalha
-- **Limite de leitura:** para não gastar tokens, lê no máximo 3 camadas: a do alvo e até 2 vizinhas diretas. Se não souber qual é a camada do alvo, pergunta. O que fica de fora aparece no relatório na linha `Escopo`, para você pedir outra passada se quiser.
+- **Limite de leitura:** para não gastar tokens, lê no máximo 3 camadas: a do alvo e até 2 vizinhas diretas. Se não souber qual é a camada do alvo, pergunta. O que fica de fora aparece no relatório na linha `Escopo`, para você pedir outra passada se quiser. Ele avisa no início que lê só isso; se quiser mais, é só pedir (vale só naquela vez).
 - **Itens objetivos por busca:** as convenções mecânicas são verificadas com busca no código, não de cabeça, então o resultado não muda de uma revisão para outra. Se o mesmo item aparece sempre, ela sugere transformá-lo em regra automática do projeto.
 - **Precisão acima de cobertura:** achado de baixa confiança é descartado. Código limpo é aprovado, sem inventar problema.
 
 ## O que sai
 Uma conclusão (aprovado, com ressalvas ou reprovado), a linha `Modo` e `Escopo`, e a lista de achados. Seção sem achado não aparece (exceto Mecânico, que sempre aparece):
-- **Bloqueante:** quebra uma regra obrigatória ou um erro real.
+- **Bloqueante:** quebra um princípio de qualidade, um item obrigatório dos seus padrões (os sem marca) ou um erro real.
 - **Mecânico:** convenções verificáveis por busca. Sempre aparece e diz o que foi verificado sem ocorrência.
-- **Recomendado:** quebra uma preferência ou convenção.
+- **Recomendado:** quebra um item marcado `(preferível)` nos seus padrões.
 - **Sugestão:** melhoria opcional.
 - **Preservar:** uma linha com o que está bom e não deve ser quebrado na próxima mudança.
 
