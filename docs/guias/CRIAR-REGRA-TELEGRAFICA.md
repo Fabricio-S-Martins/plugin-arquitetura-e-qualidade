@@ -14,7 +14,7 @@ Para separar o padrão das manias de um arquivo isolado, ela lê vários irmãos
 Antes de gravar, compara os tokens aproximados da regra com os de 2 arquivos irmãos (1 só não fixa o padrão). Menor: grava. Maior: avisa e você decide. Se o arquivo da regra já existe, ela pergunta antes de sobrescrever. Gravada a regra, acrescenta uma linha para ela no índice da pasta de modelos (e cria o índice se faltar).
 
 ## Como as outras skills usam
-`criar-card`, `planejar`, `documentar` e `revisao-qa` procuram em `docs/padroes/modelos/` uma regra do tipo antes de abrir um arquivo irmão. Havendo regra, leem só ela; não havendo, abrem 1 irmão como antes.
+`criar-card`, `planejar`, `documentar` e `revisao-qa` procuram em `docs/padroes/modelos/` uma regra do tipo antes de abrir um arquivo irmão. Havendo regra, leem só ela; não havendo, abrem até 2 irmãos.
 
 A regra é um **modelo base**, não uma lei: se o alvo não se encaixa no esqueleto (outra interface, retorno ou forma de endpoint), a `executar-tarefa` pergunta a você em vez de adaptar sozinha.
 

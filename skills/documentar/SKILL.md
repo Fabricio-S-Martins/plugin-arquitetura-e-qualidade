@@ -16,7 +16,7 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 - **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
-1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; regra do tipo em `docs/padroes/modelos/` no lugar do irmão; sem regra, 1 arquivo irmão real). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
+1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; regra do tipo em `docs/padroes/modelos/` no lugar do irmão; sem regra, até 2 arquivos irmãos reais por tipo, o mais recente e o mais parecido; divergiram → perguntar). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
 2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/ORGANIZACAO.md`).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → índice da documentação (modelo em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`; criar se ausente; senão incluir o módulo novo). Escrever só o próximo da fila → **Gate**.
 4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no índice da documentação (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
