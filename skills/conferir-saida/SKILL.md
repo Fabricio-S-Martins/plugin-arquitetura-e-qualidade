@@ -12,7 +12,7 @@ Só reporta; nunca edita (sem `Edit` em `allowed-tools`). Ajuste sugerido só é
 Saída colada ou caminho do arquivo gerado, mais o nome da skill de origem. Sem nome → inferir por seções, formato ou caminho e dizer qual foi inferida.
 
 ## Fluxo
-1. Ler `skills/<origem>/SKILL.md` e só os arquivos que ela cita e que a saída deveria seguir (ex: `TEMPLATE-CARD.md`). Não ler o projeto.
+1. Ler `skills/<origem>/SKILL.md` e só os arquivos que ela cita e que a saída deveria seguir (ex: `TEMPLATE-TAREFA.md`). Não ler o projeto.
 2. Extrair regras verificáveis: seções e ordem, limites (linhas, itens), proibições e condições ("nunca", "só se"), estilo (pessoa, idioma, nomes), efeitos esperados (arquivo criado, `.gitignore`, o que sai no chat) e o que não devia ocorrer (editar, commitar, perguntar).
 3. Comparar regra a regra. Contável → Grep ou `wc` no arquivo gerado (ex: "você", "nós", nº de linhas).
 4. Classificar cada desvio: **execução** (regra clara, ignorada) ou **skill** (regra ambígua, ausente ou conflitante).
@@ -20,5 +20,5 @@ Saída colada ou caminho do arquivo gerado, mais o nome da skill de origem. Sem 
 ## Relatório
 - **Resumo:** N regras, X conformes, Y desvios, Z não verificáveis.
 - **Desvios:** regra (`SKILL.md:linha`) · trecho da saída · causa.
-- **Não verificável:** regra + o que faltou para verificar. Falta é fato do projeto (não da saída) e dá pra checar com 1 leitura pontual (arquivo + trecho já citado na saída) → perguntar ao usuário se quer essa checagem antes de fechar, em vez de checar sem avisar ou deixar só "não verificável".
+- **Não verificável:** regra + o que faltou para verificar. Falta é fato do projeto (não da saída) e dá para checar com 1 leitura pontual (arquivo + trecho já citado na saída) → perguntar ao usuário se quer essa checagem antes de fechar, em vez de checar sem avisar ou deixar só "não verificável".
 - **Ajuste sugerido:** só para causa "skill": correção da `SKILL.md` em `+` e `-` (formato da `previa-diff`). Causa "execução" → só apontar.

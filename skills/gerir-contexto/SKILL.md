@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Edit, Bash(git status *), Bash(git log *), Bash(git r
 
 # gerir-contexto
 
-Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, e o card em execução (só ao gravar a Retomada). Não editar código, não criar arquivo; única edição: a seção `Retomada` desse card.
+Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, e o arquivo da tarefa em execução (só ao gravar a Retomada). Não editar código, não criar arquivo; única edição: a seção `Retomada` desse arquivo.
 
 ## Avaliar
 Chamada após o usuário conferir o `/context`. Nunca rodar `/context` nem medir o contexto.
@@ -23,4 +23,4 @@ Chamada após o usuário conferir o `/context`. Nunca rodar `/context` nem medir
 Usuário pediu passar para outro dev → sempre gerar o Prompt.
 
 ## Prompt
-Ler `${CLAUDE_SKILL_DIR}/PROMPT.md` e seguir (só neste caso): com card em execução, a seção "Retomada no card"; sem card, "Prompt".
+Ler `${CLAUDE_SKILL_DIR}/PROMPT.md` e seguir (só neste caso): com arquivo de tarefa em execução, a seção "Retomada na tarefa"; sem arquivo de tarefa, "Prompt".

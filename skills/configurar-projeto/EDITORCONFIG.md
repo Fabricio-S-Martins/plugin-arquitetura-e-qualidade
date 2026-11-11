@@ -1,8 +1,7 @@
-# .editorconfig (opcional, só projeto C#)
+# .editorconfig (opcional)
 
-Lido por `configurar-projeto` quando o Dev aceita. Já existe `.editorconfig` na raiz → não tocar. Ausente → detectar e criar:
-- **Namespace:** Grep `^namespace .*;` (file-scoped) vs `^namespace [^;]*$` (bloco); vale a maioria.
-- **Campo privado:** Grep `private (readonly )?\w+ _[a-z]`; regra de nomenclatura só se o código já a segue.
+Lido por `configurar-projeto` quando o Dev aceita. Já existe `.editorconfig` na raiz → não tocar. Ausente → detectar e criar só com o estilo que o código do projeto já segue (indentação, espaços finais, quebra de linha antes de chaves ou blocos, ordem de importações, nomenclatura de campos): Grep do padrão em cada ponto, vale a maioria; nomenclatura só se o código já a segue. Nunca fixar `charset` nem `end_of_line`.
+Chaves de estilo são da linguagem do projeto. Exemplo do formato (C#; outras linguagens usam as próprias chaves):
 ```ini
 root = true
 
@@ -29,5 +28,5 @@ generated_code = true
 [*.{csproj,slnx,json,yml,yaml}]
 indent_size = 2
 ```
-`<maioria>` = `file_scoped` ou `block_scoped`, pelo Grep da linha 4; nunca fixar `charset` nem `end_of_line`.
-Avisar: regras de estilo só aparecem no build com `EnforceCodeStyleInBuild` (`Directory.Build.props`); perguntar se cria esse arquivo (se ausente). Antes de subir severidade: `dotnet build -p:EnforceCodeStyleInBuild=true` e listar o que o `.editorconfig` acusa no código existente, sem corrigir.
+No exemplo, `<maioria>` = `file_scoped` ou `block_scoped`, pelo Grep de `^namespace .*;` (file-scoped) contra `^namespace [^;]*$` (bloco).
+Se o estilo só aparece no build quando a ferramenta o exige (no exemplo C#: `EnforceCodeStyleInBuild` em `Directory.Build.props`), avisar e perguntar se cria a configuração (se ausente). Antes de subir severidade: rodar o build do projeto com a opção ligada e listar o que o `.editorconfig` acusa no código existente, sem corrigir.

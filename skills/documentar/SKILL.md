@@ -16,10 +16,10 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 - **Plano / Item:** pedido de plano ou "faz o item N" → ler `PLANO.md` (esta pasta).
 
 ## Código novo
-1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; regra do tipo em `docs/padroes/modelos/` no lugar do irmão; sem regra, até 2 arquivos irmãos reais por tipo, o mais recente e o mais parecido; divergiram → perguntar). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
-2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e no backlog (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/ORGANIZACAO.md`).
+1. **Alvo:** ler o código (Glob → Grep → Read; até 3 camadas, salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais; regra do tipo em `docs/padroes/modelos/` no lugar do irmão; sem regra, até 3 arquivos irmãos reais por tipo, o mais recente, o mais parecido e um de outra unidade; divergiram sem maioria → perguntar). Identificar fluxo(s) e módulo(s) tocados; nome não claro → perguntar.
+2. **Existente antes de criar:** Glob em `docs/documentacao/` (padrão de docs do projeto primeiro; senão a estrutura abaixo). Doc do assunto existe → atualizar; senão criar. Pasta nova de módulo: mesmo nome da unidade no código e nas tarefas (ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/ORGANIZACAO.md`).
 3. **Fila:** módulo → fluxos (1 por rodada) → API (só se houver rotas; modelo em `API.md`) → índice da documentação (modelo em `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/INDICE.md`; criar se ausente; senão incluir o módulo novo). Escrever só o próximo da fila → **Gate**.
-4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no índice da documentação (só nomes, via Glob de 1 nível, sem ler). Plano só por pedido explícito → `PLANO.md`.
+4. **Após o último:** parar, sem perguntar pelo plano. O que ficou de fora entra em `Não documentado` no índice da documentação (só nomes, via Glob de 1 nível, sem ler).
 
 ## Alterado
 1. **Mudança:** ler só o que mudou (`git diff` do alvo). Extrair nomes observáveis: módulo, rota, etapa, mensagem de erro, configuração.
@@ -27,33 +27,33 @@ Não alterar código. Criar/atualizar docs direto; só o plano exige aprovação
 3. **Atualizar** o que ficou falso ou incompleto, 1 doc por rodada, listando os demais afetados → **Gate**. Refatoração sem mudança observável → não mexer.
 
 ## Verificar
-Só lista, sem escrever nem ler código. Grep `tags:.*tarefa/concluido` em `docs/backlog/` → fluxos (`fluxo/<f>`) dos cards concluídos; Grep `tags:.*fluxo/` em `docs/documentacao/` → fluxos documentados. Diferença = sem doc: listar fluxo, módulo e card de origem. Dev escolhe qual → modo Código novo. Fluxo sem card não aparece (plano ou escopo nomeado).
+Só lista, sem escrever nem ler código. Grep `tags:.*tarefa/concluido` em `docs/tarefas/` → fluxos (`fluxo/<f>`) das tarefas concluídas; Grep `tags:.*fluxo/` em `docs/documentacao/` → fluxos documentados. Diferença = sem doc: listar fluxo, módulo e tarefa de origem. Dev escolhe qual → modo Código novo. Fluxo sem arquivo de tarefa concluída não aparece (plano ou escopo nomeado).
 
 ## Estrutura e modelos
 Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem links nem caminhos para código, sem termos técnicos de camada ou de padrão do projeto (ex.: Domínio, Infraestrutura, handler). Um arquivo por assunto; frases curtas, títulos sempre iguais.
 - Índice da documentação: modelo e regras em `INDICE.md` (acima); exceção `Não documentado`.
 - `docs/documentacao/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
 - `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
-- `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (Mermaid `flowchart TD`, sempre vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
+- `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (formato do projeto; sem padrão, exemplo: Mermaid `flowchart TD`, vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
 - **Técnico por projeto:** só sob pedido explícito, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
 - **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo e API → `../<nome>.md`; módulo → índice da documentação); só o índice não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
-- **Estilo:** títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
+- **Estilo** (vale o do projeto; sem padrão, exemplo): títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
 
 ## Regras
 - **Origem:** todo fato vem de código lido ou do usuário. Não confirmado → não escrever; perguntar. Especificação aprovada orienta o que documentar, mas só entra o que o código confirma; doc nunca cita especificação. Sem seção `Em aberto` nos docs (exceto no plano).
 - **Regra de negócio:** traduzir só o que o código confirma. Quem executa cada etapa só se o usuário informar.
 - **Só o versionado:** citar (link ou nome) apenas o que o git versiona. Ignorado (`.gitignore`) ou fora do repo → não citar.
-- **Mermaid:** rótulos entre aspas e em linguagem de negócio; decisão em losango.
-- **Nomes:** idioma do projeto (arquivos, pastas, títulos); sem padrão → perguntar. Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre backlog e documentação.
-- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `documentacao`; `modulo/` + `fluxo/` no fluxo; `modulo/` + `camada/` na API e em doc de camada; módulo e geral sem `fluxo/` nem `camada/`). Doc sem estado; nunca citar task.
+- **Diagrama:** rótulos em linguagem de negócio; decisão em losango. Em Mermaid: rótulos entre aspas.
+- **Nomes:** idioma do projeto (arquivos, pastas, títulos); sem padrão → perguntar. Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre tarefas e documentação.
+- **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `documentacao`; `modulo/` + `fluxo/` no fluxo; `modulo/` + `camada/` na API e em doc de camada; módulo e geral sem `fluxo/` nem `camada/`). Doc sem estado; nunca citar tarefa.
 - **Doc existente:** editar direto; `previa-diff` só se o usuário pedir para ver antes.
 - **Só o que existe:** documentar o implementado, mesmo parcial; nunca inventar o que falta nem recusar por incompleto (modo Alterado atualiza depois). Fluxo sem rota → cobrir o que o código faz e dizer o que ficou de fora.
 
 ## Gate antes de entregar
 1. Reler estas regras contra o doc escrito.
 2. Conferir com ferramenta: rotas e mensagens de erro contra o código (Grep); links relativos (Glob); nomes ignorados pelo git (`git check-ignore`).
-3. Mermaid fechado, com rótulos entre aspas.
+3. Diagrama válido no formato usado (Mermaid: bloco fechado, rótulos entre aspas).
 4. Correção aplicada → varrer os docs já criados na sessão por padrão igual e corrigir junto.
 
-## Card ligado
-Após o Gate, doc do bloco Documentação de um card (informado, ou único `tarefa/em-andamento` do módulo em `docs/backlog/modulos/<m>/tarefas/`, via Grep; mais de um → perguntar): marcar `[x]` só no item daquele doc (Edit na linha inteira; item que não bate com o doc → não marcar). Era o último `[ ]` do card (conferir lendo) → tag `tarefa/concluido` (só a `tarefa/...`, regras em `TAGS.md`). Sem card ligado → ignorar.
+## Tarefa ligada
+Após o Gate, doc do bloco Documentação de uma tarefa (informada, ou único `tarefa/em-andamento` do módulo em `docs/tarefas/modulos/<m>/`, via Grep; mais de um → perguntar): marcar `[x]` só no item daquele doc (Edit na linha inteira; item que não bate com o doc → não marcar). Era o último `[ ]` da tarefa (conferir lendo) → tag `tarefa/concluido` (só a `tarefa/...`, regras em `TAGS.md`). Sem tarefa ligada → ignorar.

@@ -23,7 +23,7 @@ Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por 
 6. **Conferência:** cada item do inventário presente, com a mesma condição e o mesmo número. Faltou → restaurar.
 7. `description` alterada: comparar palavras de gatilho antes/depois e testar 2-3 frases que devem e 2-3 que não devem acionar a skill.
 8. Medir antes/depois: `wc -l -c` (bytes, ~3,5 por token em pt-BR). Relatório.
-9. Só se pedido, equivalência: rodar o mesmo pedido de teste antes e depois (ex: gerar card de teste) e comparar.
+9. Só se pedido, equivalência: rodar o mesmo pedido de teste antes e depois (ex: gerar tarefa de teste) e comparar.
 
 ## Remover
 - Introdução, fecho, cortesia, "como usar" que repete o nome do arquivo.
@@ -57,8 +57,8 @@ Auditar, não cortar sozinho: remover ou trocar muda comportamento → listar no
 - Frontmatter: manter `name` e as palavras de gatilho da `description`; encurtar só o que sobra.
 
 ## Exemplo
-Entrada: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/backlog/modulos/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
-Saída: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/backlog/modulos/`; nunca repetir ID."
+Entrada: "É muito importante lembrar que, ao criar uma nova tarefa, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/tarefas/modulos/` antes de salvar o arquivo, para evitar que duas tarefas fiquem com o mesmo identificador."
+Saída: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/tarefas/modulos/`; nunca repetir ID."
 
 ## Relatório
 Por arquivo: `antes → depois (−%)` em linhas e bytes. Depois:

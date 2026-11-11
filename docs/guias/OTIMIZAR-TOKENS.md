@@ -1,13 +1,13 @@
-# Otimizar tokens: guia para Devs
+# Otimizar tokens
 
 A skill `otimizar-tokens` enxuga arquivos do plugin (Markdown e configuração) para o Claude gastar menos tokens ao lê-los, sem perder informação. A versão que o Claude lê é [../../skills/otimizar-tokens/SKILL.md](../../skills/otimizar-tokens/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-Diga o arquivo ou a pasta: "otimize a skill criar-card" ou "enxugue os arquivos de docs/instrucoes". Para ver o que ela cortaria sem alterar nada, peça "só analisa". Para ver os cortes linha a linha, peça a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
+O pedido indica o arquivo ou a pasta: "otimize a skill criar-tarefa" ou "enxugue os arquivos de docs/instrucoes". Para ver o que ela cortaria sem alterar nada, o pedido é "só analisa". Para ver os cortes linha a linha, pede-se a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
 
 ## Em que ordem ela trabalha
 Do que mais economiza para o que menos economiza:
-1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/guias/` não são lidos pelo Claude, então otimizá-los não economiza tokens. Peça "auditoria" para receber só esse relatório, sem alterar nada.
+1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/guias/` não são lidos pelo Claude, então otimizá-los não economiza tokens. O pedido "auditoria" devolve só esse relatório, sem alterar nada.
 2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `COMPLETO.md`, que só entra na revisão completa), uma regra escrita em mais de um arquivo fica em uma fonte só, e uma regra que se repetiria a cada item de uma lista que cresce (por exemplo, um parágrafo novo para cada ferramenta que a skill passa a checar) vira uma tabela de dados mais uma regra genérica que a percorre. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
 3. **Palavras:** só nos arquivos que ainda justificam, corta o que sobra no texto.
 
@@ -16,7 +16,7 @@ Além de economizar tokens, ela procura dois problemas e **só os aponta, sem co
 - **Regras que o plugin impõe ao projeto:** número fixo (limite de linhas, "na 3ª duplicação"), estilo, linguagem ou ferramenta, paradigma, nome ou pasta fixos. O teste é: um projeto com outro padrão quebraria? Para cada achado ela propõe um destino: virar exemplo, "vale o do projeto", arquivo lido só quando o projeto usa, ou remover. Número do plugin sobre o próprio trabalho (como as 3 camadas lidas) fica.
 - **Regras redundantes:** uma regra que outra já cobre ou que repete o `CLAUDE.md` ou outro arquivo. Ela confere se, sem a regra, a vizinha leva ao mesmo resultado.
 
-Você decide o que fazer com cada achado.
+O Dev decide o que fazer com cada achado.
 
 ## Como ela protege o conteúdo
 1. **Inventário:** antes de mexer, lista tudo o que o arquivo afirma: regras, números, limites, exceções, condições, caminhos e a ordem dos passos.
@@ -24,7 +24,7 @@ Você decide o que fazer com cada achado.
 3. **Dúvida vira pergunta:** se não tem certeza de que algo é dispensável, ela não corta e pergunta.
 4. **Referências intactas:** nomes de arquivo, âncoras e links usados por outros arquivos não mudam sem atualizar quem os usa.
 5. **Gatilho da skill:** se a descrição de uma skill mudou, ela compara as palavras que a acionam antes e depois e testa algumas frases que devem e que não devem acioná-la. Um corte que tira uma palavra-chave faria a skill deixar de disparar sem ninguém perceber.
-6. **Prova de equivalência (só se você pedir):** ela roda o mesmo pedido de teste antes e depois, por exemplo gerar um card de teste, e compara os resultados. É a prova real de que nada se perdeu, mas gasta tokens.
+6. **Prova de equivalência (só se o Dev pedir):** ela roda o mesmo pedido de teste antes e depois, por exemplo gerar uma tarefa de teste, e compara os resultados. É a prova real de que nada se perdeu, mas gasta tokens.
 
 ## O que ela remove e o que ela mantém
 - **Remove:** introduções e fechos, explicações de conceitos que a IA já conhece, exemplos que só repetem a regra, duplicação entre arquivos, histórico sem efeito hoje, enfeites (emojis, negritos em excesso, separadores) e **negações redundantes**: uma frase como "sem separadores entre seções" (ou, dentro de uma instrução, "faça X, não Y") só se justifica se a IA faria isso por conta própria. Se ela não faria, basta não mencionar — vale também para texto novo. Antes de manter uma negação por "ela limita uma regra vizinha", ela testa: sem essa negação, a regra vizinha sozinha já deixaria alguém errar? Se não achar um jeito concreto disso acontecer, corta. Fica a negação quando o comportamento padrão é o oposto, quando já houve erro real ou quando esse teste confirma o limite; na dúvida, ela pergunta.
@@ -34,9 +34,9 @@ Você decide o que fazer com cada achado.
 - **Não compacta demais:** se a versão curta ficaria ambígua, mantém a longa.
 
 ## Exemplo
-Antes: "É muito importante lembrar que, ao criar um novo card, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/backlog/modulos/` antes de salvar o arquivo, para evitar que dois cards fiquem com o mesmo identificador."
+Antes: "É muito importante lembrar que, ao criar uma nova tarefa, deve-se sempre verificar qual é o próximo número de ID que está livre dentro da pasta do módulo em `docs/tarefas/modulos/` antes de salvar o arquivo, para evitar que duas tarefas fiquem com o mesmo identificador."
 
-Depois: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/backlog/modulos/`; nunca repetir ID."
+Depois: "Antes de salvar: usar o próximo ID livre na pasta do módulo em `docs/tarefas/modulos/`; nunca repetir ID."
 
 O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a regra de não repetir continuam.
 
@@ -47,7 +47,12 @@ O texto encolheu e nada foi perdido: o caminho, a ordem (antes de salvar) e a re
 - **Código e configuração:** inclusive blocos de código dentro de um `.md` (csharp, json, yaml), ficam intactos. Só saem comentários óbvios e espaços supérfluos, sem alterar o comportamento. No cabeçalho das skills, o nome e as palavras de gatilho da descrição são preservados.
 
 ## O que sai
-Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, as listas: o que foi removido, o que foi condensado, o que impõe regra ao projeto, o que é redundante e as dúvidas (o que ela deixou de cortar por risco de perda). Ela edita direto, sem pedir permissão, e só pergunta quando tem dúvida real sobre perder informação. Se o arquivo tem alterações ainda não commitadas, ela guarda uma cópia antes de editar e informa no relatório, para você poder desfazer.
+Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem economizada. Depois, as listas: o que foi removido, o que foi condensado, o que impõe regra ao projeto, o que é redundante e as dúvidas (o que ela deixou de cortar por risco de perda). Ela edita direto, sem pedir permissão, e só pergunta quando tem dúvida real sobre perder informação. Se o arquivo tem alterações ainda não commitadas, ela guarda uma cópia antes de editar e informa no relatório, para o Dev poder desfazer.
 
 ## Permissões
-O cabeçalho da skill declara que ela pode ler, editar e criar arquivos e usar `wc` e `cp`, para o Claude Code não pedir aprovação a cada edição enquanto ela roda. Se mesmo assim o VS Code pedir, o modo de permissões da sua sessão ou as regras do seu `settings.json` estão prevalecendo. Nesse caso, libere `Edit` e `Write` para a pasta do plugin lá.
+O cabeçalho da skill declara que ela pode ler, editar e criar arquivos e usar `wc` e `cp`, para o Claude Code não pedir aprovação a cada edição enquanto ela roda. Se mesmo assim o VS Code pedir, o modo de permissões da sessão ou as regras do `settings.json` estão prevalecendo. Nesse caso, `Edit` e `Write` devem ser liberados para a pasta do plugin ali.
+
+## Por que é assim
+- **Primeiro o que mais economiza.** O `CLAUDE.md` e as descrições das skills são carregados em toda sessão; um `SKILL.md` só quando a skill dispara; o resto só quando é lido. Medir o peso e a frequência de carga antes de cortar mostra onde o esforço compensa, em vez de cortar palavras em arquivo que quase não é lido.
+- **Estrutura antes de palavras.** Mover um bloco de uso raro para um arquivo à parte economiza mais que enxugar frases, e não perde informação.
+- **Inventário e conferência.** Cortar texto sem listar antes o que ele afirma é a forma mais fácil de perder uma regra sem ninguém perceber.
