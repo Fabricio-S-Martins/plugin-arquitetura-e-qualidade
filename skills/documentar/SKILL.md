@@ -34,7 +34,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - Índice da documentação: modelo e regras em `INDICE.md` (acima); exceção `Não documentado`.
 - `docs/documentacao/modulos/<nome>/<nome>.md`: 1-2 linhas do que o módulo é · `Etapas` (se houver ciclo) · `Regras` · `Fluxos` (links `fluxos/<f>.md`; fluxo de outro módulo: `../<principal>/fluxos/<f>.md`) · `Integração` (link para `api/<nome>-api.md`). Fluxo nunca inline.
 - `docs/documentacao/modulos/<nome>/api/<nome>-api.md`: guia de integração; modelo em `API.md`.
-- `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (formato do projeto; sem padrão, exemplo: Mermaid `flowchart TD`, vertical) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
+- `docs/documentacao/modulos/<nome>/fluxos/<f>.md`: fluxo na pasta do módulo principal (o 1º citado); com 2+ módulos, os outros linkam no `Fluxos` do seu módulo. `Objetivo` (1 linha) · `Diagrama` (formato do projeto; sem padrão, sugestão Mermaid, vertical; tipos e sequencial: ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/DIAGRAMAS.md`) · `Regras`. `Entrada`, `Passos` e `Saída` só se o diagrama não bastar.
 - **Técnico por projeto:** só sob pedido explícito, em `docs/documentacao/modulos/<nome>/<nome>-<projeto>.md`.
 - **Links:** relativos, só entre docs. Todo doc linka o pai imediato (fluxo e API → `../<nome>.md`; módulo → índice da documentação); só o índice não tem pai. Técnico → módulo, mas módulo nunca lista o técnico (fora do padrão).
 - **Estilo** (vale o do projeto; sem padrão, exemplo): títulos com iniciais maiúsculas; sequência ou respostas em tabela (colunas curtas centralizadas com `:---:`, passo/status em negrito, detalhe em itálico); exceção à regra geral em `> ⚠️ **Atenção:**`.
@@ -43,7 +43,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 - **Origem:** todo fato vem de código lido ou do usuário. Não confirmado → não escrever; perguntar. Especificação aprovada orienta o que documentar, mas só entra o que o código confirma; doc nunca cita especificação. Sem seção `Em aberto` nos docs (exceto no plano).
 - **Regra de negócio:** traduzir só o que o código confirma. Quem executa cada etapa só se o usuário informar.
 - **Só o versionado:** citar (link ou nome) apenas o que o git versiona. Ignorado (`.gitignore`) ou fora do repo → não citar.
-- **Diagrama:** rótulos em linguagem de negócio; decisão em losango. Em Mermaid: rótulos entre aspas.
+- **Diagrama:** rótulos em linguagem de negócio. Fluxograma: decisão em losango; em Mermaid, rótulos entre aspas. Sequencial: ver `DIAGRAMAS.md`.
 - **Nomes:** idioma do projeto (arquivos, pastas, títulos); sem padrão → perguntar. Arquivos de um módulo prefixados com o módulo (legibilidade no grafo e na busca), exceto a nota do módulo (`<m>.md`), que repete o nome entre tarefas e documentação.
 - **Tags:** seguir `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md` (grupo `documentacao`; `modulo/` + `fluxo/` no fluxo; `modulo/` + `camada/` na API e em doc de camada; módulo e geral sem `fluxo/` nem `camada/`). Doc sem estado; nunca citar tarefa.
 - **Doc existente:** editar direto; `previa-diff` só se o usuário pedir para ver antes.
@@ -52,7 +52,7 @@ Público: negócio e dev que integra (consome a API). Linguagem de negócio, sem
 ## Gate antes de entregar
 1. Reler estas regras contra o doc escrito.
 2. Conferir com ferramenta: rotas e mensagens de erro contra o código (Grep); links relativos (Glob); nomes ignorados pelo git (`git check-ignore`).
-3. Diagrama válido no formato usado (Mermaid: bloco fechado, rótulos entre aspas).
+3. Diagrama válido no formato usado (fluxograma Mermaid: bloco fechado, rótulos entre aspas; sequencial: cor do `rect` igual à de `DIAGRAMAS.md`, conferida com Grep, e mensagens dos cenários idênticas às do completo).
 4. Correção aplicada → varrer os docs já criados na sessão por padrão igual e corrigir junto.
 
 ## Tarefa ligada

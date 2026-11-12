@@ -33,6 +33,7 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | `planejar` | Planeja uma demanda com perguntas e fatos; só gera tarefas após aprovação. |
 | `revisao-qa` | Revisa tarefa ou código contra as regras de qualidade; só reporta, não corrige. |
 | `documentar` | Documenta código novo, atualiza a documentação quando solicitado e lista fluxos sem documentação. |
+| `diagramar` | Gera diagrama (fluxograma ou sequencial) e salva em `docs/sessoes/`; serve para apresentar um fluxo, dentro ou fora da documentação. |
 | `gerir-contexto` | Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada. |
 | `conferir-saida` | Confere se a saída de um teste de skill cumpre o que a skill pede. |
 | `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |   
