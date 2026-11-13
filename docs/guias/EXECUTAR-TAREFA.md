@@ -32,13 +32,13 @@ flowchart TD
   A2 -- "Concluído" --> A5(["Não executa; defeito vira tarefa nova"])
   A2 -- "Pendente ou em andamento" --> B["Lê a tarefa inteira e confere as dependências"]
   B --> C{"Dependências prontas?"}
-  C -- "Não" --> D["Para e diz o que falta; lista as tarefas que dependem desta"]
+  C -- "Não" --> D["Para e diz o que falta; propõe tarefa/bloqueado para ela e para as que dependem dela, só o que o Dev aprovar"]
   D --> E{"Dev manda seguir?"}
   E -- "Não" --> F
   E -- "Sim" --> G["Tag tarefa/em-execucao"]
   C -- "Sim" --> G
   G --> H["Executa o checklist na ordem, só os itens pedidos, seguindo os padrões do projeto; Documentação pela skill criar-documentacao"]
-  H --> I{"Sem padrão para o tipo, alvo fora do esqueleto ou conflito com a especificação?"}
+  H --> I{"Precisa perguntar ao Dev?"}
   I -- "Sim" --> J["Para e pergunta ao Dev"]
   J -- "Com a resposta" --> H
   I -- "Não" --> K["Build com o comando do CLAUDE.md; sem ele, pergunta o comando"]

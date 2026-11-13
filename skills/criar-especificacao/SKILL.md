@@ -7,6 +7,7 @@ allowed-tools: Read, Write(**/*.md), Edit(**/*.md), Glob, Grep
 # criar-especificacao
 
 Especificação = regras de negócio e critérios de aceite. Vem antes de `criar-plano` em toda demanda, exceto ajuste pequeno (abaixo). Não alterar código. Modelos em `TEMPLATE-ESPECIFICACAO.md` (esta pasta). Nomes de pasta, arquivo, tag e título citados aqui são exemplo: valem os do projeto (Glob/Grep no existente); sem padrão, perguntar sugerindo o exemplo.
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 
 ## Quando dispensar
 Ajuste que não cria nem muda regra de negócio nem comportamento observável (texto, configuração, refatoração, correção pequena): dizer que dispensa e seguir direto para `criar-plano`, `criar-tarefa` (gera o arquivo) ou a execução do ajuste (sem arquivo da tarefa). Dúvida → perguntar. O Dev pode pedir especificação mesmo assim.

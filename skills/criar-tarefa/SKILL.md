@@ -7,6 +7,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 # criar-tarefa
 
 Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` (plugin). Criar `docs/tarefas/modulos/<modulo>/NN-<nome>.md` (NN = próximo número livre entre os arquivos `NN-*.md` do módulo; `<nome>` no padrão do projeto; sem padrão, sugerir minúsculas e hífen) a partir de `TEMPLATE-TAREFA.md`; a estrutura vem só dele, nada do projeto adiciona seção. Blocos do checklist: 1 por divisão do projeto que a tarefa toca (camada, módulo, pasta), em ordem de dependência (ex: Domínio, Aplicação, Infraestrutura, API, DI & Migrations); `Documentação` penúltimo e `QA & Testes` por último, só se o projeto usa testes. Blocos numerados em sequência; itens `- [ ] **a:**`, letra reiniciando a cada bloco; sub-itens `- [ ] **b.1:**` (regra Hierarquia).
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 
 ## Escopo de leitura
 Consultar o código existente em no máximo 3 camadas, priorizando as que a tarefa cria. Salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais. Glob → Grep → Read. Tipo com regra em `docs/padroes/modelos/` (Glob) → ler a regra no lugar do exemplo (modelo base; particularidade da tarefa vale). Camada/módulo não claro → perguntar.

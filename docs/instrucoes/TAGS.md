@@ -39,21 +39,32 @@ Sem arquivo de lista: tag de assunto = nome já em uso (Grep `modulo/`, `camada/
 - Sem correspondente (ex. fluxo ainda não documentado, camada nova) → propor ao Dev (nome + 1 linha); usar só se aprovar. Nunca inventar.
 
 ## Estado da tarefa
-Exatamente 1 tag `tarefa/<valor>` por nota; trocar = substituir só esse item da lista, preservando as demais. Valores fechados (conjunto e significado; o nome da tag é o do projeto); outro valor → não gravar:
-- `pendente`: nenhum item `[x]` e nada a prende; ao criar, salvo motivo de `bloqueado`.
-- `em-andamento`: algum item `[x]` e ninguém executando.
-- `em-execucao`: uma sessão executando agora (`executar-tarefa` grava ao começar). Ao parar sem concluir, volta pelo checklist (algum `[x]` → `em-andamento`, nenhum → `pendente`): `executar-tarefa` no fim da execução; `gerir-contexto` ao gravar a `Retomada` de execução interrompida.
-- `em-validacao`: todos os itens `[x]` e build sem erro; aguarda o "aprovado" do Dev.
-- `concluido`: só com o "aprovado" explícito do Dev; nunca reabre (defeito depois = tarefa nova).
-- `bloqueado`: nenhum item `[x]` e tarefa em `Dependências` fora de `concluido`, `Especificação` fora de `aprovada`/`implementada` ou impedimento externo (build falho não é; do plano ou da execução: linha `**Bloqueio:** <o que destrava>` em `O que fazer`; só o Dev libera, e a linha sai).
+Exatamente 1 tag `tarefa/<valor>` por nota; trocar = substituir só esse item da lista, preservando as demais. Valores fechados (conjunto e significado; o nome da tag é o do projeto); outro valor → não gravar.
+
+| Estado | Entra quando | Sai para |
+|---|---|---|
+| `tarefa/pendente` | nenhum item `[x]` e nada a prende; ao criar, salvo motivo de `bloqueado` | `em-execucao`, `bloqueado` |
+| `tarefa/em-andamento` | algum item `[x]` e ninguém executando | `em-execucao`, `em-validacao` |
+| `tarefa/em-execucao` | uma sessão executando agora (`executar-tarefa` grava ao começar) | sempre ao parar: pelo checklist (algum `[x]` → `em-andamento`, nenhum → `pendente`), `em-validacao` ou `bloqueado` |
+| `tarefa/em-validacao` | todos os itens `[x]` e build sem erro; aguarda o "aprovado" do Dev | `concluido`; defeito → pelo checklist |
+| `tarefa/concluido` | só com o "aprovado" explícito do Dev | nenhum: nunca reabre (defeito depois = tarefa nova) |
+| `tarefa/bloqueado` | nenhum item `[x]` e tarefa em `Dependências` fora de `concluido`, `Especificação` fora de `aprovada`/`implementada` ou impedimento externo (build falho não é) | `pendente` quando nada mais a prende; `em-execucao` se o Dev liberar |
+
+- `em-execucao` ao parar sem concluir: `executar-tarefa` no fim da execução; `gerir-contexto` ao gravar a `Retomada` de execução interrompida.
+- Impedimento externo (do plano ou da execução): linha `**Bloqueio:** <o que destrava>` em `O que fazer`; só o Dev libera, e a linha sai.
 
 Sem estado de cancelada: tarefa que não será feita só se apaga em caso extremo, com aceite do Dev, junto com a linha do índice, o link em `Dependências` das outras e a linha no plano. O nome do arquivo da tarefa não muda (links dependem dele).
 
-## Estado da decisão
-Mesma regra (1 tag `decisao/<valor>`). Valores fechados: `aceita` (ao criar; só com aceite explícito do Dev), `substituida` (só quando uma decisão nova `aceita` a substitui).
+## Estado da especificação, da decisão e do plano
+Mesma regra (1 tag `<tipo>/<valor>`). Especificação: skill `criar-especificacao`. Valores fechados:
 
-## Estado da especificação
-Skill `criar-especificacao`. Mesma regra (1 tag `especificacao/<valor>`). Valores fechados: `rascunho` (ao criar ou alterar), `aprovada` (só com aprovação explícita do Dev; ou de volta de `implementada` quando tarefa nova a cita, `criar-tarefa`), `implementada` (só especificação de fluxo; `executar-tarefa`, quando toda tarefa que a cita está `concluido`), `obsoleta` (só se o Dev disser, de qualquer estado; linha de motivo abaixo do título, `criar-especificacao`).
-
-## Estado do plano
-Mesma regra (1 tag `plano/<valor>`). Valores fechados: `vigente` (ao criar), `obsoleto` (só se o Dev disser; linha de motivo abaixo do título, `PLANO.md`).
+| Estado | Entra quando | Sai para |
+|---|---|---|
+| `especificacao/rascunho` | ao criar ou alterar | `aprovada`, `obsoleta` |
+| `especificacao/aprovada` | só com aprovação explícita do Dev; ou de volta de `implementada` quando tarefa nova a cita (`criar-tarefa`) | `implementada`, `rascunho`, `obsoleta` |
+| `especificacao/implementada` | só especificação de fluxo; `executar-tarefa`, quando toda tarefa que a cita está `concluido` | `aprovada`, `rascunho`, `obsoleta` |
+| `especificacao/obsoleta` | só se o Dev disser, de qualquer estado; linha de motivo abaixo do título (`criar-especificacao`) | nenhum |
+| `decisao/aceita` | ao criar; só com aceite explícito do Dev | `substituida` |
+| `decisao/substituida` | só quando uma decisão nova `aceita` a substitui | nenhum |
+| `plano/vigente` | ao criar | `obsoleto` |
+| `plano/obsoleto` | só se o Dev disser; linha de motivo abaixo do título (`PLANO.md`) | nenhum |

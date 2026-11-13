@@ -1,6 +1,6 @@
 ---
 name: gerir-contexto
-description: Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada, senão avisa que não precisa. Usar ao informar o uso do contexto, ou pedir trocar de sessão, compactar, prompt de retomada, passar para outro dev ou resumo da conversa.
+description: Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada, senão avisa que não precisa. Usar ao informar o uso do contexto, ou pedir trocar de sessão, compactar a sessão, prompt de retomada, passar para outro dev ou resumo da conversa.
 allowed-tools: Read, Grep, Edit, Bash(git status *), Bash(git log *), Bash(git rev-parse *), Bash(git config user.name)
 ---
 

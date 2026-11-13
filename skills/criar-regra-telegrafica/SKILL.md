@@ -7,6 +7,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 # criar-regra-telegrafica
 
 Só cria `docs/padroes/modelos/<tipo>.md` (nome da pasta = exemplo: vale o do projeto; sem padrão, perguntar sugerindo-o). Não alterar código. Um tipo por rodada. Só fato: regra vem de arquivo lido com Read (Grep só confirma estrutura); dúvida → perguntar.
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 
 ## Alvo
 - **Com arquivos citados:** ler até 4 (os demais só por Grep das linhas estruturais).

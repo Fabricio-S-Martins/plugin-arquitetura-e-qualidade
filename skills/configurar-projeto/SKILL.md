@@ -35,7 +35,7 @@ Auditoria sem editar; as únicas edições são as linhas de commit, da skill, d
 - Sem regra de commit → oferecer a linha `Commit só quando pedido e só no repo da conversa, nunca em outro; \`git add\` só dos arquivos alterados pelo trabalho pedido.` (acrescentar só se aceitar).
 - Sem ponteiro da skill → oferecer a linha `Executar tarefa → usar a skill executar-tarefa.` (acrescentar só se aceitar).
 - Sem linha de pontos em aberto e exceções aceitas (Grep `PONTOS-EM-ABERTO.md` no `CLAUDE.md`) → oferecer a linha `Achado de desvio do padrão fora do escopo da tarefa, ou pedido do Dev para registrar, consultar ou triar pontos em aberto: ler antes \`docs/instrucoes/PONTOS-EM-ABERTO.md\` do plugin arquitetura-e-qualidade; nunca corrigir nem ignorar. Ao tocar um módulo: Grep \`tags:.*excecao-aceita\` em \`docs/\` e ler só as linhas com \`modulo/<m>\`; exceção aceita não se corrige nem se aponta.` (acrescentar só se aceitar; os arquivos nascem no 1º registro, não aqui). Ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/PONTOS-EM-ABERTO.md` e `EXCECOES-ACEITAS.md` só para explicar ao Dev o que a linha cobre.
-- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via `otimizar-tokens` (`mostrar-previa` só se o Dev pedir para ver antes).
+- Relatório curto: ranking por bytes + sugestões. Aplicar só se o Dev pedir, via skill `otimizar-tokens` (`mostrar-previa` só se o Dev pedir para ver antes).
 - Projeto novo/sem conteúdo → pular.
 
 ## 5. Plugin no projeto (`.claude/settings.json`)

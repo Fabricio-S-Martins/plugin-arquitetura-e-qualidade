@@ -7,6 +7,7 @@ allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git status *)
 # revisar-qualidade
 
 Só revisa e reporta. Não editar arquivos, não escrever código pronto, não se oferecer para corrigir. Corrigir apenas se o usuário pedir ("corrige", "ajusta"). Usuário quer ver como ficaria uma correção → `mostrar-previa`. Rodar build/testes só se pedido, com o comando do `CLAUDE.md` do projeto.
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 
 ## Alvo
 - **Tarefa `.md`:** conferir contra as Regras e o Gate de `${CLAUDE_SKILL_DIR}/../criar-tarefa/SKILL.md`. Item que depende de irmão ("Dentro dela", "nela", "idem") em vez de sub-item sob o pai (regra Hierarquia) = desvio; Grep na tarefa. Seção `Retomada` fica fora da revisão.

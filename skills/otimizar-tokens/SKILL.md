@@ -8,6 +8,7 @@ allowed-tools: Read, Glob, Grep, Edit, Write, Bash(wc *), Bash(cp *)
 
 Reduzir tokens preservando 100% do significado. Dúvida se é perda → perguntar, nunca cortar.
 Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `mostrar-previa`. "Auditoria" / "onde vale otimizar" → só o passo 1. Editar direto, sem pedir permissão; perguntar só por dúvida real de perda. Alvo com alterações não commitadas → copiar antes para o diretório temporário (scratchpad) e informar no relatório.
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 
 ## Público do arquivo
 - **Instrução** (`SKILL.md`, `docs/instrucoes/`, `CLAUDE.md`, frontmatter): telegráfico.
@@ -53,7 +54,7 @@ Auditar, não cortar sozinho: remover ou trocar muda comportamento → listar no
 - Alterar caminhos, namespaces, assinaturas, interfaces, DTOs, tipos, identificadores e ids de checklist do template.
 - Trocar nome de arquivo, âncora ou campo referenciado sem atualizar quem referencia.
 - Acrescentar informação que o original não dizia.
-- Código/config e blocos de código em `.md` (csharp, json, yaml): intactos; só remover comentário óbvio, espaço e linha em branco supérfluos; nunca alterar comportamento.
+- Código/config e blocos de código em `.md` (ex.: csharp, json, yaml): intactos; só remover comentário óbvio, espaço e linha em branco supérfluos; nunca alterar comportamento.
 - Frontmatter: manter `name` e as palavras de gatilho da `description`; encurtar só o que sobra.
 
 ## Exemplo

@@ -7,7 +7,8 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git status *), Bash(git diff 
 # criar-documentacao
 
 Não alterar código. Criar/atualizar docs direto; só o plano de documentação exige aprovação.
-**Um documento por rodada:** escrever 1 doc → gate → informar só nome e caminho e qual é o próximo → parar. Seguir só com "próximo" ou pedido explícito. Exceção: chamada pela `executar-tarefa` (tarefa `em-execucao`) → todos os docs do bloco Documentação, cada um com seu Gate, sem parar; depois devolver a lista dos docs à `executar-tarefa`.
+**Um documento por rodada:** escrever 1 doc → gate → informar só nome e caminho e qual é o próximo → parar. Seguir só com "próximo" ou pedido explícito.
+**Chamada por outra skill** (no meio do fluxo dela): fazer todo o trabalho pedido sem parar entre partes; ao terminar, não parar nem apontar a próxima skill. Pedido de aprovação ao Dev continua: esperar a resposta. Depois, voltar à skill que chamou, no passo seguinte ao da chamada.
 ## Modos
 - **Código novo** (padrão): alvo = arquivos criados na sessão (`git status --short`) ou citados.
 - **Alterado** (só sob pedido): código que já tem doc mudou de comportamento, rota, mensagem, regra ou configuração observável → atualizar o doc afetado.

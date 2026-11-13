@@ -11,7 +11,7 @@ O pedido descreve a demanda e traz o que já houver: objetivo, o que entra e o q
 ## O que acontece
 1. **Ela lê o que foi citado** e verifica no projeto o que dá para confirmar sozinha, antes de perguntar. Fato ela descobre lendo e cita a fonte. Decisão (regra, escopo, prioridade) é do Dev, e ela nunca decide por ele.
 2. **Ela pergunta** o que o projeto não responde. As perguntas vêm em rodadas, numeradas, formuladas pela consequência que o Dev observaria (por exemplo, "o lote esgotado some da vitrine ou continua riscado?") e não em termos de código. Cada uma diz o que já foi verificado e por que a resposta importa. Se a resposta for vaga, ela pergunta de novo, sem preencher a lacuna por conta própria. Ela sempre pergunta quantas pessoas ou agentes vão executar o plano em paralelo.
-3. **Ela testa o desenho sob quatro ângulos** antes de fechá-lo: como alguém abusaria disso, o que acontece se dois usuários fizerem a mesma coisa no mesmo segundo, se o suporte consegue diagnosticar e desfazer sem programador e onde a solução cobra caro no futuro. Cada ângulo vira uma pergunta ou uma verificação no código, nunca um risco inventado.
+3. **Ela faz as perguntas de risco** antes de fechar o desenho: como alguém abusaria disso, o que acontece se dois usuários fizerem a mesma coisa no mesmo segundo, se o suporte consegue diagnosticar e desfazer sem programador e onde a solução cobra caro no futuro. Cada uma vira uma pergunta ou uma verificação no código, nunca um risco inventado.
 4. **Ela apresenta o plano** em texto curto, sem explicar a metodologia (só os componentes) e sem fazer nenhuma alteração. O plano termina com "Aguardando aprovação." e, se houver decisão proposta, pergunta se cada uma deve ser registrada.
 5. **O Dev aprova** dizendo claramente "aprovado" (ou algo equivalente). Se pedir ajustes, ela revisa e mostra de novo. Silêncio ou dúvida não contam como aprovação. Se o "aprovado" não disser nada sobre as decisões propostas, ela pergunta uma vez antes de gravá-las.
 6. **Ela gera as tarefas**, uma por item do plano, na ordem de dependência, usando a skill de criar tarefa, e grava o arquivo do plano (ver abaixo). Se a demanda já tem plano vigente, ele é atualizado.
@@ -63,7 +63,7 @@ flowchart TD
   H --> H2{"Surgiu regra de negócio nova?"}
   H2 -- "Sim" --> F
   H2 -- "Não" --> I["Segue o padrão do projeto; sem padrão, usa QUALIDADE.md e pergunta as escolhas do Dev"]
-  I --> J["Questiona o desenho: abuso, concorrência, plantão e dev futuro"]
+  I --> J["Faz as perguntas de risco: abuso, concorrência, plantão e custo futuro"]
   J --> K["Apresenta o plano no chat, sem executar; com mais de um executor, divide as tarefas em frentes"]
   K --> L{"Dev aprova?"}
   L -- "Ajuste pedido ou escolha recusada" --> K
@@ -81,4 +81,4 @@ flowchart TD
 - **Plano em arquivo, com `[ ]` e só depois da aprovação.** O plano que só existe no chat se perde ao trocar de sessão; o arquivo guarda o que foi decidido e o que falta. O `[ ]` é a lista de tarefas pendentes (*checklist*) do Markdown, o mesmo formato das tarefas.
 - **Critério de pronto observável em cada tarefa.** Segue a ideia da definição de pronto (*Definition of Done*): build, teste ou fluxo que se possa ver, não "está pronto" por opinião.
 - **Frentes com nome genérico e sem responsável.** No planejamento, quase nunca se sabe quem vai executar; o plano diz só o que pode andar em paralelo. Tarefas que mexem no mesmo arquivo ficam na mesma frente para evitar conflito na hora do merge.
-- **Os quatro ângulos.** São perguntas que o desenho normal costuma esconder (abuso, concorrência, suporte e custo futuro), por isso cada uma vira pergunta ou verificação no código, nunca um risco inventado.
+- **As perguntas de risco.** São perguntas que o desenho normal costuma esconder (abuso, concorrência, suporte e custo futuro), por isso cada uma vira pergunta ou verificação no código, nunca um risco inventado.
