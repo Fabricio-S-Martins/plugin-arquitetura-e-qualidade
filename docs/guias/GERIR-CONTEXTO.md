@@ -13,10 +13,10 @@ Ela compara o que falta para terminar a tarefa (pelo que está na conversa) com 
 - **Não dá para estimar o que falta:** pergunta se falta pouco ou muito para terminar e segue a regra acima.
 - **Passar para outro dev:** sempre gera o prompt.
 
-Manter a sessão aproveita o cache (o início repetido da conversa sai mais barato e rápido). O `/compact` resume e pode perder detalhe. Trocar de sessão com `/clear` tira o peso do histórico, que é reenviado a cada mensagem, e depois de alguns minutos parado o cache já expirou.
+Manter a sessão aproveita o cache (o início repetido da conversa sai mais barato e rápido). O `/compact` resume e pode perder detalhe. Trocar de sessão com `/clear` tira o peso do histórico.
 
 ## O que é entregue
-**Com arquivo de tarefa em execução**, o estado vai para a própria tarefa, na seção `Retomada`, sempre no fim do arquivo. Ela guarda só o que o checklist não diz: decisões com o porquê, descartes, armadilhas, dúvidas em aberto, próximo passo e o que ler antes de agir. No chat vem uma linha só, apontando para a tarefa; a sessão nova (ou o outro dev) lê a tarefa inteira. Se a skill não tiver certeza de qual é a tarefa, pergunta. Ao concluir a tarefa, a `executar-tarefa` pergunta o destino das decisões que valem além dela e apaga a seção.
+**Com arquivo de tarefa em execução**, o estado vai para a própria tarefa, na seção `Retomada`, sempre no fim do arquivo. Ela guarda só o que o checklist não diz: decisões com o porquê, descartes, armadilhas, dúvidas em aberto, próximo passo e o que ler antes de agir, incluindo o plano vigente que cita a tarefa, quando existe. No chat vem uma linha só, apontando para a tarefa; a sessão nova (ou o outro dev) lê a tarefa inteira. Se a skill não tiver certeza de qual é a tarefa, pergunta. Se a tarefa ainda está marcada `em-execucao` (a execução foi interrompida), a skill devolve a tag conforme o checklist, para a tarefa ficar livre para a próxima sessão. Na conclusão da tarefa (com o "aprovado" do Dev), a `executar-tarefa` pergunta o destino das decisões que valem além dela e apaga a seção.
 
 **Sem arquivo de tarefa**, um prompt no chat, em um bloco de código, com o estado da frente: objetivo, o que está feito e pendente, o próximo passo, decisões com o porquê, o que foi descartado, dúvidas em aberto e o que ler antes de agir. Ele é autocontido: não depende de arquivo, e serve igual para a IA e para uma pessoa (frases curtas, caminhos exatos, datas completas). Tem no máximo cerca de 25 linhas e termina com "Sem presumir, deve ler."
 
@@ -29,10 +29,32 @@ O prompt segue por chat ou e-mail; o outro dev o cola na sessão dele. O texto n
 Antes de entregar, a skill confere se alguma pendência já foi resolvida no código (com uma busca pontual) e a move para "feito".
 
 ## Regras
-- **Só o que foi dito na conversa:** ela não lê o projeto para completar lacunas. As únicas leituras extras são o estado do git e a busca pontual da conferência.
-- **Não altera código, não cria arquivo e não faz commit.** A única edição é a seção `Retomada` do arquivo da tarefa em execução.
+- **Só o que foi dito na conversa:** ela não lê o projeto para completar lacunas. As únicas leituras extras são o estado do git, a busca pontual da conferência e a busca do plano que cita a tarefa.
+- **Não altera código, não cria arquivo e não faz commit.** As únicas edições são a seção `Retomada` do arquivo da tarefa em execução e, se a tarefa ficou `em-execucao`, a tag de estado.
 - **Dúvida vira "em aberto"**, nunca suposição.
 - Toda retomada termina com "Sem presumir, deve ler.": a sessão nova lê os arquivos indicados em vez de imaginar.
+
+## Fluxograma
+Comportamento da skill, da avaliação à entrega.
+
+```mermaid
+flowchart TD
+  A(["Dev informa o uso do contexto"]) --> B{"Pediu para passar a outro dev?"}
+  B -- "Sim" --> I{"Há arquivo de tarefa em execução?"}
+  B -- "Não" --> C{"Ocupação informada?"}
+  C -- "Não" --> D["Pergunta quanto o /context mostra"]
+  C -- "Sim" --> E{"Quanto falta para terminar?"}
+  D --> E
+  E -- "Não dá para estimar" --> F["Pergunta ao Dev se falta pouco ou muito"]
+  F --> E
+  E -- "Pouco, ocupação abaixo de 60%" --> G(["Avisa que não precisa trocar de sessão"])
+  E -- "Pouco, ocupação de 60% ou mais" --> G2(["Entrega o comando /compact para o Dev digitar"])
+  E -- "Muito" --> I
+  I -- "Sim" --> J["Grava a seção Retomada no fim da tarefa, com o plano vigente em Ler antes de agir; devolve a tag se ficou em-execucao; no chat, uma linha apontando para ela"]
+  I -- "Não" --> K["Gera o prompt no chat, em bloco de código, até cerca de 25 linhas; confere por busca pontual se alguma pendência já foi resolvida"]
+  J --> L(["Termina com: Sem presumir, deve ler."])
+  K --> L
+```
 
 ## Por que é assim
 - **O histórico é reenviado a cada mensagem.** Quanto maior o contexto, mais cada mensagem custa e mais devagar fica, e depois de alguns minutos parado o cache já expirou. Por isso a skill mede o que falta antes de recomendar trocar de sessão, em vez de trocar sempre.

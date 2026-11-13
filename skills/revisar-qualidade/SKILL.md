@@ -1,23 +1,23 @@
 ---
-name: revisao-qa
+name: revisar-qualidade
 description: Revisa tarefa ou código contra as regras de qualidade e as convenções; só reporta, não corrige. Usar ao pedir revisão, QA, review ou "confere se está certo".
 allowed-tools: Read, Glob, Grep, Bash(git diff *), Bash(git status *)
 ---
 
-# revisao-qa
+# revisar-qualidade
 
-Só revisa e reporta. Não editar arquivos, não escrever código pronto, não se oferecer para corrigir. Corrigir apenas se o usuário pedir ("corrige", "ajusta"). Usuário quer ver como ficaria uma correção → `previa-diff` (não aplica). Rodar build/testes só se pedido, com o comando do `CLAUDE.md` do projeto.
+Só revisa e reporta. Não editar arquivos, não escrever código pronto, não se oferecer para corrigir. Corrigir apenas se o usuário pedir ("corrige", "ajusta"). Usuário quer ver como ficaria uma correção → `mostrar-previa`. Rodar build/testes só se pedido, com o comando do `CLAUDE.md` do projeto.
 
 ## Alvo
-- **Tarefa `.md`:** conferir contra as Regras e o Gate de `skills/criar-tarefa/SKILL.md`. Item que depende de irmão ("Dentro dela", "nela", "idem") em vez de sub-item sob o pai (regra Hierarquia) = desvio; Grep na tarefa.
-- **Especificação `.md`:** conferir contra a Escrita e o Gate de `skills/especificar/SKILL.md`.
+- **Tarefa `.md`:** conferir contra as Regras e o Gate de `${CLAUDE_SKILL_DIR}/../criar-tarefa/SKILL.md`. Item que depende de irmão ("Dentro dela", "nela", "idem") em vez de sub-item sob o pai (regra Hierarquia) = desvio; Grep na tarefa. Seção `Retomada` fica fora da revisão.
+- **Especificação `.md`:** conferir contra a Escrita e o Gate de `${CLAUDE_SKILL_DIR}/../criar-especificacao/SKILL.md`.
 - **Código:** ler `${CLAUDE_SKILL_DIR}/../../docs/instrucoes/QUALIDADE.md` e os padrões do projeto que ele indica; ausentes → avisar no relatório.
 - Sem alvo informado → `git diff` atual; sem diff → perguntar.
 
 ## Modo
 - **Rápido (padrão):** só o diff/alvo, itens mecânicos, princípios obrigatórios, segurança e tarefa × código. Sem fontes do projeto, sem irmão, sem `(pré-existente)`.
 - **Completo** (pedido: "completo", "profundo"): rápido + ler e seguir `COMPLETO.md` desta skill.
-- **Parada antecipada:** Bloqueante estrutural (tarefa fora do template, divisão do alvo não identificável) → reportar e parar.
+- **Parada antecipada:** só tarefa fora do template (Bloqueante estrutural) → reportar e parar.
 
 ## Escopo (limite de leitura)
 - Identificar a divisão do alvo (camada, módulo, pasta) pelo caminho/projeto. Ler no máximo 3 divisões: a do alvo + até 2 vizinhas diretas (o que ela consome e quem a consome). Salvo pedido do Dev (vale só nesta execução); sem pedido, avisar que lê só isso e que ele pode pedir mais.

@@ -1,6 +1,6 @@
 # Plano e item
 
-Lido só nos modos Plano e Item. Regras e gate: `SKILL.md`.
+Regras e gate: `SKILL.md`.
 
 ## Plano
 1. **Levantar** o restante do módulo/fluxo do alvo: Glob de 1 nível + Grep, sem ler tudo.

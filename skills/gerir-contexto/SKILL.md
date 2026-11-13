@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Edit, Bash(git status *), Bash(git log *), Bash(git r
 
 # gerir-contexto
 
-Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, e o arquivo da tarefa em execução (só ao gravar a Retomada). Não editar código, não criar arquivo; única edição: a seção `Retomada` desse arquivo.
+Sem pedir permissão (salvo perguntas de Avaliar). Só o que está na conversa: nunca suposição, nunca reler o projeto para "completar". Leituras extras: `git status --short`, branch, hash curto do último commit, `git config user.name`, e o arquivo da tarefa em execução (só ao gravar a Retomada), com o plano `vigente` que a cita (Grep). Não editar código, não criar arquivo; únicas edições: a seção `Retomada` desse arquivo e, se a tarefa está `tarefa/em-execucao`, a tag pelo checklist (`${CLAUDE_SKILL_DIR}/../../docs/instrucoes/TAGS.md`).
 
 ## Avaliar
 Chamada após o usuário conferir o `/context`. Nunca rodar `/context` nem medir o contexto.

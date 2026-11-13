@@ -1,10 +1,10 @@
 ---
-name: previa-diff
+name: mostrar-previa
 description: Mostra prévia de alteração (antes e depois) sem editar arquivos. Usar ao pedir prévia, preview, comparação, "mostra como ficaria" ou algo "sem alterar"/"sem aplicar".
 allowed-tools: Read, Glob, Grep
 ---
 
-# previa-diff
+# mostrar-previa
 
 Não editar arquivos nem criar temporários. Aplicar só se o usuário pedir depois.
 1. Ler só o trecho necessário do arquivo e compor a versão nova.

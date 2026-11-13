@@ -1,7 +1,5 @@
 # Obsidian (opcional)
 
-Lido por `configurar-projeto` quando o Dev aceita ou `docs/.obsidian/` já existe.
-
 ## 1. Ferramenta
 | Conferir (Windows) | Instalar (Windows) | Sem Windows |
 |---|---|---|

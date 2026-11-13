@@ -27,17 +27,17 @@ claude plugin install arquitetura-e-qualidade@arquitetura-e-qualidade
 | Skill | O que faz |
 |---|---|
 | `criar-tarefa` | Cria tarefa em `.md` a partir do template. |
-| `executar-tarefa` | Executa o arquivo de uma tarefa (ou parte do checklist) conferindo antes as dependências; troca a tag de estado e faz o build. |
+| `executar-tarefa` | Executa o arquivo de uma tarefa (ou parte do checklist) conferindo antes o estado e as dependências; troca a tag de estado, faz o build e só conclui com o "aprovado" do Dev. |
 | `criar-regra-telegrafica` | Resume em `docs/padroes/modelos/` o padrão de arquivos parecidos (entidades, commands...); as skills leem a regra no lugar de um arquivo irmão. |
-| `especificar` | Define e registra as regras de negócio (especificação aprovada) antes de planejar; ajuste pequeno dispensa. |
-| `planejar` | Planeja uma demanda com perguntas e fatos; só gera tarefas após aprovação. |
-| `revisao-qa` | Revisa tarefa ou código contra as regras de qualidade; só reporta, não corrige. |
-| `documentar` | Documenta código novo, atualiza a documentação quando solicitado e lista fluxos sem documentação. |
-| `diagramar` | Gera diagrama (fluxograma ou sequencial) e salva em `docs/sessoes/`; serve para apresentar um fluxo, dentro ou fora da documentação. |
+| `criar-especificacao` | Define e registra as regras de negócio (especificação aprovada) antes de planejar; ajuste pequeno dispensa. |
+| `criar-plano` | Planeja uma demanda com perguntas e fatos; após aprovação, gera as tarefas e o arquivo do plano (funcionalidades, tarefas e pendências com `[ ]`). |
+| `revisar-qualidade` | Revisa tarefa ou código contra as regras de qualidade; só reporta, não corrige. |
+| `criar-documentacao` | Documenta código novo, atualiza a documentação quando solicitado e lista fluxos sem documentação. |
+| `criar-diagrama` | Gera diagrama (fluxograma ou sequencial) e salva em `docs/sessoes/`; serve para apresentar um fluxo, dentro ou fora da documentação. |
 | `gerir-contexto` | Com o contexto grande, avalia se precisa trocar de sessão; só então gera um prompt de retomada. |
 | `conferir-saida` | Confere se a saída de um teste de skill cumpre o que a skill pede. |
 | `otimizar-tokens` | Enxuga arquivos `.md` e configs para gastar menos tokens. |   
-| `previa-diff` | Mostra prévia de uma alteração (`+`/`-`) sem editar o arquivo. |
+| `mostrar-previa` | Mostra prévia de uma alteração (antes e depois) sem editar o arquivo. |
 | `configurar-projeto` | Prepara um projeto novo: cria `docs/`, audita o `CLAUDE.md`, habilita o plugin; Obsidian e `.editorconfig` opcionais. |
 
 Cada skill tem sua versão telegráfica (lida pela IA) em `skills/<nome>/SKILL.md`, e, quando o assunto exige, um guia amigável em `docs/guias/`.

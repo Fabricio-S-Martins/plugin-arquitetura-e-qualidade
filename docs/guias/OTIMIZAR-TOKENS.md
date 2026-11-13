@@ -3,12 +3,12 @@
 A skill `otimizar-tokens` enxuga arquivos do plugin (Markdown e configuração) para o Claude gastar menos tokens ao lê-los, sem perder informação. A versão que o Claude lê é [../../skills/otimizar-tokens/SKILL.md](../../skills/otimizar-tokens/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-O pedido indica o arquivo ou a pasta: "otimize a skill criar-tarefa" ou "enxugue os arquivos de docs/instrucoes". Para ver o que ela cortaria sem alterar nada, o pedido é "só analisa". Para ver os cortes linha a linha, pede-se a prévia (`+` e `-`), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
+O pedido indica o arquivo ou a pasta: "otimize a skill criar-tarefa" ou "enxugue os arquivos de docs/instrucoes". Para ver o que ela cortaria sem alterar nada, o pedido é "só analisa". Para ver os cortes antes de aplicar, pede-se a prévia (antes e depois), que também não altera o arquivo. Numa pasta, ela trata até uns 5 arquivos por vez.
 
 ## Em que ordem ela trabalha
 Do que mais economiza para o que menos economiza:
 1. **Auditoria:** lista os arquivos do plugin com o tamanho e classifica por tamanho vezes frequência de carga. As descrições das skills e o `CLAUDE.md` entram em toda sessão, o `SKILL.md` só quando a skill dispara e os demais só quando são lidos. Os guias de `docs/guias/` não são lidos pelo Claude, então otimizá-los não economiza tokens. O pedido "auditoria" devolve só esse relatório, sem alterar nada.
-2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `COMPLETO.md`, que só entra na revisão completa), uma regra escrita em mais de um arquivo fica em uma fonte só, e uma regra que se repetiria a cada item de uma lista que cresce (por exemplo, um parágrafo novo para cada ferramenta que a skill passa a checar) vira uma tabela de dados mais uma regra genérica que a percorre. Costuma economizar mais do que cortar palavras. Ela confere que nenhum uso passe a carregar mais do que antes.
+2. **Estrutura:** um bloco que só se usa em certos casos vai para um arquivo à parte, lido só quando necessário (como o `COMPLETO.md`, que só entra na revisão completa), uma regra escrita em mais de um arquivo fica em uma fonte só, e uma regra que se repetiria a cada item de uma lista que cresce (por exemplo, um parágrafo novo para cada ferramenta que a skill passa a checar) vira uma tabela de dados mais uma regra genérica que a percorre. Ela confere que nenhum uso passe a carregar mais do que antes.
 3. **Palavras:** só nos arquivos que ainda justificam, corta o que sobra no texto.
 
 ## Abstração e redundância
@@ -52,7 +52,30 @@ Para cada arquivo, o tamanho antes e depois em linhas e bytes, com a porcentagem
 ## Permissões
 O cabeçalho da skill declara que ela pode ler, editar e criar arquivos e usar `wc` e `cp`, para o Claude Code não pedir aprovação a cada edição enquanto ela roda. Se mesmo assim o VS Code pedir, o modo de permissões da sessão ou as regras do `settings.json` estão prevalecendo. Nesse caso, `Edit` e `Write` devem ser liberados para a pasta do plugin ali.
 
+## Fluxograma
+Comportamento da skill, do pedido ao relatório.
+
+```mermaid
+flowchart TD
+  A(["Dev pede para enxugar um alvo"]) --> B{"Alvo informado?"}
+  B -- "Não" --> C["Pergunta o alvo"]
+  B -- "Sim" --> D{"Pediu auditoria ou só análise?"}
+  C --> D
+  D -- "Auditoria" --> E(["Ranking por tamanho e frequência de carga; só relatório"])
+  D -- "Só análise" --> F(["Relatório do que cortaria, sem editar"])
+  D -- "Nenhum dos dois" --> G["Alvo com alterações não commitadas: copia antes e informa"]
+  G --> G2["Ranking por tamanho e frequência de carga; age primeiro no que mais pesa"]
+  G2 --> H["Estrutura primeiro: bloco raro vai para arquivo à parte; regra repetida fica em uma fonte"]
+  H --> I["Inventário dos fatos do arquivo"]
+  I --> J["Reescreve: remove o supérfluo e condensa"]
+  J --> K{"Tudo do inventário continua, com a mesma condição e número?"}
+  K -- "Não" --> L["Restaura o que faltou"]
+  L --> K
+  K -- "Sim" --> M["Mede antes e depois"]
+  M --> N(["Relatório: removido, condensado, impõe ao projeto, redundantes e dúvidas"])
+```
+
 ## Por que é assim
-- **Primeiro o que mais economiza.** O `CLAUDE.md` e as descrições das skills são carregados em toda sessão; um `SKILL.md` só quando a skill dispara; o resto só quando é lido. Medir o peso e a frequência de carga antes de cortar mostra onde o esforço compensa, em vez de cortar palavras em arquivo que quase não é lido.
+- **Primeiro o que mais economiza.** Medir o peso e a frequência de carga antes de cortar mostra onde o esforço compensa, em vez de cortar palavras em arquivo que quase não é lido.
 - **Estrutura antes de palavras.** Mover um bloco de uso raro para um arquivo à parte economiza mais que enxugar frases, e não perde informação.
 - **Inventário e conferência.** Cortar texto sem listar antes o que ele afirma é a forma mais fácil de perder uma regra sem ninguém perceber.

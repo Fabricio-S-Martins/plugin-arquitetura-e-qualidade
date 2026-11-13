@@ -7,7 +7,7 @@ allowed-tools: Read, Glob, Grep, Edit, Write, Bash(wc *), Bash(cp *)
 # otimizar-tokens
 
 Reduzir tokens preservando 100% do significado. Dúvida se é perda → perguntar, nunca cortar.
-Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `previa-diff`. "Auditoria" / "onde vale otimizar" → só o passo 1. Editar direto, sem pedir permissão; perguntar só por dúvida real de perda. Alvo com alterações não commitadas → copiar antes para o diretório temporário (scratchpad) e informar no relatório.
+Alvo: arquivos ou pasta informados; pasta → Glob e no máximo ~5 arquivos por execução, o resto vira sinalização. Sem alvo → perguntar. "Só analisa" → só relatório, sem editar; ver os cortes antes de aplicar → `mostrar-previa`. "Auditoria" / "onde vale otimizar" → só o passo 1. Editar direto, sem pedir permissão; perguntar só por dúvida real de perda. Alvo com alterações não commitadas → copiar antes para o diretório temporário (scratchpad) e informar no relatório.
 
 ## Público do arquivo
 - **Instrução** (`SKILL.md`, `docs/instrucoes/`, `CLAUDE.md`, frontmatter): telegráfico.

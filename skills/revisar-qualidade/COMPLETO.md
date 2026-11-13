@@ -1,7 +1,5 @@
 # Modo completo
 
-Acrescenta ao modo rápido.
-
 ## Fontes
 Do projeto ativo, se existirem: `MEMORY.md` (só o índice; abrir apenas os arquivos cujo resumo se relaciona ao alvo), `CLAUDE.md` (só armadilhas conhecidas) e `.editorconfig` e analisadores (linters) do projeto. Armadilhas e decisões específicas vêm de lá, nunca de memória. O que já quebra o build (analisador em `warning`/`error`) não se re-flaga; confirmar que cobre antes de pular. Faltou fonte → dizer.
 

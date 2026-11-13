@@ -1,7 +1,7 @@
 ## Retomada na tarefa
 Arquivo de tarefa em execução citado na conversa (caminho exato; ausente ou duvidoso → perguntar uma vez, ou seguir sem arquivo de tarefa): o estado vai na tarefa, não no prompt.
-1. Read da tarefa. Seção `## Retomada` já existe → atualizar no lugar; senão acrescentar como última seção, no fim do arquivo.
-2. Gravar só o que o checklist não diz, linha vazia → omitir; mesmas regras de escrita do Prompt:
+1. Read da tarefa. Seção `## Retomada` já existe → atualizar no lugar; senão acrescentar como última seção, no fim do arquivo. Tag `tarefa/em-execucao` (execução interrompida) → voltar pelo checklist: algum `[x]` → `em-andamento`, nenhum → `pendente` (só essa tag).
+2. Gravar só o que o checklist não diz, linha vazia → omitir; mesmas regras de escrita do Prompt. Plano `vigente` que cita a tarefa (Grep `tags:.*plano/vigente` em `docs/` e, neles, o nome do arquivo da tarefa) → linha em `Ler antes de agir`:
 ```
 ## Retomada
 Atualizado: AAAA-MM-DD · dev · branch · commit · git limpo | sujo (o quê)

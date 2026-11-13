@@ -1,17 +1,17 @@
-# Revisão de QA
+# Revisar qualidade
 
-A skill `revisao-qa` revisa uma tarefa ou um código e devolve um relatório. Este guia explica o que esperar. A versão que o Claude lê é [../../skills/revisao-qa/SKILL.md](../../skills/revisao-qa/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
+A skill `revisar-qualidade` revisa uma tarefa ou um código e devolve um relatório. A versão que o Claude lê é [../../skills/revisar-qualidade/SKILL.md](../../skills/revisar-qualidade/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa.
 
 ## Como pedir
-O pedido indica o alvo: "revise a tarefa 03-aplicacao-criar-usuario", "revise o arquivo X" ou "revise o que mudei". Sem alvo, o Claude revisa o `git diff` atual. Por padrão a revisão é **rápida**; o pedido "revisão completa" aciona o modo profundo.
+O pedido indica o alvo: "revise a tarefa 03-aplicacao-criar-usuario", "revise o arquivo X" ou "revise o que mudei". Sem alvo, o Claude revisa o `git diff` atual. Por padrão a revisão é **rápida**; o pedido "revisão completa" aciona o modo profundo. Também serve como conferência opcional da tarefa em validação, antes do "aprovado" do Dev (ver [EXECUTAR-TAREFA.md](EXECUTAR-TAREFA.md)).
 
 ## Os dois modos
 - **Rápido (padrão):** olha só o que mudou. Confere os itens verificáveis por busca, os princípios e itens obrigatórios, segurança e se o código cumpre a tarefa. É o mais barato em tokens.
 - **Completo:** além disso, lê o arquivo inteiro (aponta problemas antigos como `(pré-existente)`), compara com a regra do tipo em `docs/padroes/modelos/` (ou, sem ela, com até 3 arquivos irmãos), lê o `CLAUDE.md`, a `memory/` e o `.editorconfig` do projeto e aponta o que destoa do padrão.
-- **Parada antecipada:** se há um problema estrutural grave, como uma tarefa fora do template, ela reporta e para, sem gastar o resto da revisão.
+- **Parada antecipada:** se a tarefa revisada está fora do template, ela reporta e para, sem gastar o resto da revisão. É o único caso de parada antecipada.
 
 ## O que ela confere
-- **Tarefa:** as mesmas regras usadas para criar a tarefa (título, localização, validações, consistência, nomes, escopo).
+- **Tarefa:** as mesmas regras usadas para criar a tarefa (título, localização, validações, consistência, nomes, escopo). A seção `Retomada` (anotações de troca de sessão) fica de fora.
 - **Código:** os princípios de [QUALIDADE.md](../instrucoes/QUALIDADE.md) (KISS, YAGNI, DRY, SRP e padronização) e as práticas e convenções registradas no projeto (por exemplo `docs/padroes/regras/praticas.md` e `convencoes.md`). Sem esses arquivos, ela confere só os princípios e a consistência com o código existente, e avisa que eles não existem.
 - **Especificação:** se a tarefa cita uma, cada critério citado precisa ter contrapartida no código e as regras do fluxo não podem ser contrariadas.
 - **Tarefa × código:** se há uma tarefa associada, cada item do checklist precisa ter contrapartida no código e os cenários de teste precisam estar cobertos. Build e testes verdes não bastam para dizer que a tarefa está pronta.
@@ -21,8 +21,8 @@ O pedido indica o alvo: "revise a tarefa 03-aplicacao-criar-usuario", "revise o 
 - **Construção certa:** quando cabe, sugere a construção imutável ou sem estado que a linguagem do projeto oferece.
 
 ## Como ela trabalha
-- **Limite de leitura:** para não gastar tokens, lê no máximo 3 camadas: a do alvo e até 2 vizinhas diretas. Se não souber qual é a camada do alvo, pergunta. O que fica de fora aparece no relatório na linha `Escopo`, para o Dev poder pedir outra passada. Ele avisa no início que lê só isso; o Dev pode pedir mais (vale só naquela vez).
-- **Itens objetivos por busca:** as convenções mecânicas são verificadas com busca no código, não de cabeça, então o resultado não muda de uma revisão para outra. Se o mesmo item aparece sempre, ela sugere transformá-lo em regra automática do projeto.
+- **Limite de leitura:** para não gastar tokens, lê no máximo 3 camadas: a do alvo e até 2 vizinhas diretas. Se não souber qual é a camada do alvo, pergunta. O que fica de fora aparece no relatório na linha `Escopo`, para o Dev poder pedir outra passada. Avisa no início que lê só isso; o Dev pode pedir mais (vale só naquela vez).
+- **Itens objetivos por busca:** as convenções mecânicas são verificadas com busca no código, não de cabeça. Se o mesmo item aparece sempre, ela sugere transformá-lo em regra automática do projeto.
 - **Precisão acima de cobertura:** achado de baixa confiança é descartado. Código limpo é aprovado, sem inventar problema.
 
 ## O que sai
@@ -39,12 +39,39 @@ No final, um parecer curto em uma frase: se está tudo certo e, se não, qual o 
 
 ## O que ela não faz
 - Não edita arquivos nem se oferece para corrigir. A correção é do Dev, ou vem de pedido explícito ("corrige", "ajusta").
-- Para ver como ficaria uma correção, vale pedir a prévia: ela mostra a mudança com `+` e `-`, sem aplicar.
+- Para ver como ficaria uma correção, vale pedir a prévia: ela mostra o antes e o depois, sem aplicar.
 - Não cria itens novos fora do alvo. Cobertura que falta vira sinalização.
 - Não roda build nem testes por conta própria. Só quando o Dev pedir, usando o comando do `CLAUDE.md` do projeto.
+
+## Fluxograma
+Comportamento da skill, do pedido ao parecer.
+
+```mermaid
+flowchart TD
+  A(["Dev pede a revisão"]) --> B{"Alvo informado?"}
+  B -- "Não" --> C["Usa o git diff; sem diff, pergunta o alvo"]
+  B -- "Sim" --> E{"Tipo de alvo"}
+  C --> E
+  E -- "Tarefa" --> F["Confere contra as regras de criar-tarefa"]
+  E -- "Especificação" --> G["Confere contra a escrita de criar-especificacao"]
+  E -- "Código" --> H["Lê as regras de qualidade e os padrões do projeto"]
+  F --> I{"Tarefa fora do template?"}
+  I -- "Sim" --> J(["Reporta e para"])
+  I -- "Não" --> K["Lê a divisão do alvo e até 2 vizinhas; avisa o que lê"]
+  G --> K
+  H --> K
+  K --> K2{"Pediu revisão completa?"}
+  K2 -- "Sim" --> K3["Soma as fontes do projeto, o arquivo inteiro (até cerca de 400 linhas) e até 3 irmãos"]
+  K2 -- "Não" --> L["Mecânico por busca, tarefa contra código, segurança e testes"]
+  K3 --> L
+  L --> M["Filtra por julgamento: baixa confiança é cortada, exceto nos mecânicos"]
+  M --> N["Procura o mesmo padrão em todo o escopo"]
+  N --> N2["Confere organização e diff cirúrgico"]
+  N2 --> O(["Relatório: aprovado, com ressalvas ou reprovado; só reporta, nunca corrige"])
+```
 
 ## Por que é assim
 - **Os princípios de base.** KISS, YAGNI, DRY e SRP (o "S" do SOLID, de Robert C. Martin) são a régua que o plugin usa; o que vai além deles (práticas e convenções) é de cada projeto.
 - **Só reporta, nunca corrige.** É a separação entre quem escreve e quem revisa, como na revisão de código tradicional: o revisor que também altera deixa de ser um segundo olhar.
-- **Precisão acima de cobertura.** Uma revisão cheia de achados duvidosos ensina o time a ignorá-la. Achado de baixa confiança é descartado, e código limpo é aprovado.
-- **Itens mecânicos por busca.** A mesma verificação dá o mesmo resultado em toda revisão, e o que aparece sempre pode virar regra automática do projeto.
+- **Precisão acima de cobertura.** Uma revisão cheia de achados duvidosos ensina o time a ignorá-la.
+- **Itens mecânicos por busca.** A mesma verificação dá o mesmo resultado em toda revisão.

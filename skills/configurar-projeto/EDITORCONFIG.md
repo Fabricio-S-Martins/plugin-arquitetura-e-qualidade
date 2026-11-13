@@ -1,6 +1,6 @@
 # .editorconfig (opcional)
 
-Lido por `configurar-projeto` quando o Dev aceita. Já existe `.editorconfig` na raiz → não tocar. Ausente → detectar e criar só com o estilo que o código do projeto já segue (indentação, espaços finais, quebra de linha antes de chaves ou blocos, ordem de importações, nomenclatura de campos): Grep do padrão em cada ponto, vale a maioria; nomenclatura só se o código já a segue. Nunca fixar `charset` nem `end_of_line`.
+Já existe `.editorconfig` na raiz → não tocar. Ausente → detectar e criar só com o estilo que o código do projeto já segue (indentação, espaços finais, quebra de linha antes de chaves ou blocos, ordem de importações, nomenclatura de campos): Grep do padrão em cada ponto, vale a maioria; nomenclatura só se o código já a segue. Nunca fixar `charset` nem `end_of_line`.
 Chaves de estilo são da linguagem do projeto. Exemplo do formato (C#; outras linguagens usam as próprias chaves):
 ```ini
 root = true

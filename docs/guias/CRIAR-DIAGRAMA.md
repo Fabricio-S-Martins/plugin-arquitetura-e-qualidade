@@ -1,6 +1,6 @@
-# Diagramar
+# Criar diagrama
 
-A skill `diagramar` gera um diagrama (fluxograma ou sequencial) e salva em arquivo. Serve para qualquer ocasião, como apresentar um fluxo ao gestor, e não depende de o projeto ter tarefas, módulos ou documentação. A versão que o Claude lê é [../../skills/diagramar/SKILL.md](../../skills/diagramar/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa. As convenções do diagrama ficam em [DIAGRAMAS.md](../instrucoes/DIAGRAMAS.md), lido também pela skill `documentar`.
+A skill `criar-diagrama` gera um diagrama (fluxograma ou sequencial) e salva em arquivo. Serve para qualquer ocasião, como apresentar um fluxo ao gestor, e não depende de o projeto ter tarefas, módulos ou documentação. A versão que o Claude lê é [../../skills/criar-diagrama/SKILL.md](../../skills/criar-diagrama/SKILL.md), telegráfica de propósito. As duas dizem a mesma coisa. As convenções do diagrama ficam em [DIAGRAMAS.md](../instrucoes/DIAGRAMAS.md), lido também pela skill `criar-documentacao`.
 
 ## Como pedir
 - **"Faça um diagrama"**: sem assunto claro, ela pergunta o que mostrar. Com assunto, escolhe o tipo e diz qual escolheu.
@@ -23,8 +23,35 @@ Um arquivo `docs/sessoes/diagrama-<assunto>.md` (ou o caminho pedido) com títul
 - **Padrão do projeto vence:** o formato sugerido (Mermaid) só vale quando o projeto não define um.
 - **Não altera código, não faz commit.**
 
+## Fluxograma
+Comportamento da skill, do pedido ao arquivo salvo.
+
+```mermaid
+flowchart TD
+  A(["Dev pede um diagrama"]) --> B{"Assunto claro?"}
+  B -- "Não" --> C["Pergunta uma vez"]
+  B -- "Sim" --> D["Lê DIAGRAMAS.md; o padrão do projeto vence"]
+  C --> D
+  D --> E{"Tipo pedido?"}
+  E -- "Não" --> F["Escolhe pelo assunto e diz qual"]
+  E -- "Sim" --> G{"Sequencial sem interação entre atores?"}
+  G -- "Sim" --> H["Avisa e propõe fluxograma"]
+  G -- "Não" --> I
+  F --> I
+  H --> I["Usa só fatos do Dev ou do código lido; ator ou passo faltando vira pergunta"]
+  I --> J["Gate: bloco fechado, aspas no fluxograma, cor e mensagens no sequencial"]
+  J --> K{"Arquivo já existe?"}
+  K -- "Sim" --> L["Pergunta; nunca sobrescreve"]
+  K -- "Não" --> M["Salva em docs/sessoes/diagrama-assunto.md"]
+  L --> M
+  M --> N{"Pasta ignorada pelo git?"}
+  N -- "Não" --> O["Avisa, sem editar o .gitignore"]
+  N -- "Sim" --> P(["Responde só o caminho e o tipo usado"])
+  O --> P
+```
+
 ## Por que é assim
-- **Fluxograma e diagrama de sequência da UML, cada um no seu papel.** O fluxograma mostra decisão e passos de um ator; o diagrama de sequência mostra a ordem das mensagens entre atores. Os dois coexistem porque respondem perguntas diferentes.
+- **Fluxograma e diagrama de sequência da UML, cada um no seu papel.** Os dois coexistem porque respondem perguntas diferentes.
 - **Diagrama como texto (*docs as code*).** Mermaid é versionável, comparável e editável pelo Claude, e renderiza no GitHub, no Obsidian e no VS Code.
 - **Skill própria, convenções em um só arquivo.** O diagrama é útil fora da documentação (apresentações, conversas com gestão). Manter as convenções em `DIAGRAMAS.md` evita repetir o padrão em cada skill.
 - **Cenário completo e por cenário.** O completo dá a visão inteira; os pequenos permitem ler um caso sem seguir ramos que não interessam. A cor do bloco vive em um só lugar porque o Mermaid não aceita variável de cor.
