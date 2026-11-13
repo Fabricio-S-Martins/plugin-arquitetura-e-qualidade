@@ -11,3 +11,7 @@ Padrão de diagrama do projeto vale; abaixo é sugestão sem padrão (exemplo: M
 - Formatos: 3+ cenários → por cenário e completo; até 2 → só completo. Em fluxo documentado ficam dentro da seção `Diagrama`, subtítulos "Por cenário" e "Completo" (completo por último).
 - Por cenário: 1 diagrama por caso, autossuficiente (parte do início do fluxo, sem pular passos); frase de resumo sob o título, só o que acontece naquele caso; mensagens idênticas às do completo.
 - Completo: 1 diagrama; cada cenário em `rect` + `Note` de título; só um ocorre por execução. Pergunta de decisão fora do `rect`, resposta dentro. `Note` separadora ("apenas uma ocorre") nas alternativas exclusivas.
+## Gate
+- Bloco fechado.
+- Fluxograma: decisão em losango; rótulos entre aspas.
+- Sequencial: cor do `rect` igual à desta instrução (Grep); mensagens dos cenários idênticas às do completo.

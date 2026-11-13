@@ -1,6 +1,6 @@
 # ÍNDICE
 
-Índice da pasta raiz de uma área (tarefas, documentação, especificações, decisões): 1 por área, mesmo modelo nas quatro. Nomes de pasta, arquivo, tag e título de seção citados são exemplo: valem os do projeto (Glob/Grep no índice existente ou em área irmã; sem padrão → perguntar uma vez). Unidade = módulo, serviço, contexto etc., como em `ORGANIZACAO.md`.
+Índice da pasta raiz de uma área (tarefas, planos, documentação, especificações, decisões): 1 por área, mesmo modelo nas cinco. Nomes de pasta, arquivo, tag e título de seção citados são exemplo: valem os do projeto (Glob/Grep no índice existente ou em área irmã; sem padrão → perguntar uma vez). Unidade = módulo, serviço, contexto etc., como em `ORGANIZACAO.md`.
 
 ## Modelo
 ```

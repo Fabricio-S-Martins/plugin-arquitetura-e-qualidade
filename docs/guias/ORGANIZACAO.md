@@ -27,6 +27,27 @@ O plugin não escolhe nomes: ele impõe a **forma**. Todo projeto tem unidades (
 ## Área de padrões
 É a área sem unidades: guarda o que o projeto adotou. Fica dividida em grupos por assunto (por exemplo, regras e modelos de tipo), cada um com o seu índice. A `configurar-projeto` oferece criar os arquivos vazios; o conteúdo é do projeto.
 
+## Fluxograma
+O que o Claude faz ao criar ou alterar pasta, arquivo ou unidade.
+
+```mermaid
+flowchart TD
+  A(["Criar ou alterar pasta, arquivo ou unidade"]) --> B["Lê uma unidade equivalente como modelo"]
+  B --> C{"O projeto já tem padrão de nomes e níveis?"}
+  C -- "Não" --> D["Pergunta uma vez, sugerindo o exemplo"]
+  C -- "Sim" --> E["Replica a estrutura nas unidades que precisam"]
+  D --> E
+  E --> F["Cria o espelho em docs, tarefas, testes e especificações, no mesmo passo"]
+  F --> G{"A área tem índice?"}
+  G -- "Não" --> H["Cria o índice no modelo comum"]
+  G -- "Sim" --> I["Inclui a unidade no índice"]
+  H --> J{"Há assimetria que já existia?"}
+  I --> J
+  J -- "Sim" --> K["Só lista; não corrige sem pedido"]
+  J -- "Não" --> L(["Estrutura pronta"])
+  K --> L
+```
+
 ## Por que é assim
 - **Unidade como contexto delimitado.** Tratar módulo, serviço ou contexto como unidade, com nome e fronteira próprios, é uma ideia inspirada no *bounded context* do DDD (Eric Evans, 2003). O plugin só impõe a forma; quais são as unidades é decisão do projeto.
 - **Mesmo nível, mesma estrutura.** É a convenção sobre configuração (*convention over configuration*): se toda unidade é organizada igual, ninguém (nem a IA) precisa descobrir onde cada coisa fica.
