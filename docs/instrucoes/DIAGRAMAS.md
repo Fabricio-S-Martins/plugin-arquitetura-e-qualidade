@@ -1,7 +1,7 @@
 # Diagramas
 Padrão de diagrama do projeto vale; abaixo é sugestão sem padrão (exemplo: Mermaid). Rótulos em linguagem de negócio, sem termo técnico (salvo público técnico informado).
 ## Quando
-- Fluxograma (`flowchart TD`, vertical): lógica de decisão e passos de um ator. Decisão em losango; rótulos entre aspas.
+- Fluxograma (`flowchart TD`, vertical): lógica de decisão e passos de um ator. Decisão em losango; rótulos entre aspas. Laço de volta: sai da decisão para um passo de ação, que volta ao passo anterior; nunca direto da decisão.
 - Sequencial (`sequenceDiagram`): interação entre módulos/atores (mensagens, eventos, ordem das chamadas).
 - Fluxo com os dois aspectos → os dois.
 ## Sequencial

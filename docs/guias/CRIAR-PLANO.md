@@ -66,7 +66,8 @@ flowchart TD
   I --> J["Faz as perguntas de risco: abuso, concorrência, plantão e custo futuro"]
   J --> K["Apresenta o plano no chat, sem executar; com mais de um executor, divide as tarefas em frentes"]
   K --> L{"Dev aprova?"}
-  L -- "Ajuste pedido ou escolha recusada" --> K
+  L -- "Ajuste pedido ou escolha recusada" --> K2["Revisa o plano e reapresenta"]
+  K2 --> K
   L -- "Aprovado" --> M["criar-tarefa para cada tarefa, na ordem de dependência"]
   M --> N["Grava ou atualiza o arquivo do plano vigente, com tags e linha no índice do módulo"]
   N --> O{"Dev mandou registrar alguma decisão proposta?"}

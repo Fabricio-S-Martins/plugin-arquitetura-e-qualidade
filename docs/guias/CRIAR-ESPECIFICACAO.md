@@ -55,7 +55,8 @@ flowchart TD
   J -- "Sim" --> K["Sem aprovação: pede as respostas e aguarda"]
   K --> H
   J -- "Não" --> L{"Dev aprova?"}
-  L -- "Ajuste pedido" --> I
+  L -- "Ajuste pedido" --> L2["Revisa o rascunho e reapresenta"]
+  L2 --> I
   L -- "Aprovado" --> M["Tag especificacao/aprovada; se foi reaprovação, propõe liberar as tarefas bloqueadas que a citam e não têm outro impedimento"]
   M --> N(["Segue para criar-plano"])
   N -- "Se a regra mudar" --> R["Propõe bloquear as tarefas pendentes que a citam e avisa sobre as que já começaram; só com aval"]
